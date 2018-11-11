@@ -1,4 +1,4 @@
-# Friendbot Service for the Stellar Test Network
+# Friendbot Service for the Fonero Test Network
 
 This calls out to horizon to submit the transaction
 

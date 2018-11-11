@@ -1,5 +1,5 @@
 // Package results provides an implementation of the txsub.ResultProvider interface
-// backed using the SQL databases used by both stellar core and horizon
+// backed using the SQL databases used by both fonero core and horizon
 package results
 
 import (
@@ -7,15 +7,15 @@ import (
 	"context"
 	"encoding/base64"
 
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	"github.com/stellar/go/services/horizon/internal/txsub"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/txsub"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // DB provides transactio submission results by querying the
-// connected horizon and stellar core databases.
+// connected horizon and fonero core databases.
 type DB struct {
 	Core    *core.Q
 	History *history.Q

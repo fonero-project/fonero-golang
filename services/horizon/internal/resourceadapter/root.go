@@ -4,10 +4,10 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/services/horizon/internal/httpx"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/httpx"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // Populate fills in the details
@@ -24,7 +24,7 @@ func PopulateRoot(
 	dest.HistoryElderSequence = ledgerState.HistoryElder
 	dest.CoreSequence = ledgerState.CoreLatest
 	dest.HorizonVersion = hVersion
-	dest.StellarCoreVersion = cVersion
+	dest.FoneroCoreVersion = cVersion
 	dest.NetworkPassphrase = passphrase
 	dest.ProtocolVersion = pVersion
 

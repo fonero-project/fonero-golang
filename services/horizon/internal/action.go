@@ -5,15 +5,15 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/stellar/go/services/horizon/internal/actions"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/httpx"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	"github.com/stellar/go/services/horizon/internal/render/problem"
-	"github.com/stellar/go/services/horizon/internal/toid"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/actions"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/httpx"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/render/problem"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/toid"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 // Action is the "base type" for all actions in horizon.  It provides
@@ -31,7 +31,7 @@ type Action struct {
 	cq *core.Q
 }
 
-// CoreQ provides access to queries that access the stellar core database.
+// CoreQ provides access to queries that access the fonero core database.
 func (action *Action) CoreQ() *core.Q {
 	if action.cq == nil {
 		action.cq = &core.Q{Session: action.App.CoreSession(action.R.Context())}

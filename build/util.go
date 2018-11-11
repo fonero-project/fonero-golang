@@ -1,9 +1,9 @@
 package build
 
 import (
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 func setAccountId(addressOrSeed string, aid *xdr.AccountId) error {

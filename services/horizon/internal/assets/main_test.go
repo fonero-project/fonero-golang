@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/go-errors/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/xdr"
 	"github.com/stretchr/testify/assert"
 )
 

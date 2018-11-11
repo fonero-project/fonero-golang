@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stellar/go/amount"
-	. "github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/httpx"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/amount"
+	. "github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/httpx"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // Populate fills out the details of a trade using a row from the history_trades

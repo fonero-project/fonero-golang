@@ -2,15 +2,15 @@ package compliance
 
 import (
 	"github.com/asaskevich/govalidator"
-	"github.com/stellar/go/address"
+	"github.com/fonero-project/fonero-golang/address"
 )
 
 func init() {
 	govalidator.SetFieldsRequiredByDefault(true)
-	govalidator.CustomTypeTagMap.Set("stellar_address", govalidator.CustomTypeValidator(isStellarAddress))
+	govalidator.CustomTypeTagMap.Set("fonero_address", govalidator.CustomTypeValidator(isFoneroAddress))
 }
 
-func isStellarAddress(i interface{}, context interface{}) bool {
+func isFoneroAddress(i interface{}, context interface{}) bool {
 	addr, ok := i.(string)
 
 	if !ok {

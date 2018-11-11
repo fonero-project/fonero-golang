@@ -4,12 +4,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/stellar/go/clients/federation"
-	"github.com/stellar/go/clients/stellartoml"
-	"github.com/stellar/go/services/compliance/internal/config"
-	"github.com/stellar/go/services/compliance/internal/crypto"
-	"github.com/stellar/go/services/compliance/internal/db"
-	"github.com/stellar/go/support/http"
+	"github.com/fonero-project/fonero-golang/clients/federation"
+	"github.com/fonero-project/fonero-golang/clients/fonerotoml"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/config"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/crypto"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/db"
+	"github.com/fonero-project/fonero-golang/support/http"
 )
 
 // RequestHandler implements compliance server request handlers
@@ -18,7 +18,7 @@ type RequestHandler struct {
 	Client                  http.SimpleHTTPClientInterface `inject:""`
 	Database                db.Database                    `inject:""`
 	SignatureSignerVerifier crypto.SignerVerifierInterface `inject:""`
-	StellarTomlResolver     stellartoml.ClientInterface    `inject:""`
+	FoneroTomlResolver     fonerotoml.ClientInterface    `inject:""`
 	FederationResolver      federation.ClientInterface     `inject:""`
 	NonceGenerator          NonceGeneratorInterface        `inject:""`
 }

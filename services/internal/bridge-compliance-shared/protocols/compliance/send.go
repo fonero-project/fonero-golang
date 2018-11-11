@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stellar/go/protocols/compliance"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/protocols"
+	"github.com/fonero-project/fonero-golang/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols"
 )
 
 // SendRequest represents request sent to /send endpoint of compliance server
@@ -16,25 +16,25 @@ type SendRequest struct {
 	// Payment ID - used to resubmit auth request in case of `pending` response.
 	ID string `form:"id" valid:"required"`
 	// Source account ID
-	Source string `form:"source" valid:"required,stellar_accountid"`
-	// Sender address (like alice*stellar.org)
-	Sender string `form:"sender" valid:"required,stellar_address"`
-	// Destination address (like bob*stellar.org)
-	Destination string `form:"destination" valid:"required,stellar_address"`
+	Source string `form:"source" valid:"required,fonero_accountid"`
+	// Sender address (like alice*fonero.org)
+	Sender string `form:"sender" valid:"required,fonero_address"`
+	// Destination address (like bob*fonero.org)
+	Destination string `form:"destination" valid:"required,fonero_address"`
 	// ForwardDestination
 	ForwardDestination *protocols.ForwardDestination `form:"forward_destination" valid:"-"`
 	// Amount destination should receive
-	Amount string `form:"amount" valid:"required,stellar_amount"`
+	Amount string `form:"amount" valid:"required,fonero_amount"`
 	// Code of the asset destination should receive
-	AssetCode string `form:"asset_code" valid:"optional,stellar_asset_code"`
+	AssetCode string `form:"asset_code" valid:"optional,fonero_asset_code"`
 	// Issuer of the asset destination should receive
-	AssetIssuer string `form:"asset_issuer" valid:"optional,stellar_accountid"`
+	AssetIssuer string `form:"asset_issuer" valid:"optional,fonero_accountid"`
 	// Only for path_payment
-	SendMax string `form:"send_max" valid:"optional,stellar_amount"`
+	SendMax string `form:"send_max" valid:"optional,fonero_amount"`
 	// Only for path_payment
-	SendAssetCode string `form:"send_asset_code" valid:"optional,stellar_asset_code"`
+	SendAssetCode string `form:"send_asset_code" valid:"optional,fonero_asset_code"`
 	// Only for path_payment
-	SendAssetIssuer string `form:"send_asset_issuer" valid:"optional,stellar_accountid"`
+	SendAssetIssuer string `form:"send_asset_issuer" valid:"optional,fonero_accountid"`
 	// path[n][asset_code] path[n][asset_issuer]
 	Path []protocols.Asset `form:"path" valid:"-"`
 	// Extra memo

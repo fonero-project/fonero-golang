@@ -11,20 +11,20 @@ import (
 
 	"github.com/gomodule/redigo/redis"
 	"github.com/rcrowley/go-metrics"
-	"github.com/stellar/go/build"
-	"github.com/stellar/go/clients/stellarcore"
-	horizonContext "github.com/stellar/go/services/horizon/internal/context"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/ingest"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	"github.com/stellar/go/services/horizon/internal/operationfeestats"
-	"github.com/stellar/go/services/horizon/internal/paths"
-	"github.com/stellar/go/services/horizon/internal/reap"
-	"github.com/stellar/go/services/horizon/internal/txsub"
-	"github.com/stellar/go/support/app"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/clients/fonerocore"
+	horizonContext "github.com/fonero-project/fonero-golang/services/horizon/internal/context"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ingest"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/operationfeestats"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/paths"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/reap"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/txsub"
+	"github.com/fonero-project/fonero-golang/support/app"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/log"
 	"github.com/throttled/throttled"
 	"golang.org/x/net/http2"
 	"gopkg.in/tylerb/graceful.v1"
@@ -134,14 +134,14 @@ func (a *App) HorizonSession(ctx context.Context) *db.Session {
 	return &db.Session{DB: a.historyQ.Session.DB, Ctx: ctx}
 }
 
-// CoreSession returns a new session that loads data from the stellar core
+// CoreSession returns a new session that loads data from the fonero core
 // database. The returned session is bound to `ctx`.
 func (a *App) CoreSession(ctx context.Context) *db.Session {
 	return &db.Session{DB: a.coreQ.Session.DB, Ctx: ctx}
 }
 
 // CoreQ returns a helper object for performing sql queries aginst the
-// stellar core database.
+// fonero core database.
 func (a *App) CoreQ() *core.Q {
 	return a.coreQ
 }
@@ -241,19 +241,19 @@ Failed:
 
 }
 
-// UpdateStellarCoreInfo updates the value of coreVersion and networkPassphrase
-// from the Stellar core API.
-func (a *App) UpdateStellarCoreInfo() {
-	if a.config.StellarCoreURL == "" {
+// UpdateFoneroCoreInfo updates the value of coreVersion and networkPassphrase
+// from the Fonero core API.
+func (a *App) UpdateFoneroCoreInfo() {
+	if a.config.FoneroCoreURL == "" {
 		return
 	}
 
 	fail := func(err error) {
-		log.Warnf("could not load stellar-core info: %s", err)
+		log.Warnf("could not load fonero-core info: %s", err)
 	}
 
-	core := &stellarcore.Client{
-		URL: a.config.StellarCoreURL,
+	core := &fonerocore.Client{
+		URL: a.config.FoneroCoreURL,
 	}
 
 	resp, err := core.Info(context.Background())
@@ -292,11 +292,11 @@ func (a *App) DeleteUnretainedHistory() error {
 func (a *App) Tick() {
 	var wg sync.WaitGroup
 	log.Debug("ticking app")
-	// update ledger state, operation fee state, and stellar-core info in parallel
+	// update ledger state, operation fee state, and fonero-core info in parallel
 	wg.Add(3)
 	go func() { a.UpdateLedgerState(); wg.Done() }()
 	go func() { a.UpdateOperationFeeStatsState(); wg.Done() }()
-	go func() { a.UpdateStellarCoreInfo(); wg.Done() }()
+	go func() { a.UpdateFoneroCoreInfo(); wg.Done() }()
 	wg.Wait()
 
 	if a.ingester != nil {

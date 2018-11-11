@@ -4,8 +4,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stellar/go/price"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/price"
+	"github.com/fonero-project/fonero-golang/xdr"
 	"github.com/stretchr/testify/assert"
 )
 

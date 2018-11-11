@@ -1,9 +1,9 @@
 package bridge
 
 import (
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
 )
 
 // InflationOperationBody represents inflation operation
@@ -11,7 +11,7 @@ type InflationOperationBody struct {
 	Source *string
 }
 
-// ToTransactionMutator returns go-stellar-base TransactionMutator
+// ToTransactionMutator returns go-fonero-base TransactionMutator
 func (op InflationOperationBody) ToTransactionMutator() b.TransactionMutator {
 	var mutators []interface{}
 

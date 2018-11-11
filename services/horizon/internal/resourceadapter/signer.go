@@ -3,8 +3,8 @@ package resourceadapter
 import (
 	"context"
 
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	. "github.com/stellar/go/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	. "github.com/fonero-project/fonero-golang/protocols/horizon"
 )
 
 // Populate fills out the fields of the signer, using one of an account's
@@ -16,7 +16,7 @@ func PopulateSigner(ctx context.Context, dest *Signer, row core.Signer) {
 	dest.Type = MustKeyTypeFromAddress(dest.PublicKey)
 }
 
-// PopulateMaster fills out the fields of the signer, using a stellar account to
+// PopulateMaster fills out the fields of the signer, using a fonero account to
 // provide the data.
 func PopulateMasterSigner(dest *Signer, row core.Account) {
 	dest.PublicKey = row.Accountid

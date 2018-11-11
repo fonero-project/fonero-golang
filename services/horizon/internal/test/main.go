@@ -12,9 +12,9 @@ import (
 
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
-	"github.com/stellar/go/services/horizon/internal/logmetrics"
-	tdb "github.com/stellar/go/services/horizon/internal/test/db"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/logmetrics"
+	tdb "github.com/fonero-project/fonero-golang/services/horizon/internal/test/db"
+	"github.com/fonero-project/fonero-golang/support/log"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -67,7 +67,7 @@ func LoadScenario(scenarioName string) {
 	loadScenario(scenarioName, true)
 }
 
-// LoadScenarioWithoutHorizon populates the test Stellar core database a with
+// LoadScenarioWithoutHorizon populates the test Fonero core database a with
 // pre-created scenario.  Unlike `LoadScenario`, this
 func LoadScenarioWithoutHorizon(scenarioName string) {
 	loadScenario(scenarioName, false)
@@ -113,26 +113,26 @@ func Start(t *testing.T) *T {
 
 	result.Ctx = log.Set(context.Background(), result.Logger)
 	result.HorizonDB = Database(t)
-	result.CoreDB = StellarCoreDatabase(t)
+	result.CoreDB = FoneroCoreDatabase(t)
 	result.Assert = assert.New(t)
 	result.Require = require.New(t)
 
 	return result
 }
 
-// StellarCoreDatabase returns a connection to the stellar core test database
+// FoneroCoreDatabase returns a connection to the fonero core test database
 //
-// DEPRECATED:  use `StellarCore()` from test/db package
-func StellarCoreDatabase(t *testing.T) *sqlx.DB {
-	return tdb.StellarCore(t)
+// DEPRECATED:  use `FoneroCore()` from test/db package
+func FoneroCoreDatabase(t *testing.T) *sqlx.DB {
+	return tdb.FoneroCore(t)
 }
 
-// StellarCoreDatabaseURL returns the database connection the url any test
-// use when connecting to the stellar-core database
+// FoneroCoreDatabaseURL returns the database connection the url any test
+// use when connecting to the fonero-core database
 //
-// DEPRECATED:  use `StellarCoreURL()` from test/db package
-func StellarCoreDatabaseURL() string {
-	return tdb.StellarCoreURL()
+// DEPRECATED:  use `FoneroCoreURL()` from test/db package
+func FoneroCoreDatabaseURL() string {
+	return tdb.FoneroCoreURL()
 }
 
 var oldDefault *log.Entry = nil

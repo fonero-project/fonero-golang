@@ -7,9 +7,9 @@ import (
 	"net/url"
 
 	"github.com/pkg/errors"
-	"github.com/stellar/go/address"
-	proto "github.com/stellar/go/protocols/federation"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/address"
+	proto "github.com/fonero-project/fonero-golang/protocols/federation"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {

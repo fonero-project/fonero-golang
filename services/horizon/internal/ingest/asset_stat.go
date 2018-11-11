@@ -4,11 +4,11 @@ import (
 	"strings"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 func (assetsModified AssetsModified) handlePaymentOp(paymentOp *xdr.PaymentOp, sourceAccount *xdr.AccountId) error {
@@ -223,7 +223,7 @@ func statAccountInfo(coreQ *core.Q, accountID string) (int8, string, error) {
 	} else {
 		trimmed := strings.TrimSpace(account.HomeDomain.String)
 		if trimmed != "" {
-			toml = "https://" + account.HomeDomain.String + "/.well-known/stellar.toml"
+			toml = "https://" + account.HomeDomain.String + "/.well-known/fonero.toml"
 		} else {
 			toml = ""
 		}

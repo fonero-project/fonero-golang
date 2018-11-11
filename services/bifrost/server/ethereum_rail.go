@@ -1,16 +1,16 @@
 package server
 
 import (
-	"github.com/stellar/go/services/bifrost/database"
-	"github.com/stellar/go/services/bifrost/ethereum"
-	"github.com/stellar/go/services/bifrost/queue"
-	"github.com/stellar/go/services/bifrost/sse"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/bifrost/database"
+	"github.com/fonero-project/fonero-golang/services/bifrost/ethereum"
+	"github.com/fonero-project/fonero-golang/services/bifrost/queue"
+	"github.com/fonero-project/fonero-golang/services/bifrost/sse"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 // onNewEthereumTransaction checks if transaction is valid and adds it to
-// the transactions queue for StellarAccountConfigurator to consume.
+// the transactions queue for FoneroAccountConfigurator to consume.
 //
 // Transaction added to transactions queue should be in a format described in
 // queue.Transaction (especialy amounts). Pooling service should not have to deal with any
@@ -53,8 +53,8 @@ func (s *Server) onNewEthereumTransaction(transaction ethereum.Transaction) erro
 		TransactionID: transaction.Hash,
 		AssetCode:     queue.AssetCodeETH,
 		// Amount in the base unit of currency.
-		Amount:           transaction.ValueToStellar(),
-		StellarPublicKey: addressAssociation.StellarPublicKey,
+		Amount:           transaction.ValueToFonero(),
+		FoneroPublicKey: addressAssociation.FoneroPublicKey,
 	}
 
 	err = s.TransactionsQueue.QueueAdd(queueTx)

@@ -6,15 +6,15 @@ import (
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
-	"github.com/stellar/go/address"
-	b "github.com/stellar/go/build"
-	"github.com/stellar/go/protocols/compliance"
-	"github.com/stellar/go/protocols/federation"
-	"github.com/stellar/go/services/compliance/internal/db"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	callback "github.com/stellar/go/services/internal/bridge-compliance-shared/protocols/compliance"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/address"
+	b "github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/protocols/federation"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/db"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	callback "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // HandlerSend implements /send endpoint
@@ -47,7 +47,7 @@ func (rh *RequestHandler) HandlerSend(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if authDataEntity != nil {
-		stellarToml, err := rh.StellarTomlResolver.GetStellarToml(authDataEntity.Domain)
+		foneroToml, err := rh.FoneroTomlResolver.GetFoneroToml(authDataEntity.Domain)
 		if err != nil {
 			log.WithFields(log.Fields{
 				"destination": request.Destination,
@@ -57,13 +57,13 @@ func (rh *RequestHandler) HandlerSend(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		if stellarToml.AuthServer == "" {
-			log.Print("No AUTH_SERVER in stellar.toml")
+		if foneroToml.AuthServer == "" {
+			log.Print("No AUTH_SERVER in fonero.toml")
 			helpers.Write(w, callback.AuthServerNotDefined)
 			return
 		}
 
-		rh.sendAuthData(w, stellarToml.AuthServer, []byte(authDataEntity.AuthData))
+		rh.sendAuthData(w, foneroToml.AuthServer, []byte(authDataEntity.AuthData))
 		return
 	}
 
@@ -104,7 +104,7 @@ func (rh *RequestHandler) HandlerSend(w http.ResponseWriter, r *http.Request) {
 		domain = request.ForwardDestination.Domain
 	}
 
-	stellarToml, err := rh.StellarTomlResolver.GetStellarToml(domain)
+	foneroToml, err := rh.FoneroTomlResolver.GetFoneroToml(domain)
 	if err != nil {
 		log.WithFields(log.Fields{
 			"destination": request.Destination,
@@ -114,8 +114,8 @@ func (rh *RequestHandler) HandlerSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if stellarToml.AuthServer == "" {
-		log.Print("No AUTH_SERVER in stellar.toml")
+	if foneroToml.AuthServer == "" {
+		log.Print("No AUTH_SERVER in fonero.toml")
 		helpers.Write(w, callback.AuthServerNotDefined)
 		return
 	}
@@ -291,7 +291,7 @@ func (rh *RequestHandler) HandlerSend(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rh.sendAuthData(w, stellarToml.AuthServer, data)
+	rh.sendAuthData(w, foneroToml.AuthServer, data)
 }
 
 func (rh *RequestHandler) sendAuthData(w http.ResponseWriter, authServer string, data []byte) {

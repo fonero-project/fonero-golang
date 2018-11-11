@@ -1,17 +1,17 @@
 package test
 
 import (
-	"github.com/stellar/go/services/horizon/internal/test/scenarios"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test/scenarios"
 )
 
 func loadScenario(scenarioName string, includeHorizon bool) {
-	stellarCorePath := scenarioName + "-core.sql"
+	foneroCorePath := scenarioName + "-core.sql"
 	horizonPath := scenarioName + "-horizon.sql"
 
 	if !includeHorizon {
 		horizonPath = "blank-horizon.sql"
 	}
 
-	scenarios.Load(StellarCoreDatabaseURL(), stellarCorePath)
+	scenarios.Load(FoneroCoreDatabaseURL(), foneroCorePath)
 	scenarios.Load(DatabaseURL(), horizonPath)
 }

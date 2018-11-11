@@ -3,8 +3,8 @@ package database
 import (
 	"time"
 
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 type Chain string
@@ -27,15 +27,15 @@ const (
 )
 
 type Database interface {
-	// CreateAddressAssociation creates Bitcoin/Ethereum-Stellar association. `addressIndex`
+	// CreateAddressAssociation creates Bitcoin/Ethereum-Fonero association. `addressIndex`
 	// is the chain (Bitcoin/Ethereum) address derivation index (BIP-32).
-	CreateAddressAssociation(chain Chain, stellarAddress, address string, addressIndex uint32) error
-	// GetAssociationByChainAddress searches for previously saved Bitcoin/Ethereum-Stellar association.
+	CreateAddressAssociation(chain Chain, foneroAddress, address string, addressIndex uint32) error
+	// GetAssociationByChainAddress searches for previously saved Bitcoin/Ethereum-Fonero association.
 	// Should return nil if not found.
 	GetAssociationByChainAddress(chain Chain, address string) (*AddressAssociation, error)
-	// GetAssociationByStellarPublicKey searches for previously saved Bitcoin/Ethereum-Stellar association.
+	// GetAssociationByFoneroPublicKey searches for previously saved Bitcoin/Ethereum-Fonero association.
 	// Should return nil if not found.
-	GetAssociationByStellarPublicKey(stellarPublicKey string) (*AddressAssociation, error)
+	GetAssociationByFoneroPublicKey(foneroPublicKey string) (*AddressAssociation, error)
 	// AddProcessedTransaction adds a transaction to database as processed. This
 	// should return `true` and no error if transaction processing has already started/finished.
 	AddProcessedTransaction(chain Chain, transactionID, receivingAddress string) (alreadyProcessing bool, err error)
@@ -62,6 +62,6 @@ type AddressAssociation struct {
 	// BIP-44
 	AddressIndex     uint32    `db:"address_index"`
 	Address          string    `db:"address"`
-	StellarPublicKey string    `db:"stellar_public_key"`
+	FoneroPublicKey string    `db:"fonero_public_key"`
 	CreatedAt        time.Time `db:"created_at"`
 }

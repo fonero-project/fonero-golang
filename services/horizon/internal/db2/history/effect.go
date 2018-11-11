@@ -6,10 +6,10 @@ import (
 	"math"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/toid"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/toid"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // UnmarshalDetails unmarshals the details of this effect into `dest`

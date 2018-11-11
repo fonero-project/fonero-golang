@@ -12,20 +12,20 @@ import (
 	"net/url"
 	"sync"
 
-	"github.com/stellar/go/build"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // DefaultTestNetClient is a default client to connect to test network
 var DefaultTestNetClient = &Client{
-	URL:  "https://horizon-testnet.stellar.org",
+	URL:  "https://horizon-testnet.fonero.org",
 	HTTP: http.DefaultClient,
 }
 
 // DefaultPublicNetClient is a default client to connect to public network
 var DefaultPublicNetClient = &Client{
-	URL:  "https://horizon.stellar.org",
+	URL:  "https://horizon.fonero.org",
 	HTTP: http.DefaultClient,
 }
 

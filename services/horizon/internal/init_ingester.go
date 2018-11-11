@@ -3,7 +3,7 @@ package horizon
 import (
 	"log"
 
-	"github.com/stellar/go/services/horizon/internal/ingest"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ingest"
 )
 
 func initIngester(app *App) {
@@ -12,12 +12,12 @@ func initIngester(app *App) {
 	}
 
 	if app.networkPassphrase == "" {
-		log.Fatal("Cannot start ingestion without network passphrase.  Please confirm connectivity with stellar-core.")
+		log.Fatal("Cannot start ingestion without network passphrase.  Please confirm connectivity with fonero-core.")
 	}
 
 	app.ingester = ingest.New(
 		app.networkPassphrase,
-		app.config.StellarCoreURL,
+		app.config.FoneroCoreURL,
 		app.CoreSession(nil),
 		app.HorizonSession(nil),
 		ingest.Config{
@@ -30,5 +30,5 @@ func initIngester(app *App) {
 }
 
 func init() {
-	appInit.Add("ingester", initIngester, "app-context", "log", "horizon-db", "core-db", "stellarCoreInfo")
+	appInit.Add("ingester", initIngester, "app-context", "log", "horizon-db", "core-db", "foneroCoreInfo")
 }

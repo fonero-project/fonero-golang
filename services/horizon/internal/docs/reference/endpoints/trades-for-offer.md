@@ -1,12 +1,12 @@
 ---
 title: Trades for Offer
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=trades&endpoint=for_offer
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=trades&endpoint=for_offer
 ---
 
 This endpoint represents all [trades](../resources/trade.md) for a given [offer](../resources/offer.md).
 
-This endpoint can also be used in [streaming](../streaming.md) mode, making it possible to listen for new trades for the given offer as they occur on the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode, making it possible to listen for new trades for the given offer as they occur on the Fonero network.
 If called in streaming mode Horizon will start at the earliest known trade unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream trades created since your request time.
 ## Request
 
@@ -26,14 +26,14 @@ GET /offers/{offer_id}/trades{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/offers/323223/trades"
+curl "https://horizon-testnet.fonero.org/offers/323223/trades"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.trades()
     .forOffer(323223)
@@ -56,13 +56,13 @@ This endpoint responds with a list of trades that consumed a given offer. See th
 {
   "_links": {
     "self": {
-      "href": "https://horizon-testnet.stellar.org/offers/323223/trades?cursor=\u0026limit=10\u0026order=asc"
+      "href": "https://horizon-testnet.fonero.org/offers/323223/trades?cursor=\u0026limit=10\u0026order=asc"
     },
     "next": {
-      "href": "https://horizon-testnet.stellar.org/offers/323223/trades?cursor=35789107779080193-0\u0026limit=10\u0026order=asc"
+      "href": "https://horizon-testnet.fonero.org/offers/323223/trades?cursor=35789107779080193-0\u0026limit=10\u0026order=asc"
     },
     "prev": {
-      "href": "https://horizon-testnet.stellar.org/offers/323223/trades?cursor=35789107779080193-0\u0026limit=10\u0026order=desc"
+      "href": "https://horizon-testnet.fonero.org/offers/323223/trades?cursor=35789107779080193-0\u0026limit=10\u0026order=desc"
     }
   },
   "_embedded": {
@@ -73,13 +73,13 @@ This endpoint responds with a list of trades that consumed a given offer. See th
             "href": ""
           },
           "base": {
-            "href": "https://horizon-testnet.stellar.org/accounts/GDRCFIQAUEFUQ6GXF5DPRO2M77E4UB7RW7EWI2FTKOW7CWYKZCHSI75K"
+            "href": "https://horizon-testnet.fonero.org/accounts/GDRCFIQAUEFUQ6GXF5DPRO2M77E4UB7RW7EWI2FTKOW7CWYKZCHSI75K"
           },
           "counter": {
-            "href": "https://horizon-testnet.stellar.org/accounts/GCUD7CBKTQI4D7ZR7IKHMGXZKKVABML7XFBHV4AIYBOEN5UQFZ5DSPPT"
+            "href": "https://horizon-testnet.fonero.org/accounts/GCUD7CBKTQI4D7ZR7IKHMGXZKKVABML7XFBHV4AIYBOEN5UQFZ5DSPPT"
           },
           "operation": {
-            "href": "https://horizon-testnet.stellar.org/operations/35789107779080193"
+            "href": "https://horizon-testnet.fonero.org/operations/35789107779080193"
           }
         },
         "id": "35789107779080193-0",

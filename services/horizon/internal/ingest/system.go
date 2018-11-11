@@ -3,13 +3,13 @@ package ingest
 import (
 	"time"
 
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	herr "github.com/stellar/go/services/horizon/internal/errors"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	"github.com/stellar/go/services/horizon/internal/toid"
-	"github.com/stellar/go/support/errors"
-	ilog "github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	herr "github.com/fonero-project/fonero-golang/services/horizon/internal/errors"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/toid"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	ilog "github.com/fonero-project/fonero-golang/support/log"
 )
 
 // Backfill ingests history in reverse chronological order, from the current
@@ -64,7 +64,7 @@ func (i *System) ClearAll() error {
 	return nil
 }
 
-// RebaseHistory re-establishes horizon's history database by clearing it, ingesting the latest ledger in stellar-core then backfilling as many ledgers as possible
+// RebaseHistory re-establishes horizon's history database by clearing it, ingesting the latest ledger in fonero-core then backfilling as many ledgers as possible
 func (i *System) RebaseHistory() error {
 	var latest int32
 	var elder int32
@@ -223,7 +223,7 @@ func (i *System) Tick() *Session {
 	return is
 }
 
-// run causes the importer to check stellar-core to see if we can import new
+// run causes the importer to check fonero-core to see if we can import new
 // data.
 func (i *System) runOnce() {
 	defer func() {
@@ -273,7 +273,7 @@ func (i *System) runOnce() {
 	}
 
 	if coreLatest == 1 {
-		log.Warn("ingest: waiting for stellar-core sync")
+		log.Warn("ingest: waiting for fonero-core sync")
 		return
 	}
 
@@ -319,8 +319,8 @@ func (i *System) runOnce() {
 
 // trimAbandondedLedgers deletes all "abandonded" ledgers from the history
 // database. An abandonded ledger, in this context, means a ledger known to
-// horizon but is no longer present in the stellar-core database source.  The
-// usual cause for this situation is a stellar-core that uses the CATCHUP_RECENT
+// horizon but is no longer present in the fonero-core database source.  The
+// usual cause for this situation is a fonero-core that uses the CATCHUP_RECENT
 // mode.
 func (i *System) trimAbandondedLedgers() error {
 	var coreElder int32

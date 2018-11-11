@@ -1,11 +1,11 @@
 ---
 title: All Transactions
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=transactions&endpoint=all
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=transactions&endpoint=all
 ---
 
 This endpoint represents all validated [transactions](../resources/transaction.md).
-This endpoint can also be used in [streaming](../streaming.md) mode. This makes it possible to use it to listen for new transactions as they get made in the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode. This makes it possible to use it to listen for new transactions as they get made in the Fonero network.
 If called in streaming mode Horizon will start at the earliest known transaction unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream transaction created since your request time.
 
 ## Request
@@ -26,14 +26,14 @@ GET /transactions{?cursor,limit,order}
 
 ```sh
 # Retrieve the 200 latest transactions, ordered chronologically:
-curl "https://horizon-testnet.stellar.org/transactions?limit=200&order=desc"
+curl "https://horizon-testnet.fonero.org/transactions?limit=200&order=desc"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.transactions()
   .call()

@@ -8,13 +8,13 @@ import (
 
 	"github.com/go-chi/chi"
 	"github.com/spf13/cobra"
-	"github.com/stellar/go/services/friendbot/internal"
-	"github.com/stellar/go/support/app"
-	"github.com/stellar/go/support/config"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/http"
-	"github.com/stellar/go/support/log"
-	"github.com/stellar/go/support/render/problem"
+	"github.com/fonero-project/fonero-golang/services/friendbot/internal"
+	"github.com/fonero-project/fonero-golang/support/app"
+	"github.com/fonero-project/fonero-golang/support/config"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/http"
+	"github.com/fonero-project/fonero-golang/support/log"
+	"github.com/fonero-project/fonero-golang/support/render/problem"
 )
 
 // Config represents the configuration of a friendbot server
@@ -31,8 +31,8 @@ func main() {
 
 	rootCmd := &cobra.Command{
 		Use:   "friendbot",
-		Short: "friendbot for the Stellar Test Network",
-		Long:  "client-facing api server for the friendbot service on the Stellar Test Network",
+		Short: "friendbot for the Fonero Test Network",
+		Long:  "client-facing api server for the friendbot service on the Fonero Test Network",
 		Run:   run,
 	}
 

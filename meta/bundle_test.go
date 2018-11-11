@@ -1,11 +1,11 @@
 package meta_test
 
 import (
-	. "github.com/stellar/go/meta"
+	. "github.com/fonero-project/fonero-golang/meta"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 var _ = Describe("meta.Bundle", func() {

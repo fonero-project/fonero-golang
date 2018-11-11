@@ -3,7 +3,7 @@ package build
 import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 var _ = Describe("BumpSequenceBuilder Mutators", func() {
@@ -34,7 +34,7 @@ var _ = Describe("BumpSequenceBuilder Mutators", func() {
 	})
 
 	Describe("SourceAccount", func() {
-		Context("using a valid stellar address", func() {
+		Context("using a valid fonero address", func() {
 			BeforeEach(func() { mut = SourceAccount{address} })
 
 			It("succeeds", func() {

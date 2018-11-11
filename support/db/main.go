@@ -1,4 +1,4 @@
-// Package db is the base package for database access at stellar.  It primarily
+// Package db is the base package for database access at fonero.  It primarily
 // exposes Session which is a lightweight wrapper around a *sqlx.DB that
 // provides utility methods (See the repo tests for examples).
 //
@@ -17,7 +17,7 @@ import (
 
 	"github.com/Masterminds/squirrel"
 	"github.com/jmoiron/sqlx"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/support/errors"
 
 	// Enable mysql
 	_ "github.com/go-sql-driver/mysql"

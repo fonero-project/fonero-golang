@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 var (

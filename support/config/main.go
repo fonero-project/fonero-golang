@@ -8,9 +8,9 @@ import (
 
 	"github.com/BurntSushi/toml"
 	"github.com/asaskevich/govalidator"
-	"github.com/stellar/go/amount"
-	"github.com/stellar/go/strkey"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/amount"
+	"github.com/fonero-project/fonero-golang/strkey"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 // TLS represents a common configuration snippet for configuring TLS in a server process
@@ -63,13 +63,13 @@ func decode(content string, dest interface{}) error {
 
 func init() {
 	govalidator.SetFieldsRequiredByDefault(true)
-	govalidator.CustomTypeTagMap.Set("stellar_accountid", govalidator.CustomTypeValidator(isStellarAccountID))
-	govalidator.CustomTypeTagMap.Set("stellar_seed", govalidator.CustomTypeValidator(isStellarSeed))
-	govalidator.CustomTypeTagMap.Set("stellar_amount", govalidator.CustomTypeValidator(isStellarAmount))
+	govalidator.CustomTypeTagMap.Set("fonero_accountid", govalidator.CustomTypeValidator(isFoneroAccountID))
+	govalidator.CustomTypeTagMap.Set("fonero_seed", govalidator.CustomTypeValidator(isFoneroSeed))
+	govalidator.CustomTypeTagMap.Set("fonero_amount", govalidator.CustomTypeValidator(isFoneroAmount))
 
 }
 
-func isStellarAmount(i interface{}, context interface{}) bool {
+func isFoneroAmount(i interface{}, context interface{}) bool {
 	enc, ok := i.(string)
 
 	if !ok {
@@ -85,7 +85,7 @@ func isStellarAmount(i interface{}, context interface{}) bool {
 	return false
 }
 
-func isStellarAccountID(i interface{}, context interface{}) bool {
+func isFoneroAccountID(i interface{}, context interface{}) bool {
 	enc, ok := i.(string)
 
 	if !ok {
@@ -101,7 +101,7 @@ func isStellarAccountID(i interface{}, context interface{}) bool {
 	return false
 }
 
-func isStellarSeed(i interface{}, context interface{}) bool {
+func isFoneroSeed(i interface{}, context interface{}) bool {
 	enc, ok := i.(string)
 
 	if !ok {

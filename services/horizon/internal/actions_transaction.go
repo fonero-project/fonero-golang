@@ -3,15 +3,15 @@ package horizon
 import (
 	"net/http"
 
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/resourceadapter"
-	hProblem "github.com/stellar/go/services/horizon/internal/render/problem"
-	"github.com/stellar/go/services/horizon/internal/txsub"
-	"github.com/stellar/go/support/render/problem"
-	"github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/support/render/hal"
-	"github.com/stellar/go/services/horizon/internal/render/sse"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/resourceadapter"
+	hProblem "github.com/fonero-project/fonero-golang/services/horizon/internal/render/problem"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/txsub"
+	"github.com/fonero-project/fonero-golang/support/render/problem"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/render/sse"
 )
 
 // This file contains the actions:
@@ -132,7 +132,7 @@ func (action *TransactionShowAction) JSON() {
 	)
 }
 
-// TransactionCreateAction submits a transaction to the stellar-core network
+// TransactionCreateAction submits a transaction to the fonero-core network
 // on behalf of the requesting client.
 type TransactionCreateAction struct {
 	Action
@@ -194,10 +194,10 @@ func (action *TransactionCreateAction) loadResource() {
 			Type:   "transaction_failed",
 			Title:  "Transaction Failed",
 			Status: http.StatusBadRequest,
-			Detail: "The transaction failed when submitted to the stellar network. " +
+			Detail: "The transaction failed when submitted to the fonero network. " +
 				"The `extras.result_codes` field on this response contains further " +
 				"details.  Descriptions of each code can be found at: " +
-				"https://www.stellar.org/developers/learn/concepts/list-of-operations.html",
+				"https://www.fonero.org/developers/learn/concepts/list-of-operations.html",
 			Extras: map[string]interface{}{
 				"envelope_xdr": action.Result.EnvelopeXDR,
 				"result_xdr":   err.ResultXDR,

@@ -4,11 +4,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/render/sse"
-	"github.com/stellar/go/services/horizon/internal/resourceadapter"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/render/sse"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/resourceadapter"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // PaymentsIndexAction returns a paged slice of payments based upon the provided

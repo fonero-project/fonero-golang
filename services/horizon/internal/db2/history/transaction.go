@@ -2,8 +2,8 @@ package history
 
 import (
 	sq "github.com/Masterminds/squirrel"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/toid"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/toid"
 )
 
 // TransactionByHash is a query that loads a single row from the

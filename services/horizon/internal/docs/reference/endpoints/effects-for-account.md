@@ -1,12 +1,12 @@
 ---
 title: Effects for Account
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=effects&endpoint=for_account
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=effects&endpoint=for_account
 ---
 
 This endpoint represents all [effects](../resources/effect.md) that changed a given [account](../resources/account.md). It will return relevant effects from the creation of the account to the current ledger.
 
-This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to listen for new effects as transactions happen in the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to listen for new effects as transactions happen in the Fonero network.
 If called in streaming mode Horizon will start at the earliest known effect unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream effects created since your request time.
 
 ## Request
@@ -27,14 +27,14 @@ GET /accounts/{account}/effects{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/accounts/GA2HGBJIJKI6O4XEM7CZWY5PS6GKSXL6D34ERAJYQSPYA6X6AI7HYW36/effects"
+curl "https://horizon-testnet.fonero.org/accounts/GA2HGBJIJKI6O4XEM7CZWY5PS6GKSXL6D34ERAJYQSPYA6X6AI7HYW36/effects"
 ```
 
 ### JavaScript Example Request
 
 ```javascript
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.effects()
   .forAccount("GD6VWBXI6NY3AOOR55RLVQ4MNIDSXE5JSAVXUTF35FRRI72LYPI3WL6Z")

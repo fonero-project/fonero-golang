@@ -14,13 +14,13 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	baseAmount "github.com/stellar/go/amount"
-	"github.com/stellar/go/protocols/compliance"
-	"github.com/stellar/go/services/compliance/internal/db"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	httpHelpers "github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	callback "github.com/stellar/go/services/internal/bridge-compliance-shared/protocols/compliance"
-	"github.com/stellar/go/xdr"
+	baseAmount "github.com/fonero-project/fonero-golang/amount"
+	"github.com/fonero-project/fonero-golang/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/db"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	httpHelpers "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	callback "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // HandlerAuth implements authorize endpoint
@@ -46,18 +46,18 @@ func (rh *RequestHandler) HandlerAuth(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	senderStellarToml, err := rh.StellarTomlResolver.GetStellarTomlByAddress(authData.Sender)
+	senderFoneroToml, err := rh.FoneroTomlResolver.GetFoneroTomlByAddress(authData.Sender)
 	if err != nil {
-		log.WithFields(log.Fields{"err": err, "sender": authData.Sender}).Warn("Cannot get stellar.toml of sender")
-		errorResponse := httpHelpers.NewInvalidParameterError("data.sender", "Cannot get stellar.toml of sender")
+		log.WithFields(log.Fields{"err": err, "sender": authData.Sender}).Warn("Cannot get fonero.toml of sender")
+		errorResponse := httpHelpers.NewInvalidParameterError("data.sender", "Cannot get fonero.toml of sender")
 		httpHelpers.Write(w, errorResponse)
 		return
 	}
 
-	if !shared.IsValidAccountID(senderStellarToml.SigningKey) {
-		errorResponse := httpHelpers.NewInvalidParameterError("data.sender", "SIGNING_KEY in stellar.toml of sender is invalid")
+	if !shared.IsValidAccountID(senderFoneroToml.SigningKey) {
+		errorResponse := httpHelpers.NewInvalidParameterError("data.sender", "SIGNING_KEY in fonero.toml of sender is invalid")
 		// TODO
-		// log.WithFields(errorResponse.LogData).Warn("SIGNING_KEY in stellar.toml of sender is invalid")
+		// log.WithFields(errorResponse.LogData).Warn("SIGNING_KEY in fonero.toml of sender is invalid")
 		httpHelpers.Write(w, errorResponse)
 		return
 	}
@@ -71,10 +71,10 @@ func (rh *RequestHandler) HandlerAuth(w http.ResponseWriter, r *http.Request) {
 		httpHelpers.Write(w, errorResponse)
 		return
 	}
-	err = rh.SignatureSignerVerifier.Verify(senderStellarToml.SigningKey, []byte(authreq.DataJSON), signatureBytes)
+	err = rh.SignatureSignerVerifier.Verify(senderFoneroToml.SigningKey, []byte(authreq.DataJSON), signatureBytes)
 	if err != nil {
 		log.WithFields(log.Fields{
-			"signing_key": senderStellarToml.SigningKey,
+			"signing_key": senderFoneroToml.SigningKey,
 			"data":        authreq.Data,
 			"sig":         authreq.Signature,
 		}).Warn("Invalid signature")
@@ -225,7 +225,7 @@ func (rh *RequestHandler) HandlerAuth(w http.ResponseWriter, r *http.Request) {
 			if len(tokens) != 2 {
 				log.WithFields(log.Fields{
 					"sender": authData.Sender,
-				}).Warn("Invalid stellar address")
+				}).Warn("Invalid fonero address")
 				httpHelpers.Write(w, httpHelpers.InternalServerError)
 				return
 			}

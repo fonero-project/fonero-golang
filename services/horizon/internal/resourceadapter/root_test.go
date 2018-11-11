@@ -5,8 +5,8 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -25,7 +25,7 @@ func TestPopulateRoot(t *testing.T) {
 	assert.Equal(t, int32(2), res.HistoryElderSequence)
 	assert.Equal(t, int32(3), res.HorizonSequence)
 	assert.Equal(t, "hVersion", res.HorizonVersion)
-	assert.Equal(t, "cVersion", res.StellarCoreVersion)
+	assert.Equal(t, "cVersion", res.FoneroCoreVersion)
 	assert.Equal(t, "passphrase", res.NetworkPassphrase)
 	assert.Equal(t, "https://friendbot.example.com/{?addr}", res.Links.Friendbot.Href)
 
@@ -44,7 +44,7 @@ func TestPopulateRoot(t *testing.T) {
 	assert.Equal(t, int32(2), res.HistoryElderSequence)
 	assert.Equal(t, int32(3), res.HorizonSequence)
 	assert.Equal(t, "hVersion", res.HorizonVersion)
-	assert.Equal(t, "cVersion", res.StellarCoreVersion)
+	assert.Equal(t, "cVersion", res.FoneroCoreVersion)
 	assert.Equal(t, "passphrase", res.NetworkPassphrase)
 	assert.Empty(t, res.Links.Friendbot)
 }

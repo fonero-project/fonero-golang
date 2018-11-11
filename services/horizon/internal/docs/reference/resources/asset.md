@@ -2,11 +2,11 @@
 title: Asset
 ---
 
-**Assets** are the units that are traded on the Stellar Network.
+**Assets** are the units that are traded on the Fonero Network.
 
 An asset consists of an type, code, and issuer.
 
-To learn more about the concept of assets in the Stellar network, take a look at the [Stellar assets concept guide](https://www.stellar.org/developers/guides/concepts/assets.html).
+To learn more about the concept of assets in the Fonero network, take a look at the [Fonero assets concept guide](https://www.fonero.org/developers/guides/concepts/assets.html).
 
 ## Attributes
 
@@ -30,7 +30,7 @@ To learn more about the concept of assets in the Stellar network, take a look at
 ## Links
 | rel          | Example                                                                                           | Description                                                
 |--------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------
-| toml  | `https://www.stellar.org/.well-known/stellar.toml`| Link to the TOML file for this issuer |
+| toml  | `https://www.fonero.org/.well-known/fonero.toml`| Link to the TOML file for this issuer |
 
 ## Example
 
@@ -38,7 +38,7 @@ To learn more about the concept of assets in the Stellar network, take a look at
 {
   "_links": {
     "toml": {
-      "href": "https://www.stellar.org/.well-known/stellar.toml"
+      "href": "https://www.fonero.org/.well-known/fonero.toml"
     }
   },
   "asset_type": "credit_alphanum4",

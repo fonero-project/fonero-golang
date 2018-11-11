@@ -17,9 +17,9 @@ DB migrations add a new fields and indexes on `history_trades` table. This is a 
 This release contains several bug fixes and improvements:
 
 * New `/operation_fee_stats` endpoint includes fee stats for the last 5 ledgers.
-* ["Trades"](https://www.stellar.org/developers/horizon/reference/endpoints/trades.html) endpoint can now be streamed.
-* In ["Trade Aggregations"](https://www.stellar.org/developers/horizon/reference/endpoints/trade_aggregations.html) endpoint, `offset` parameter has been added.
-* Path finding bugs have been fixed and the algorithm has been improved. Check [#719](https://github.com/stellar/go/pull/719) for more information.
+* ["Trades"](https://www.fonero.org/developers/horizon/reference/endpoints/trades.html) endpoint can now be streamed.
+* In ["Trade Aggregations"](https://www.fonero.org/developers/horizon/reference/endpoints/trade_aggregations.html) endpoint, `offset` parameter has been added.
+* Path finding bugs have been fixed and the algorithm has been improved. Check [#719](https://github.com/fonero-project/fonero-golang/pull/719) for more information.
 * Connections (including streams) are closed after timeout defined using `--connection-timeout` CLI param or `CONNECTION_TIMEOUT` environment variable. If Horizon is behind a load balancer with idle timeout set, it is recommended to set this to a value equal a few seconds less than idle timeout so streams can be properly closed by Horizon.
 * Streams have been improved to check for updates every `--sse-update-frequency` CLI param or `SSE_UPDATE_FREQUENCY` environment variable seconds. If a new ledger has been closed in this period, new events will be sent to a stream. Previously streams checked for new events every 1 second, even when there were no new ledgers.
 * Rate limiting algorithm has been changed to [GCRA](https://brandur.org/rate-limiting#gcra).
@@ -31,8 +31,8 @@ This release contains several bug fixes and improvements:
 ### Breaking changes
 
 * Assets stats are disabled by default. This can be changed using an environment variable (`ENABLE_ASSET_STATS=true`) or CLI parameter (`--enable-asset-stats=true`). Please note that it has a negative impact on a DB and ingestion time.
-* In ["Offers for Account"](https://www.stellar.org/developers/horizon/reference/endpoints/offers-for-account.html), `last_modified_time` field  endpoint can be `null` when ledger data is not available (has not been ingested yet).
-* ["Trades for Offer"](https://www.stellar.org/developers/horizon/reference/endpoints/trades-for-offer.html) endpoint will query for trades that match the given offer on either side of trades, rather than just the "sell" offer. Offer IDs are now [synthetic](https://www.stellar.org/developers/horizon/reference/resources/trade.html#synthetic-offer-ids). You have to reingest history to update offer IDs.
+* In ["Offers for Account"](https://www.fonero.org/developers/horizon/reference/endpoints/offers-for-account.html), `last_modified_time` field  endpoint can be `null` when ledger data is not available (has not been ingested yet).
+* ["Trades for Offer"](https://www.fonero.org/developers/horizon/reference/endpoints/trades-for-offer.html) endpoint will query for trades that match the given offer on either side of trades, rather than just the "sell" offer. Offer IDs are now [synthetic](https://www.fonero.org/developers/horizon/reference/resources/trade.html#synthetic-offer-ids). You have to reingest history to update offer IDs.
 
 ### Other bug fixes
 
@@ -53,7 +53,7 @@ This release contains several bug fixes and improvements:
 
 This release contains several bug fixes:
 
-* Assets stats can cause high CPU usage on stellar-core DB. If this slows down the database it's now possible to turn off this feature by setting `DISABLE_ASSET_STATS` feature flag. This can be set as environment variable (`DISABLE_ASSET_STATS=true`) or CLI parameter (`--disable-asset-stats=true`).
+* Assets stats can cause high CPU usage on fonero-core DB. If this slows down the database it's now possible to turn off this feature by setting `DISABLE_ASSET_STATS` feature flag. This can be set as environment variable (`DISABLE_ASSET_STATS=true`) or CLI parameter (`--disable-asset-stats=true`).
 * Sometimes `/accounts/{id}/offers` returns `500 Internal Server Error` response when ledger data is not available yet (for new ledgers) or no longer available (`CATCHUP_RECENT` deployments). It's possible to set `ALLOW_EMPTY_LEDGER_DATA_RESPONSES` feature flag as environment variable (`ALLOW_EMPTY_LEDGER_DATA_RESPONSES=true`) or CLI parameter (`--allow-empty-ledger-data-responses=true`). With the flag set to `true` "Offers for Account" endpoint will return `null` in `last_modified_time` field when ledger data is not available, instead of `500 Internal Server Error` error.
 
 ### Bug fixes
@@ -79,13 +79,13 @@ This release contains several bug fixes:
 ### Changes
 
 * Protocol V10 features:
-  * New `bump_sequence` operation (as in [CAP-0001](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0001.md)).
-    * New [`bump_sequence`](https://www.stellar.org/developers/horizon/reference/resources/operation.html#bump-sequence) operation.
+  * New `bump_sequence` operation (as in [CAP-0001](https://github.com/fonero-project/fonero-protocol/blob/master/core/cap-0001.md)).
+    * New [`bump_sequence`](https://www.fonero.org/developers/horizon/reference/resources/operation.html#bump-sequence) operation.
     * New `sequence_bumped` effect.
-    * Please check [CAP-0001](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0001.md) for new error codes for transaction submission.
-  * Offer liabilities (as in [CAP-0003](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0003.md)):
+    * Please check [CAP-0001](https://github.com/fonero-project/fonero-protocol/blob/master/core/cap-0001.md) for new error codes for transaction submission.
+  * Offer liabilities (as in [CAP-0003](https://github.com/fonero-project/fonero-protocol/blob/master/core/cap-0003.md)):
     * `/accounts/{id}` resources contain new fields: `buying_liabilities` and `selling_liabilities` for each entry in `balances`.
-    * Please check [CAP-0003](https://github.com/stellar/stellar-protocol/blob/master/core/cap-0003.md) for new error codes for transaction submission.
+    * Please check [CAP-0003](https://github.com/fonero-project/fonero-protocol/blob/master/core/cap-0003.md) for new error codes for transaction submission.
 * Added `source_amount` field to `path_payment` operations.
 * Added `account_credited` and `account_debited` effects for `path_payment` operations.
 * Friendbot link in Root endpoint is empty if not set in configuration.
@@ -124,7 +124,7 @@ This release contains several bug fixes:
 
 ### Breaking changes
 
-- `amount` field in `/assets` is now a String (to support Stellar amounts larger than `int64`).
+- `amount` field in `/assets` is now a String (to support Fonero amounts larger than `int64`).
 
 ### Changes
 
@@ -163,7 +163,7 @@ This release is a bug fix release for v0.12.0.  *Please see the upgrade notes be
 
 ### Bug fixes
 
-- Fixed an issue caused by un-migrated trade rows. (https://github.com/stellar/go/issues/357)
+- Fixed an issue caused by un-migrated trade rows. (https://github.com/fonero-project/fonero-golang/issues/357)
 - Command line flags are now useable for subcommands of horizon.
 
 
@@ -183,20 +183,20 @@ Since this release changes both the schema and the data ingestion system, we rec
 ### Added
 
 - Operation and payment resources were changed to add `transaction_hash` and `created_at` properties.
-- The ledger resource was changed to add a `header_xdr` property.  Existing horizon installations should re-ingest all ledgers to populate the history database tables with the data.  In future versions of horizon we will disallow null values in this column.  Going forward, this change reduces the coupling of horizon to stellar-core, ensuring that horizon can re-import history even when the data is no longer stored within stellar-core's database.
+- The ledger resource was changed to add a `header_xdr` property.  Existing horizon installations should re-ingest all ledgers to populate the history database tables with the data.  In future versions of horizon we will disallow null values in this column.  Going forward, this change reduces the coupling of horizon to fonero-core, ensuring that horizon can re-import history even when the data is no longer stored within fonero-core's database.
 - All Assets endpoint (`/assets`) that returns a list of all the assets in the system along with some stats per asset. The filters allow you to narrow down to any specific asset of interest.
 - Trade Aggregations endpoint (`/trade_aggregations`) allow for efficient gathering of historical trade data. This is done by dividing a given time range into segments and aggregate statistics, for a given asset pair (`base`, `counter`) over each of these segments.
 
 ### Bug fixes
 
 - Ingestion performance and stability has been improved. 
-- Changes to an account's inflation destination no longer produce erroneous "signer_updated" effects. (https://github.com/stellar/horizon/issues/390)
+- Changes to an account's inflation destination no longer produce erroneous "signer_updated" effects. (https://github.com/fonero-project/horizon/issues/390)
 
 
 ### Changed
 
 - BREAKING CHANGE: The `base_fee` property of the ledger resource has been renamed to `base_fee_in_stroops` 
-- BREAKING CHANGE: The `base_reserve` property of the ledger resource has been renamed to `base_reserve_in_stroops` and is now expressed in stroops (rather than lumens) and as a JSON number. 
+- BREAKING CHANGE: The `base_reserve` property of the ledger resource has been renamed to `base_reserve_in_stroops` and is now expressed in stroops (rather than foneros) and as a JSON number. 
 - BREAKING CHANGE: The "Orderbook Trades" (`/orderbook/trades`) endpoint has been removed and replaced by the "All Trades" (`/trades`) endpoint.
 - BREAKING CHANGE: The Trade resource has been modified to generalize assets as (`base`, `counter`) pairs, rather than the previous (`sold`,`bought`) pairs.  
 - Full reingestion (i.e. running `horizon db reingest`) now runs in reverse chronological order.  
@@ -213,7 +213,7 @@ Since this release changes both the schema and the data ingestion system, we rec
 - The ingestion system can now properly import envelopes that contain signatures that are zero-length strings.
 - BREAKING CHANGE: specifying a `limit` of `0` now triggers an error instead of interpreting the value to mean "use the default limit".
 - Requests that ask for more records than the maximum page size now trigger a bad request error, instead of an internal server error.
-- Upstream bug fixes to xdr decoding from `github.com/stellar/go`.
+- Upstream bug fixes to xdr decoding from `github.com/fonero-project/fonero-golang`.
 
 ### Changed
 
@@ -225,7 +225,7 @@ Since this release changes both the schema and the data ingestion system, we rec
 ## [v0.10.1] - 2017-03-29
 
 ### Fixed
-- Ingestion was fixed to protect against text memos that contain null bytes.  While memos with null bytes are legal in stellar-core, PostgreSQL does not support such values in string columns.  Horizon now strips those null bytes to fix the issue. 
+- Ingestion was fixed to protect against text memos that contain null bytes.  While memos with null bytes are legal in fonero-core, PostgreSQL does not support such values in string columns.  Horizon now strips those null bytes to fix the issue. 
 
 ## [v0.10.0] - 2017-03-20
 
@@ -250,12 +250,12 @@ This is a fix release for v0.9.0 and v0.9.1
 This release was retracted due to a bug discovered after release.
 
 ### Added
-- Horizon now exposes the stellar network protocol in several places:  It shows the currently reported protocol version (as returned by the stellar-core `info` command) on the root endpoint, and it reports the protocol version of each ledger resource.
+- Horizon now exposes the fonero network protocol in several places:  It shows the currently reported protocol version (as returned by the fonero-core `info` command) on the root endpoint, and it reports the protocol version of each ledger resource.
 - Trade resources now include a `created_at` timestamp.
 
 ### Fixed
 
-- BREAKING CHANGE: The reingestion process has been updated.  Prior versions of horizon would enter a failed state when a gap between the imported history and the stellar-core database formed or when a previously imported ledger was no longer found in the stellar-core database.  This usually occurs when running stellar-core with the `CATCHUP_RECENT` config option.  With these changed, horizon will automatically trim "abandonded" ledgers: ledgers that are older than the core elder ledger.
+- BREAKING CHANGE: The reingestion process has been updated.  Prior versions of horizon would enter a failed state when a gap between the imported history and the fonero-core database formed or when a previously imported ledger was no longer found in the fonero-core database.  This usually occurs when running fonero-core with the `CATCHUP_RECENT` config option.  With these changed, horizon will automatically trim "abandonded" ledgers: ledgers that are older than the core elder ledger.
 
 
 ## [v0.8.0] - 2017-02-07
@@ -307,14 +307,14 @@ This release was retracted due to a bug discovered after release.
 
 ## [v0.6.0] - 2016-07-20
 
-This release contains the initial implementation of the "Abridged History System".  It allows a horizon system to be operated without complete knowledge of the ledger's history.  With this release, horizon will start ingesting data from the earliest point known to the connected stellar-core instance, rather than ledger 1 as it behaved previously.  See the admin guide section titled "Ingesting stellar-core data" for more details.
+This release contains the initial implementation of the "Abridged History System".  It allows a horizon system to be operated without complete knowledge of the ledger's history.  With this release, horizon will start ingesting data from the earliest point known to the connected fonero-core instance, rather than ledger 1 as it behaved previously.  See the admin guide section titled "Ingesting fonero-core data" for more details.
 
 ### Added
 
-- *Elder* ledgers have been introduced:  An elder ledger is the oldest ledger known to a db.  For example, the `core_elder_ledger` attribute on the root endpoint refers to the oldest known ledger stored in the connected stellar-core database.
+- *Elder* ledgers have been introduced:  An elder ledger is the oldest ledger known to a db.  For example, the `core_elder_ledger` attribute on the root endpoint refers to the oldest known ledger stored in the connected fonero-core database.
 - Added the `history-retention-count` command line flag, used to specify the amount of historical data to keep in the history db.  This is expressed as a number of ledgers, for example a value of `362880` would retain roughly 6 weeks of data given an average of 10 seconds per ledger.
 - Added the `history-stale-threshold` command line flag to enable stale history protection.  See the admin guide for more info.
-- Horizon now reports the last ledger ingested to stellar-core using the `setcursor` command.
+- Horizon now reports the last ledger ingested to fonero-core using the `setcursor` command.
 - Requests for data that precede the recorded window of history stored by horizon will receive a `410 Gone` http response to allow software to differentiate from other "not found" situations.
 - The new `db reap` command will manually trigger the deletion of unretained historical data
 - A background process on the server now deletes unretained historical once per hour.
@@ -344,7 +344,7 @@ This release contains the initial implementation of the "Abridged History System
 
 ### Added
 
-- BREAKING: Horizon can now import data from stellar-core without the aid of the horizon-importer project.  This process is now known as "ingestion", and is enabled by either setting the `INGEST` environment variable to "true" or specifying "--ingest" on the launch arguments for the horizon process.  Only one process should be running in this mode for any given horizon database.
+- BREAKING: Horizon can now import data from fonero-core without the aid of the horizon-importer project.  This process is now known as "ingestion", and is enabled by either setting the `INGEST` environment variable to "true" or specifying "--ingest" on the launch arguments for the horizon process.  Only one process should be running in this mode for any given horizon database.
 - Add `horizon db init`, used to install the latest bundled schema for the horizon database.
 - Add `horizon db reingest` command, used to update outdated or corrupt horizon database information.  Admins may now use `horizon db reingest outdated` to migrate any old data when updated horizon.
 - Added `network_passphrase` field to root resource.
@@ -384,20 +384,20 @@ This release contains the initial implementation of the "Abridged History System
 ### Added
 - Github releases are created from tagged travis builds automatically
 
-[v0.11.0]: https://github.com/stellar/horizon/compare/v0.10.1...v0.11.0
-[v0.10.1]: https://github.com/stellar/horizon/compare/v0.10.0...v0.10.1
-[v0.10.0]: https://github.com/stellar/horizon/compare/v0.9.1...v0.10.0
-[v0.9.1]: https://github.com/stellar/horizon/compare/v0.9.0...v0.9.1
-[v0.9.0]: https://github.com/stellar/horizon/compare/v0.8.0...v0.9.0
-[v0.8.0]: https://github.com/stellar/horizon/compare/v0.7.1...v0.8.0
-[v0.7.1]: https://github.com/stellar/horizon/compare/v0.7.0...v0.7.1
-[v0.7.0]: https://github.com/stellar/horizon/compare/v0.6.2...v0.7.0
-[v0.6.2]: https://github.com/stellar/horizon/compare/v0.6.1...v0.6.2
-[v0.6.1]: https://github.com/stellar/horizon/compare/v0.6.0...v0.6.1
-[v0.6.0]: https://github.com/stellar/horizon/compare/v0.5.1...v0.6.0
-[v0.5.1]: https://github.com/stellar/horizon/compare/v0.5.0...v0.5.1
-[v0.5.0]: https://github.com/stellar/horizon/compare/v0.4.0...v0.5.0
-[v0.4.0]: https://github.com/stellar/horizon/compare/v0.3.0...v0.4.0
-[v0.3.0]: https://github.com/stellar/horizon/compare/v0.2.0...v0.3.0
-[v0.2.0]: https://github.com/stellar/horizon/compare/v0.1.1...v0.2.0
-[v0.1.1]: https://github.com/stellar/horizon/compare/v0.1.0...v0.1.1
+[v0.11.0]: https://github.com/fonero-project/horizon/compare/v0.10.1...v0.11.0
+[v0.10.1]: https://github.com/fonero-project/horizon/compare/v0.10.0...v0.10.1
+[v0.10.0]: https://github.com/fonero-project/horizon/compare/v0.9.1...v0.10.0
+[v0.9.1]: https://github.com/fonero-project/horizon/compare/v0.9.0...v0.9.1
+[v0.9.0]: https://github.com/fonero-project/horizon/compare/v0.8.0...v0.9.0
+[v0.8.0]: https://github.com/fonero-project/horizon/compare/v0.7.1...v0.8.0
+[v0.7.1]: https://github.com/fonero-project/horizon/compare/v0.7.0...v0.7.1
+[v0.7.0]: https://github.com/fonero-project/horizon/compare/v0.6.2...v0.7.0
+[v0.6.2]: https://github.com/fonero-project/horizon/compare/v0.6.1...v0.6.2
+[v0.6.1]: https://github.com/fonero-project/horizon/compare/v0.6.0...v0.6.1
+[v0.6.0]: https://github.com/fonero-project/horizon/compare/v0.5.1...v0.6.0
+[v0.5.1]: https://github.com/fonero-project/horizon/compare/v0.5.0...v0.5.1
+[v0.5.0]: https://github.com/fonero-project/horizon/compare/v0.4.0...v0.5.0
+[v0.4.0]: https://github.com/fonero-project/horizon/compare/v0.3.0...v0.4.0
+[v0.3.0]: https://github.com/fonero-project/horizon/compare/v0.2.0...v0.3.0
+[v0.2.0]: https://github.com/fonero-project/horizon/compare/v0.1.1...v0.2.0
+[v0.1.1]: https://github.com/fonero-project/horizon/compare/v0.1.0...v0.1.1

@@ -2,13 +2,13 @@ package simplepath
 
 import (
 	"github.com/go-errors/errors"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/paths"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/paths"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 // Finder implements the paths.Finder interface and searchs for
-// payment paths using a simple breadth first search of the offers table of a stellar-core.
+// payment paths using a simple breadth first search of the offers table of a fonero-core.
 //
 // This implementation is not meant to be fast or to provide the lowest costs paths, but
 // rather is meant to be a simple implementation that gives usable paths.

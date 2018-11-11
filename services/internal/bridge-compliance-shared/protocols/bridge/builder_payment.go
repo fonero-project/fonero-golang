@@ -1,11 +1,11 @@
 package bridge
 
 import (
-	"github.com/stellar/go/amount"
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/protocols"
+	"github.com/fonero-project/fonero-golang/amount"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols"
 )
 
 // PaymentOperationBody represents payment operation
@@ -16,7 +16,7 @@ type PaymentOperationBody struct {
 	Asset       protocols.Asset
 }
 
-// ToTransactionMutator returns go-stellar-base TransactionMutator
+// ToTransactionMutator returns go-fonero-base TransactionMutator
 func (op PaymentOperationBody) ToTransactionMutator() b.TransactionMutator {
 	mutators := []interface{}{
 		b.Destination{op.Destination},

@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strconv"
 
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 // FromRequest will populate destination fields using http.Request post values.

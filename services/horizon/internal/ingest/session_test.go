@@ -3,10 +3,10 @@ package ingest
 import (
 	"testing"
 
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/test"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 func Test_ingestSignerEffects(t *testing.T) {
@@ -18,7 +18,7 @@ func Test_ingestSignerEffects(t *testing.T) {
 
 	q := &history.Q{Session: tt.HorizonSession()}
 
-	// Regression: https://github.com/stellar/horizon/issues/390 doesn't produce a signer effect when
+	// Regression: https://github.com/fonero-project/horizon/issues/390 doesn't produce a signer effect when
 	// inflation has changed
 	var effects []history.Effect
 	err := q.Effects().ForLedger(3).Select(&effects)

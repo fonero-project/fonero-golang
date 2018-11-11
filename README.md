@@ -1,9 +1,9 @@
-# Stellar Go 
-[![Build Status](https://travis-ci.org/stellar/go.svg?branch=master)](https://travis-ci.org/stellar/go) 
-[![GoDoc](https://godoc.org/github.com/stellar/go?status.svg)](https://godoc.org/github.com/stellar/go)
-[![Go Report Card](https://goreportcard.com/badge/github.com/stellar/go)](https://goreportcard.com/report/github.com/stellar/go)
+# Fonero Go 
+[![Build Status](https://travis-ci.org/fonero-project/fonero-golang.svg?branch=master)](https://travis-ci.org/fonero-project/fonero-golang) 
+[![GoDoc](https://godoc.org/github.com/fonero-project/fonero-golang?status.svg)](https://godoc.org/github.com/fonero-project/fonero-golang)
+[![Go Report Card](https://goreportcard.com/badge/github.com/fonero-project/fonero-golang)](https://goreportcard.com/report/github.com/fonero-project/fonero-golang)
 
-This repo is the home for all of the public go code produced by SDF.  In addition to various tools and services, this repository is the SDK from which you may develop your own applications that integrate with the stellar network.
+This repo is the home for all of the public go code produced by SDF.  In addition to various tools and services, this repository is the SDK from which you may develop your own applications that integrate with the fonero network.
 
 ## Dependencies
 
@@ -17,7 +17,7 @@ $ dep ensure -v
 
 Note that if this hangs indefinitely on your machine, you might need to check if mercurial is installed.
 
-You can use dep yourself in your project and add stellar go as a vendor'd dependency, or you can just drop this repos as `$GOPATH/src/github.com/stellar/go` to import it the canonical way (you still need to run `dep ensure -v`).
+You can use dep yourself in your project and add fonero go as a vendor'd dependency, or you can just drop this repos as `$GOPATH/src/github.com/fonero-project/fonero-golang` to import it the canonical way (you still need to run `dep ensure -v`).
 
 When creating this project, we had to decide whether or not we committed our external dependencies to the repo.  We decided that we would not, by default, do so.  This lets us avoid the diff churn associated with updating dependencies while allowing an acceptable path to get reproducible builds.  To do so, simply install dep and run `dep ensure -v` in your checkout of the code.  We realize this is a judgement call; Please feel free to open an issue if you would like to make a case that we change this policy.
 
@@ -26,10 +26,10 @@ When creating this project, we had to decide whether or not we committed our ext
 
 In addition to the other top-level packages, there are a few special directories that contain specific types of packages:
 
-* **clients** contains packages that provide client packages to the various Stellar services.
+* **clients** contains packages that provide client packages to the various Fonero services.
 * **exp** contains experimental packages.  Use at your own risk.
-* **handlers** contains packages that provide pluggable implementors of `http.Handler` that make it easier to incorporate portions of the Stellar protocol into your own http server. 
-* **support** contains packages that are not intended for consumption outside of Stellar's other packages.  Packages that provide common infrastructure for use in our services and tools should go here, such as `db` or `log`. 
+* **handlers** contains packages that provide pluggable implementors of `http.Handler` that make it easier to incorporate portions of the Fonero protocol into your own http server. 
+* **support** contains packages that are not intended for consumption outside of Fonero's other packages.  Packages that provide common infrastructure for use in our services and tools should go here, such as `db` or `log`. 
 * **support/scripts** contains single-file go programs and bash scripts used to support the development of this repo. 
 * **services** contains packages that compile to applications that are long-running processes (such as API servers).
 * **tools** contains packages that compile to command line applications.
@@ -38,7 +38,7 @@ Each of these directories have their own README file that explain further the na
 
 ### Other packages
 
-In addition to the packages described above, this repository contains various packages related to working with the Stellar network from a go program.  It's recommended that you use [godoc](https://godoc.org/github.com/stellar/go#pkg-subdirectories) to browse the documentation for each.
+In addition to the packages described above, this repository contains various packages related to working with the Fonero network from a go program.  It's recommended that you use [godoc](https://godoc.org/github.com/fonero-project/fonero-golang#pkg-subdirectories) to browse the documentation for each.
 
 
 ## Package source layout

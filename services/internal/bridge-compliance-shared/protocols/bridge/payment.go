@@ -5,18 +5,18 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/protocols"
-	complianceServer "github.com/stellar/go/services/internal/bridge-compliance-shared/protocols/compliance"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols"
+	complianceServer "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 var (
 	// input errors
 
 	// PaymentCannotResolveDestination is an error response
-	PaymentCannotResolveDestination = &helpers.ErrorResponse{Code: "cannot_resolve_destination", Message: "Cannot resolve federated Stellar address.", Status: http.StatusBadRequest}
+	PaymentCannotResolveDestination = &helpers.ErrorResponse{Code: "cannot_resolve_destination", Message: "Cannot resolve federated Fonero address.", Status: http.StatusBadRequest}
 	// PaymentCannotUseMemo is an error response
 	PaymentCannotUseMemo = &helpers.ErrorResponse{Code: "cannot_use_memo", Message: "Memo given in request but federation returned memo fields.", Status: http.StatusBadRequest}
 	// PaymentSourceNotExist is an error response
@@ -37,11 +37,11 @@ type PaymentRequest struct {
 	// Payment ID
 	ID string `form:"id" valid:"optional"`
 	// Source account secret
-	Source string `form:"source" valid:"optional,stellar_seed"`
-	// Sender address (like alice*stellar.org)
-	Sender string `form:"sender" valid:"optional,stellar_address"`
-	// Destination address (like bob*stellar.org)
-	Destination string `form:"destination" valid:"optional,stellar_destination"`
+	Source string `form:"source" valid:"optional,fonero_seed"`
+	// Sender address (like alice*fonero.org)
+	Sender string `form:"sender" valid:"optional,fonero_address"`
+	// Destination address (like bob*fonero.org)
+	Destination string `form:"destination" valid:"optional,fonero_destination"`
 	// ForwardDestination
 	ForwardDestination *protocols.ForwardDestination `form:"forward_destination" valid:"-"`
 	// Memo type
@@ -49,17 +49,17 @@ type PaymentRequest struct {
 	// Memo value
 	Memo string `form:"memo" valid:"optional"`
 	// Amount destination should receive
-	Amount string `form:"amount" valid:"required,stellar_amount"`
+	Amount string `form:"amount" valid:"required,fonero_amount"`
 	// Code of the asset destination should receive
-	AssetCode string `form:"asset_code" valid:"optional,stellar_asset_code"`
+	AssetCode string `form:"asset_code" valid:"optional,fonero_asset_code"`
 	// Issuer of the asset destination should receive
-	AssetIssuer string `form:"asset_issuer" valid:"optional,stellar_accountid"`
+	AssetIssuer string `form:"asset_issuer" valid:"optional,fonero_accountid"`
 	// Only for path_payment
-	SendMax string `form:"send_max" valid:"optional,stellar_amount"`
+	SendMax string `form:"send_max" valid:"optional,fonero_amount"`
 	// Only for path_payment
-	SendAssetCode string `form:"send_asset_code" valid:"optional,stellar_asset_code"`
+	SendAssetCode string `form:"send_asset_code" valid:"optional,fonero_asset_code"`
 	// Only for path_payment
-	SendAssetIssuer string `form:"send_asset_issuer" valid:"optional,stellar_accountid"`
+	SendAssetIssuer string `form:"send_asset_issuer" valid:"optional,fonero_accountid"`
 	// path[n][asset_code] path[n][asset_issuer]
 	Path []protocols.Asset `form:"path" valid:"optional"`
 	// Determined whether to use compliance protocol or to send a simple payment.

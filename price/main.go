@@ -1,4 +1,4 @@
-// Package price implements functions to ease working with stellar price values.
+// Package price implements functions to ease working with fonero price values.
 // At present, prices are only used within the offer system, and are represented
 // by a fraction whose numberator and denominator are both 32-bit signed
 // integers.
@@ -12,7 +12,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 var (
@@ -20,7 +20,7 @@ var (
 	// a number, more or less. The details will be checked in `math/big` internally.
 	// What we want to prevent is passing very big numbers like `1e9223372036854775807`
 	// to `big.Rat.SetString` triggering long calculations.
-	// Note: {1,20} because the biggest amount you can use in Stellar is:
+	// Note: {1,20} because the biggest amount you can use in Fonero is:
 	// len("922337203685.4775807") = 20.
 	validAmountSimple = regexp.MustCompile("^-?[.0-9]{1,20}$")
 )

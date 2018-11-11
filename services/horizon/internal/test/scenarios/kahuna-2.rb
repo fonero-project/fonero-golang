@@ -1,7 +1,7 @@
 # This is the 2nd big kahuna test scenario.  It continues where the first big kahuna recipe left off `kahuna.rb` due to an unfortunate edge case.
 #
 use_manual_close
-KP = Stellar::KeyPair
+KP = Fonero::KeyPair
 close_ledger #2
 
 
@@ -18,8 +18,8 @@ close_ledger #2
 
   require 'digest'
   x = Digest::SHA256.digest("hello world")
-  key = Stellar::SignerKey.hash_x(x)
-  set_options :onetime, signer: Stellar::Signer.new({
+  key = Fonero::SignerKey.hash_x(x)
+  set_options :onetime, signer: Fonero::Signer.new({
     key: key, 
     weight: 1,
   })
@@ -27,14 +27,14 @@ close_ledger #2
 
   # consume one time signer
   account = get_account :onetime
-  tx = Stellar::Transaction.manage_data({
+  tx = Fonero::Transaction.manage_data({
     account:  account,
     sequence: next_sequence(account),
     name:     "done",
     value:    "true",
   })
   env = tx.to_envelope
-  env.signatures << Stellar::DecoratedSignature.new({
+  env.signatures << Fonero::DecoratedSignature.new({
     hint:      key.to_xdr.slice(-4, 4),
     signature: x
   })

@@ -5,7 +5,7 @@ import (
 	"net/url"
 	"regexp"
 
-	"github.com/stellar/go/keypair"
+	"github.com/fonero-project/fonero-golang/keypair"
 )
 
 // Config contains config params of the bridge server
@@ -75,7 +75,7 @@ func (c *Config) Validate() (err error) {
 
 	for _, asset := range c.Assets {
 		if asset.Issuer == "" {
-			if asset.Code != "XLM" {
+			if asset.Code != "FNO" {
 				err = errors.New("Issuer param is required for " + asset.Code)
 				return
 			}

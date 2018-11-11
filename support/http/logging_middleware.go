@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/middleware"
-	"github.com/stellar/go/support/http/mutil"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/support/http/mutil"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 // LoggingMiddleware is a middleware that logs requests to the logger.

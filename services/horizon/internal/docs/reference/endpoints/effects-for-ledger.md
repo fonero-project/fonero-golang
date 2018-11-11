@@ -1,7 +1,7 @@
 ---
 title: Effects for Ledger
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=effects&endpoint=for_ledger
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=effects&endpoint=for_ledger
 ---
 
 Effects are the specific ways that the ledger was changed by any operation.
@@ -26,14 +26,14 @@ GET /ledgers/{id}/effects{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/ledgers/69859/effects"
+curl "https://horizon-testnet.fonero.org/ledgers/69859/effects"
 ```
 
 ### JavaScript Example Request
 
 ```javascript
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.effects()
   .forLedger("2")

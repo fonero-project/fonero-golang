@@ -3,8 +3,8 @@ package horizon
 import (
 	"fmt"
 
-	"github.com/stellar/go/services/horizon/internal/operationfeestats"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/operationfeestats"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // This file contains the actions:

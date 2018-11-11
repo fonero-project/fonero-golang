@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/stellar/go/amount"
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/protocols"
+	"github.com/fonero-project/fonero-golang/amount"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols"
 )
 
 // PathPaymentOperationBody represents path_payment operation
@@ -61,7 +61,7 @@ func (op PathPaymentOperationBody) ToValuesSpecial(values url.Values) {
 	}
 }
 
-// ToTransactionMutator returns go-stellar-base TransactionMutator
+// ToTransactionMutator returns go-fonero-base TransactionMutator
 func (op PathPaymentOperationBody) ToTransactionMutator() b.TransactionMutator {
 	var path []b.Asset
 	for _, pathAsset := range op.Path {

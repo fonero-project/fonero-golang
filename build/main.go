@@ -1,5 +1,5 @@
 // Package build implements a builder system for constructing various xdr
-// structures used by the stellar network, most importanly transactions.
+// structures used by the fonero network, most importanly transactions.
 //
 // At the core of this package is the *Builder and *Mutator types.  A Builder
 // object (ex. PaymentBuilder, TransactionBuilder) contain an underlying xdr
@@ -11,9 +11,9 @@ package build
 import (
 	"math"
 
-	"github.com/stellar/go/amount"
-	"github.com/stellar/go/network"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/amount"
+	"github.com/fonero-project/fonero-golang/network"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 const (
@@ -24,15 +24,15 @@ const (
 
 var (
 	// PublicNetwork is a mutator that configures the transaction for submission
-	// to the main public stellar network.
+	// to the main public fonero network.
 	PublicNetwork = Network{network.PublicNetworkPassphrase}
 
 	// TestNetwork is a mutator that configures the transaction for submission
-	// to the test stellar network (often called testnet).
+	// to the test fonero network (often called testnet).
 	TestNetwork = Network{network.TestNetworkPassphrase}
 
 	// DefaultNetwork is a mutator that configures the
-	// transaction for submission to the default stellar
+	// transaction for submission to the default fonero
 	// network.  Integrators may change this value to
 	// another `Network` mutator if they would like to
 	// effect the default in a process-global manner.
@@ -138,7 +138,7 @@ type MemoText struct {
 }
 
 // NativeAmount is a mutator that configures a payment to be using native
-// currency and have the amount provided (in lumens).
+// currency and have the amount provided (in foneros).
 type NativeAmount struct {
 	Amount string
 }
@@ -231,7 +231,7 @@ type Trustor struct {
 	Address string
 }
 
-// Network establishes the stellar network that a transaction should apply to.
+// Network establishes the fonero network that a transaction should apply to.
 // This modifier influences how a transaction is hashed for the purposes of signature generation.
 type Network struct {
 	Passphrase string

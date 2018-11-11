@@ -4,14 +4,14 @@ import (
 	"math/big"
 	"net/http"
 
-	"github.com/stellar/go/services/bifrost/bitcoin"
-	"github.com/stellar/go/services/bifrost/config"
-	"github.com/stellar/go/services/bifrost/database"
-	"github.com/stellar/go/services/bifrost/ethereum"
-	"github.com/stellar/go/services/bifrost/queue"
-	"github.com/stellar/go/services/bifrost/sse"
-	"github.com/stellar/go/services/bifrost/stellar"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/bifrost/bitcoin"
+	"github.com/fonero-project/fonero-golang/services/bifrost/config"
+	"github.com/fonero-project/fonero-golang/services/bifrost/database"
+	"github.com/fonero-project/fonero-golang/services/bifrost/ethereum"
+	"github.com/fonero-project/fonero-golang/services/bifrost/queue"
+	"github.com/fonero-project/fonero-golang/services/bifrost/sse"
+	"github.com/fonero-project/fonero-golang/services/bifrost/fonero"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 // ProtocolVersion is the version of the protocol that Bifrost server and
@@ -25,7 +25,7 @@ type Server struct {
 	Database                   database.Database            `inject:""`
 	EthereumListener           *ethereum.Listener           `inject:""`
 	EthereumAddressGenerator   *ethereum.AddressGenerator   `inject:""`
-	StellarAccountConfigurator *stellar.AccountConfigurator `inject:""`
+	FoneroAccountConfigurator *fonero.AccountConfigurator `inject:""`
 	TransactionsQueue          queue.Queue                  `inject:""`
 	SSEServer                  sse.ServerInterface          `inject:""`
 

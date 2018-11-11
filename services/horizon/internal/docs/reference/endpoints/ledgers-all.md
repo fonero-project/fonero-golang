@@ -1,11 +1,11 @@
 ---
 title: All Ledgers
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=ledgers&endpoint=all
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=ledgers&endpoint=all
 ---
 
 This endpoint represents all [ledgers](../resources/ledger.md).
-This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to get notifications as ledgers are closed by the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to get notifications as ledgers are closed by the Fonero network.
 If called in streaming mode Horizon will start at the earliest known ledger unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream ledgers created since your request time.
 
 ## Request
@@ -26,7 +26,7 @@ GET /ledgers{?cursor,limit,order}
 
 ```sh
 # Retrieve the 200 latest ledgers, ordered chronologically
-curl "https://horizon-testnet.stellar.org/ledgers?limit=200&order=desc"
+curl "https://horizon-testnet.fonero.org/ledgers?limit=200&order=desc"
 ```
 
 ### JavaScript Example Request

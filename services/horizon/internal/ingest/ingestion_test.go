@@ -4,12 +4,12 @@ import (
 	"testing"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/test"
-	testDB "github.com/stellar/go/services/horizon/internal/test/db"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test"
+	testDB "github.com/fonero-project/fonero-golang/services/horizon/internal/test/db"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/xdr"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -115,7 +115,7 @@ func TestAssetStatsIngest(t *testing.T) {
 		Amount:      1009876000,
 		NumAccounts: 1,
 		Flags:       1,
-		Toml:        "https://test.com/.well-known/stellar.toml",
+		Toml:        "https://test.com/.well-known/fonero.toml",
 	}, assetStats[0])
 
 	tt.Assert.Equal(AssetStatResult{
@@ -135,7 +135,7 @@ func TestAssetStatsIngest(t *testing.T) {
 		Amount:      3000010434000,
 		NumAccounts: 2,
 		Flags:       1,
-		Toml:        "https://test.com/.well-known/stellar.toml",
+		Toml:        "https://test.com/.well-known/fonero.toml",
 	}, assetStats[2])
 }
 

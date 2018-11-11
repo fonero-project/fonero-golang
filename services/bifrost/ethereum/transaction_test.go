@@ -10,7 +10,7 @@ import (
 func TestTransactionAmount(t *testing.T) {
 	tests := []struct {
 		amount                string
-		expectedStellarAmount string
+		expectedFoneroAmount string
 	}{
 		{"1", "0.0000000"},
 		{"1234567890123345678", "1.2345679"},
@@ -22,7 +22,7 @@ func TestTransactionAmount(t *testing.T) {
 		bigAmount, ok := new(big.Int).SetString(test.amount, 10)
 		assert.True(t, ok)
 		transaction := Transaction{ValueWei: bigAmount}
-		amount := transaction.ValueToStellar()
-		assert.Equal(t, test.expectedStellarAmount, amount)
+		amount := transaction.ValueToFonero()
+		assert.Equal(t, test.expectedFoneroAmount, amount)
 	}
 }

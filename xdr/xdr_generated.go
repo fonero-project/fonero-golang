@@ -1,11 +1,11 @@
 // Package xdr is generated from:
 //
-//  Stellar-SCP.x
-//  Stellar-ledger-entries.x
-//  Stellar-ledger.x
-//  Stellar-overlay.x
-//  Stellar-transaction.x
-//  Stellar-types.x
+//  Fonero-SCP.x
+//  Fonero-ledger-entries.x
+//  Fonero-ledger.x
+//  Fonero-overlay.x
+//  Fonero-transaction.x
+//  Fonero-types.x
 //
 // DO NOT EDIT or your changes may be overwritten
 package xdr
@@ -16,7 +16,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/stellar/go-xdr/xdr3"
+	"github.com/fonero-project/fonero-golang-xdr/xdr3"
 )
 
 // Unmarshal reads an xdr element from `r` into `v`.
@@ -2592,7 +2592,7 @@ var (
 	_ encoding.BinaryUnmarshaler = (*UpgradeType)(nil)
 )
 
-// StellarValueExt is an XDR NestedUnion defines as:
+// FoneroValueExt is an XDR NestedUnion defines as:
 //
 //   union switch (int v)
 //        {
@@ -2600,19 +2600,19 @@ var (
 //            void;
 //        }
 //
-type StellarValueExt struct {
+type FoneroValueExt struct {
 	V int32
 }
 
 // SwitchFieldName returns the field name in which this union's
 // discriminant is stored
-func (u StellarValueExt) SwitchFieldName() string {
+func (u FoneroValueExt) SwitchFieldName() string {
 	return "V"
 }
 
 // ArmForSwitch returns which field name should be used for storing
-// the value for an instance of StellarValueExt
-func (u StellarValueExt) ArmForSwitch(sw int32) (string, bool) {
+// the value for an instance of FoneroValueExt
+func (u FoneroValueExt) ArmForSwitch(sw int32) (string, bool) {
 	switch int32(sw) {
 	case 0:
 		return "", true
@@ -2620,8 +2620,8 @@ func (u StellarValueExt) ArmForSwitch(sw int32) (string, bool) {
 	return "-", false
 }
 
-// NewStellarValueExt creates a new  StellarValueExt.
-func NewStellarValueExt(v int32, value interface{}) (result StellarValueExt, err error) {
+// NewFoneroValueExt creates a new  FoneroValueExt.
+func NewFoneroValueExt(v int32, value interface{}) (result FoneroValueExt, err error) {
 	result.V = v
 	switch int32(v) {
 	case 0:
@@ -2631,26 +2631,26 @@ func NewStellarValueExt(v int32, value interface{}) (result StellarValueExt, err
 }
 
 // MarshalBinary implements encoding.BinaryMarshaler.
-func (s StellarValueExt) MarshalBinary() ([]byte, error) {
+func (s FoneroValueExt) MarshalBinary() ([]byte, error) {
 	b := new(bytes.Buffer)
 	_, err := Marshal(b, s)
 	return b.Bytes(), err
 }
 
 // UnmarshalBinary implements encoding.BinaryUnmarshaler.
-func (s *StellarValueExt) UnmarshalBinary(inp []byte) error {
+func (s *FoneroValueExt) UnmarshalBinary(inp []byte) error {
 	_, err := Unmarshal(bytes.NewReader(inp), s)
 	return err
 }
 
 var (
-	_ encoding.BinaryMarshaler   = (*StellarValueExt)(nil)
-	_ encoding.BinaryUnmarshaler = (*StellarValueExt)(nil)
+	_ encoding.BinaryMarshaler   = (*FoneroValueExt)(nil)
+	_ encoding.BinaryUnmarshaler = (*FoneroValueExt)(nil)
 )
 
-// StellarValue is an XDR Struct defines as:
+// FoneroValue is an XDR Struct defines as:
 //
-//   struct StellarValue
+//   struct FoneroValue
 //    {
 //        Hash txSetHash;   // transaction set to apply to previous ledger
 //        uint64 closeTime; // network close time
@@ -2671,29 +2671,29 @@ var (
 //        ext;
 //    };
 //
-type StellarValue struct {
+type FoneroValue struct {
 	TxSetHash Hash
 	CloseTime Uint64
 	Upgrades  []UpgradeType `xdrmaxsize:"6"`
-	Ext       StellarValueExt
+	Ext       FoneroValueExt
 }
 
 // MarshalBinary implements encoding.BinaryMarshaler.
-func (s StellarValue) MarshalBinary() ([]byte, error) {
+func (s FoneroValue) MarshalBinary() ([]byte, error) {
 	b := new(bytes.Buffer)
 	_, err := Marshal(b, s)
 	return b.Bytes(), err
 }
 
 // UnmarshalBinary implements encoding.BinaryUnmarshaler.
-func (s *StellarValue) UnmarshalBinary(inp []byte) error {
+func (s *FoneroValue) UnmarshalBinary(inp []byte) error {
 	_, err := Unmarshal(bytes.NewReader(inp), s)
 	return err
 }
 
 var (
-	_ encoding.BinaryMarshaler   = (*StellarValue)(nil)
-	_ encoding.BinaryUnmarshaler = (*StellarValue)(nil)
+	_ encoding.BinaryMarshaler   = (*FoneroValue)(nil)
+	_ encoding.BinaryUnmarshaler = (*FoneroValue)(nil)
 )
 
 // LedgerHeaderExt is an XDR NestedUnion defines as:
@@ -2758,14 +2758,14 @@ var (
 //    {
 //        uint32 ledgerVersion;    // the protocol version of the ledger
 //        Hash previousLedgerHash; // hash of the previous ledger header
-//        StellarValue scpValue;   // what consensus agreed to
+//        FoneroValue scpValue;   // what consensus agreed to
 //        Hash txSetResultHash;    // the TransactionResultSet that led to this ledger
 //        Hash bucketListHash;     // hash of the ledger state
 //
 //        uint32 ledgerSeq; // sequence number of this ledger
 //
 //        int64 totalCoins; // total number of stroops in existence.
-//                          // 10,000,000 stroops in 1 XLM
+//                          // 10,000,000 stroops in 1 FNO
 //
 //        int64 feePool;       // fees burned since last inflation run
 //        uint32 inflationSeq; // inflation sequence number
@@ -2795,7 +2795,7 @@ var (
 type LedgerHeader struct {
 	LedgerVersion      Uint32
 	PreviousLedgerHash Hash
-	ScpValue           StellarValue
+	ScpValue           FoneroValue
 	TxSetResultHash    Hash
 	BucketListHash     Hash
 	LedgerSeq          Uint32
@@ -5125,9 +5125,9 @@ var (
 	_ encoding.BinaryUnmarshaler = (*DontHave)(nil)
 )
 
-// StellarMessage is an XDR Union defines as:
+// FoneroMessage is an XDR Union defines as:
 //
-//   union StellarMessage switch (MessageType type)
+//   union FoneroMessage switch (MessageType type)
 //    {
 //    case ERROR_MSG:
 //        Error error;
@@ -5161,7 +5161,7 @@ var (
 //        uint32 getSCPLedgerSeq; // ledger seq requested ; if 0, requests the latest
 //    };
 //
-type StellarMessage struct {
+type FoneroMessage struct {
 	Type            MessageType
 	Error           *Error
 	Hello           *Hello
@@ -5179,13 +5179,13 @@ type StellarMessage struct {
 
 // SwitchFieldName returns the field name in which this union's
 // discriminant is stored
-func (u StellarMessage) SwitchFieldName() string {
+func (u FoneroMessage) SwitchFieldName() string {
 	return "Type"
 }
 
 // ArmForSwitch returns which field name should be used for storing
-// the value for an instance of StellarMessage
-func (u StellarMessage) ArmForSwitch(sw int32) (string, bool) {
+// the value for an instance of FoneroMessage
+func (u FoneroMessage) ArmForSwitch(sw int32) (string, bool) {
 	switch MessageType(sw) {
 	case MessageTypeErrorMsg:
 		return "Error", true
@@ -5217,8 +5217,8 @@ func (u StellarMessage) ArmForSwitch(sw int32) (string, bool) {
 	return "-", false
 }
 
-// NewStellarMessage creates a new  StellarMessage.
-func NewStellarMessage(aType MessageType, value interface{}) (result StellarMessage, err error) {
+// NewFoneroMessage creates a new  FoneroMessage.
+func NewFoneroMessage(aType MessageType, value interface{}) (result FoneroMessage, err error) {
 	result.Type = aType
 	switch MessageType(aType) {
 	case MessageTypeErrorMsg:
@@ -5313,7 +5313,7 @@ func NewStellarMessage(aType MessageType, value interface{}) (result StellarMess
 
 // MustError retrieves the Error value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustError() Error {
+func (u FoneroMessage) MustError() Error {
 	val, ok := u.GetError()
 
 	if !ok {
@@ -5325,7 +5325,7 @@ func (u StellarMessage) MustError() Error {
 
 // GetError retrieves the Error value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetError() (result Error, ok bool) {
+func (u FoneroMessage) GetError() (result Error, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "Error" {
@@ -5338,7 +5338,7 @@ func (u StellarMessage) GetError() (result Error, ok bool) {
 
 // MustHello retrieves the Hello value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustHello() Hello {
+func (u FoneroMessage) MustHello() Hello {
 	val, ok := u.GetHello()
 
 	if !ok {
@@ -5350,7 +5350,7 @@ func (u StellarMessage) MustHello() Hello {
 
 // GetHello retrieves the Hello value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetHello() (result Hello, ok bool) {
+func (u FoneroMessage) GetHello() (result Hello, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "Hello" {
@@ -5363,7 +5363,7 @@ func (u StellarMessage) GetHello() (result Hello, ok bool) {
 
 // MustAuth retrieves the Auth value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustAuth() Auth {
+func (u FoneroMessage) MustAuth() Auth {
 	val, ok := u.GetAuth()
 
 	if !ok {
@@ -5375,7 +5375,7 @@ func (u StellarMessage) MustAuth() Auth {
 
 // GetAuth retrieves the Auth value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetAuth() (result Auth, ok bool) {
+func (u FoneroMessage) GetAuth() (result Auth, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "Auth" {
@@ -5388,7 +5388,7 @@ func (u StellarMessage) GetAuth() (result Auth, ok bool) {
 
 // MustDontHave retrieves the DontHave value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustDontHave() DontHave {
+func (u FoneroMessage) MustDontHave() DontHave {
 	val, ok := u.GetDontHave()
 
 	if !ok {
@@ -5400,7 +5400,7 @@ func (u StellarMessage) MustDontHave() DontHave {
 
 // GetDontHave retrieves the DontHave value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetDontHave() (result DontHave, ok bool) {
+func (u FoneroMessage) GetDontHave() (result DontHave, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "DontHave" {
@@ -5413,7 +5413,7 @@ func (u StellarMessage) GetDontHave() (result DontHave, ok bool) {
 
 // MustPeers retrieves the Peers value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustPeers() []PeerAddress {
+func (u FoneroMessage) MustPeers() []PeerAddress {
 	val, ok := u.GetPeers()
 
 	if !ok {
@@ -5425,7 +5425,7 @@ func (u StellarMessage) MustPeers() []PeerAddress {
 
 // GetPeers retrieves the Peers value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetPeers() (result []PeerAddress, ok bool) {
+func (u FoneroMessage) GetPeers() (result []PeerAddress, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "Peers" {
@@ -5438,7 +5438,7 @@ func (u StellarMessage) GetPeers() (result []PeerAddress, ok bool) {
 
 // MustTxSetHash retrieves the TxSetHash value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustTxSetHash() Uint256 {
+func (u FoneroMessage) MustTxSetHash() Uint256 {
 	val, ok := u.GetTxSetHash()
 
 	if !ok {
@@ -5450,7 +5450,7 @@ func (u StellarMessage) MustTxSetHash() Uint256 {
 
 // GetTxSetHash retrieves the TxSetHash value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetTxSetHash() (result Uint256, ok bool) {
+func (u FoneroMessage) GetTxSetHash() (result Uint256, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "TxSetHash" {
@@ -5463,7 +5463,7 @@ func (u StellarMessage) GetTxSetHash() (result Uint256, ok bool) {
 
 // MustTxSet retrieves the TxSet value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustTxSet() TransactionSet {
+func (u FoneroMessage) MustTxSet() TransactionSet {
 	val, ok := u.GetTxSet()
 
 	if !ok {
@@ -5475,7 +5475,7 @@ func (u StellarMessage) MustTxSet() TransactionSet {
 
 // GetTxSet retrieves the TxSet value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetTxSet() (result TransactionSet, ok bool) {
+func (u FoneroMessage) GetTxSet() (result TransactionSet, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "TxSet" {
@@ -5488,7 +5488,7 @@ func (u StellarMessage) GetTxSet() (result TransactionSet, ok bool) {
 
 // MustTransaction retrieves the Transaction value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustTransaction() TransactionEnvelope {
+func (u FoneroMessage) MustTransaction() TransactionEnvelope {
 	val, ok := u.GetTransaction()
 
 	if !ok {
@@ -5500,7 +5500,7 @@ func (u StellarMessage) MustTransaction() TransactionEnvelope {
 
 // GetTransaction retrieves the Transaction value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetTransaction() (result TransactionEnvelope, ok bool) {
+func (u FoneroMessage) GetTransaction() (result TransactionEnvelope, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "Transaction" {
@@ -5513,7 +5513,7 @@ func (u StellarMessage) GetTransaction() (result TransactionEnvelope, ok bool) {
 
 // MustQSetHash retrieves the QSetHash value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustQSetHash() Uint256 {
+func (u FoneroMessage) MustQSetHash() Uint256 {
 	val, ok := u.GetQSetHash()
 
 	if !ok {
@@ -5525,7 +5525,7 @@ func (u StellarMessage) MustQSetHash() Uint256 {
 
 // GetQSetHash retrieves the QSetHash value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetQSetHash() (result Uint256, ok bool) {
+func (u FoneroMessage) GetQSetHash() (result Uint256, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "QSetHash" {
@@ -5538,7 +5538,7 @@ func (u StellarMessage) GetQSetHash() (result Uint256, ok bool) {
 
 // MustQSet retrieves the QSet value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustQSet() ScpQuorumSet {
+func (u FoneroMessage) MustQSet() ScpQuorumSet {
 	val, ok := u.GetQSet()
 
 	if !ok {
@@ -5550,7 +5550,7 @@ func (u StellarMessage) MustQSet() ScpQuorumSet {
 
 // GetQSet retrieves the QSet value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetQSet() (result ScpQuorumSet, ok bool) {
+func (u FoneroMessage) GetQSet() (result ScpQuorumSet, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "QSet" {
@@ -5563,7 +5563,7 @@ func (u StellarMessage) GetQSet() (result ScpQuorumSet, ok bool) {
 
 // MustEnvelope retrieves the Envelope value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustEnvelope() ScpEnvelope {
+func (u FoneroMessage) MustEnvelope() ScpEnvelope {
 	val, ok := u.GetEnvelope()
 
 	if !ok {
@@ -5575,7 +5575,7 @@ func (u StellarMessage) MustEnvelope() ScpEnvelope {
 
 // GetEnvelope retrieves the Envelope value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetEnvelope() (result ScpEnvelope, ok bool) {
+func (u FoneroMessage) GetEnvelope() (result ScpEnvelope, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "Envelope" {
@@ -5588,7 +5588,7 @@ func (u StellarMessage) GetEnvelope() (result ScpEnvelope, ok bool) {
 
 // MustGetScpLedgerSeq retrieves the GetScpLedgerSeq value from the union,
 // panicing if the value is not set.
-func (u StellarMessage) MustGetScpLedgerSeq() Uint32 {
+func (u FoneroMessage) MustGetScpLedgerSeq() Uint32 {
 	val, ok := u.GetGetScpLedgerSeq()
 
 	if !ok {
@@ -5600,7 +5600,7 @@ func (u StellarMessage) MustGetScpLedgerSeq() Uint32 {
 
 // GetGetScpLedgerSeq retrieves the GetScpLedgerSeq value from the union,
 // returning ok if the union's switch indicated the value is valid.
-func (u StellarMessage) GetGetScpLedgerSeq() (result Uint32, ok bool) {
+func (u FoneroMessage) GetGetScpLedgerSeq() (result Uint32, ok bool) {
 	armName, _ := u.ArmForSwitch(int32(u.Type))
 
 	if armName == "GetScpLedgerSeq" {
@@ -5612,21 +5612,21 @@ func (u StellarMessage) GetGetScpLedgerSeq() (result Uint32, ok bool) {
 }
 
 // MarshalBinary implements encoding.BinaryMarshaler.
-func (s StellarMessage) MarshalBinary() ([]byte, error) {
+func (s FoneroMessage) MarshalBinary() ([]byte, error) {
 	b := new(bytes.Buffer)
 	_, err := Marshal(b, s)
 	return b.Bytes(), err
 }
 
 // UnmarshalBinary implements encoding.BinaryUnmarshaler.
-func (s *StellarMessage) UnmarshalBinary(inp []byte) error {
+func (s *FoneroMessage) UnmarshalBinary(inp []byte) error {
 	_, err := Unmarshal(bytes.NewReader(inp), s)
 	return err
 }
 
 var (
-	_ encoding.BinaryMarshaler   = (*StellarMessage)(nil)
-	_ encoding.BinaryUnmarshaler = (*StellarMessage)(nil)
+	_ encoding.BinaryMarshaler   = (*FoneroMessage)(nil)
+	_ encoding.BinaryUnmarshaler = (*FoneroMessage)(nil)
 )
 
 // AuthenticatedMessageV0 is an XDR NestedStruct defines as:
@@ -5634,13 +5634,13 @@ var (
 //   struct
 //    {
 //       uint64 sequence;
-//       StellarMessage message;
+//       FoneroMessage message;
 //       HmacSha256Mac mac;
 //        }
 //
 type AuthenticatedMessageV0 struct {
 	Sequence Uint64
-	Message  StellarMessage
+	Message  FoneroMessage
 	Mac      HmacSha256Mac
 }
 
@@ -5670,7 +5670,7 @@ var (
 //        struct
 //    {
 //       uint64 sequence;
-//       StellarMessage message;
+//       FoneroMessage message;
 //       HmacSha256Mac mac;
 //        } v0;
 //    };

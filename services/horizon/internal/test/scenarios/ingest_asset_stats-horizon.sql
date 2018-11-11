@@ -467,8 +467,8 @@ ALTER TABLE ONLY history_transaction_participants ALTER COLUMN id SET DEFAULT ne
 --
 
 INSERT INTO asset_stats VALUES (1, '10000000000', 1, 2, '');
-INSERT INTO asset_stats VALUES (2, '1009876000', 1, 1, 'https://test.com/.well-known/stellar.toml');
-INSERT INTO asset_stats VALUES (3, '3000010434000', 2, 1, 'https://test.com/.well-known/stellar.toml');
+INSERT INTO asset_stats VALUES (2, '1009876000', 1, 1, 'https://test.com/.well-known/fonero.toml');
+INSERT INTO asset_stats VALUES (3, '3000010434000', 2, 1, 'https://test.com/.well-known/fonero.toml');
 
 
 --

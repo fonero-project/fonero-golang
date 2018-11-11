@@ -1,7 +1,7 @@
 package compliance
 
 import (
-	"github.com/stellar/go/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/protocols/compliance"
 )
 
 // Strategy defines strategy for handling auth requests.

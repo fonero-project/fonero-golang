@@ -8,17 +8,17 @@ import (
 	"fmt"
 
 	"github.com/go-chi/chi"
-	"github.com/stellar/go/amount"
-	"github.com/stellar/go/services/horizon/internal/assets"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	hProblem "github.com/stellar/go/services/horizon/internal/render/problem"
-	"github.com/stellar/go/services/horizon/internal/toid"
-	"github.com/stellar/go/strkey"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/render/problem"
-	"github.com/stellar/go/support/time"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/amount"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/assets"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	hProblem "github.com/fonero-project/fonero-golang/services/horizon/internal/render/problem"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/toid"
+	"github.com/fonero-project/fonero-golang/strkey"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/render/problem"
+	"github.com/fonero-project/fonero-golang/support/time"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 const (
@@ -188,8 +188,8 @@ func (base *Base) GetPageQuery() db2.PageQuery {
 	return r
 }
 
-// GetAddress retrieves a stellar address.  It confirms the value loaded is a
-// valid stellar address, setting an invalid field error if it is not.
+// GetAddress retrieves a fonero address.  It confirms the value loaded is a
+// valid fonero address, setting an invalid field error if it is not.
 func (base *Base) GetAddress(name string) (result string) {
 	if base.Err != nil {
 		return
@@ -206,7 +206,7 @@ func (base *Base) GetAddress(name string) (result string) {
 	return result
 }
 
-// GetAccountID retireves an xdr.AccountID by attempting to decode a stellar
+// GetAccountID retireves an xdr.AccountID by attempting to decode a fonero
 // address at the provided name.
 func (base *Base) GetAccountID(name string) (result xdr.AccountId) {
 	raw, err := strkey.Decode(strkey.VersionByteAccountID, base.GetString(name))
@@ -233,7 +233,7 @@ func (base *Base) GetAccountID(name string) (result xdr.AccountId) {
 }
 
 // GetAmount returns a native amount (i.e. 64-bit integer) by parsing
-// the string at the provided name in accordance with the stellar client
+// the string at the provided name in accordance with the fonero client
 // conventions
 func (base *Base) GetAmount(name string) (result xdr.Int64) {
 	var err error
@@ -248,7 +248,7 @@ func (base *Base) GetAmount(name string) (result xdr.Int64) {
 }
 
 // GetPositiveAmount returns a native amount (i.e. 64-bit integer) by parsing
-// the string at the provided name in accordance with the stellar client
+// the string at the provided name in accordance with the fonero client
 // conventions. Renders error for negative amounts and zero.
 func (base *Base) GetPositiveAmount(name string) (result xdr.Int64) {
 	result = base.GetAmount(name)

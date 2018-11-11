@@ -3,7 +3,7 @@ package address
 import (
 	"testing"
 
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/support/errors"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -13,8 +13,8 @@ func TestNew(t *testing.T) {
 		Domain          string
 		ExpectedAddress string
 	}{
-		{"scott", "stellar.org", "scott*stellar.org"},
-		{"", "stellar.org", "*stellar.org"},
+		{"scott", "fonero.org", "scott*fonero.org"},
+		{"", "fonero.org", "*fonero.org"},
 		{"scott", "", "scott*"},
 	}
 
@@ -32,9 +32,9 @@ func TestSplit(t *testing.T) {
 		ExpectedDomain string
 		ExpectedError  error
 	}{
-		{"happy path", "scott*stellar.org", "scott", "stellar.org", nil},
+		{"happy path", "scott*fonero.org", "scott", "fonero.org", nil},
 		{"blank", "", "", "", ErrInvalidAddress},
-		{"blank name", "*stellar.org", "", "", ErrInvalidName},
+		{"blank name", "*fonero.org", "", "", ErrInvalidName},
 		{"blank domain", "scott*", "", "", ErrInvalidDomain},
 		{"invalid domain", "scott*--3.com", "", "", ErrInvalidDomain},
 	}

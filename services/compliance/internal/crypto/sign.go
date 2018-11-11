@@ -3,7 +3,7 @@ package crypto
 import (
 	"encoding/base64"
 
-	"github.com/stellar/go/keypair"
+	"github.com/fonero-project/fonero-golang/keypair"
 )
 
 // SignerVerifierInterface is the interface that helps mocking SignerVerifier

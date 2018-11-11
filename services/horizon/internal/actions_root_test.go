@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/stellar/go/services/horizon/internal/test"
-	"github.com/stellar/go/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
 )
 
 func TestRootAction(t *testing.T) {
@@ -22,8 +22,8 @@ func TestRootAction(t *testing.T) {
 	defer server.Close()
 
 	ht.App.horizonVersion = "test-horizon"
-	ht.App.config.StellarCoreURL = server.URL
-	ht.App.UpdateStellarCoreInfo()
+	ht.App.config.FoneroCoreURL = server.URL
+	ht.App.UpdateFoneroCoreInfo()
 
 	w := ht.Get("/")
 	if ht.Assert.Equal(200, w.Code) {
@@ -31,6 +31,6 @@ func TestRootAction(t *testing.T) {
 		err := json.Unmarshal(w.Body.Bytes(), &actual)
 		ht.Require.NoError(err)
 		ht.Assert.Equal("test-horizon", actual.HorizonVersion)
-		ht.Assert.Equal("test-core", actual.StellarCoreVersion)
+		ht.Assert.Equal("test-core", actual.FoneroCoreVersion)
 	}
 }

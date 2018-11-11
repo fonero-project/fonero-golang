@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/services/friendbot/internal"
-	"github.com/stellar/go/strkey"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/services/friendbot/internal"
+	"github.com/fonero-project/fonero-golang/strkey"
 )
 
 func initFriendbot(

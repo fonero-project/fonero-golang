@@ -9,7 +9,7 @@ A trade represents a fulfilled offer.  For example, let's say that there exists 
 - your offer is completely fulfilled and no longer exists
 - the other offer is partially fulfilled and becomes an offer to sell 6 `foo_bank/EUR` for 2 `baz_exchange/BTC`.  The price of that offer doesn't change, but the amount does.
 
-Trades can also be caused by successful [path payments](https://www.stellar.org/developers/learn/concepts/exchange.html), because path payments involve fulfilling offers.
+Trades can also be caused by successful [path payments](https://www.fonero.org/developers/learn/concepts/exchange.html), because path payments involve fulfilling offers.
 
 Payments are one-way in that afterwards, the source account has a smaller balance and the destination account of the payment has a bigger one.  Trades are two-way; both accounts increase and decrease their balances.
 
@@ -48,7 +48,7 @@ Price_r is a more precise representation of a bid/ask offer.
 Thus to get price you would take n / d.
 
 #### Synthetic Offer Ids
-Offer ids in the horizon trade resource (base_offer_id, counter_offer_id) are synthetic and don't always reflect the respective stellar-core offer ids. This is due to the fact that stellar-core does not assign offer ids when an offer gets filled immediately. In these cases, Horizon synthetically generates an offer id for the buying offer, based on the total order id of the offer operation. This allows wallets to aggregate historical trades based on offer ids without adding special handling for edge cases. The exact encoding can be found [here](https://github.com/stellar/go/blob/master/services/horizon/internal/db2/history/synt_offer_id.go). 
+Offer ids in the horizon trade resource (base_offer_id, counter_offer_id) are synthetic and don't always reflect the respective fonero-core offer ids. This is due to the fact that fonero-core does not assign offer ids when an offer gets filled immediately. In these cases, Horizon synthetically generates an offer id for the buying offer, based on the total order id of the offer operation. This allows wallets to aggregate historical trades based on offer ids without adding special handling for edge cases. The exact encoding can be found [here](https://github.com/fonero-project/fonero-golang/blob/master/services/horizon/internal/db2/history/synt_offer_id.go). 
 
 ## Links
 

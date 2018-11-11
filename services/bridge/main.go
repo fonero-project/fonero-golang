@@ -10,18 +10,18 @@ import (
 
 	"github.com/facebookgo/inject"
 	"github.com/spf13/cobra"
-	"github.com/stellar/go/clients/federation"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/clients/stellartoml"
-	"github.com/stellar/go/services/bridge/internal/config"
-	"github.com/stellar/go/services/bridge/internal/db"
-	"github.com/stellar/go/services/bridge/internal/handlers"
-	"github.com/stellar/go/services/bridge/internal/listener"
-	"github.com/stellar/go/services/bridge/internal/submitter"
-	supportConfig "github.com/stellar/go/support/config"
-	"github.com/stellar/go/support/db/schema"
-	"github.com/stellar/go/support/errors"
-	supportHttp "github.com/stellar/go/support/http"
+	"github.com/fonero-project/fonero-golang/clients/federation"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/clients/fonerotoml"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/config"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/db"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/handlers"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/listener"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/submitter"
+	supportConfig "github.com/fonero-project/fonero-golang/support/config"
+	"github.com/fonero-project/fonero-golang/support/db/schema"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	supportHttp "github.com/fonero-project/fonero-golang/support/http"
 )
 
 var app *App
@@ -39,8 +39,8 @@ func main() {
 func init() {
 	rootCmd = &cobra.Command{
 		Use:   "bridge",
-		Short: "stellar bridge server",
-		Long:  `stellar bridge server`,
+		Short: "fonero bridge server",
+		Long:  `fonero bridge server`,
 		Run:   run,
 	}
 
@@ -191,19 +191,19 @@ func NewApp(config config.Config, migrateFlag bool, versionFlag bool, version st
 		log.Print("PaymentListener created")
 	}
 
-	stellartomlClient := stellartoml.Client{
+	fonerotomlClient := fonerotoml.Client{
 		HTTP: &httpClientWithTimeout,
 	}
 
 	federationClient := federation.Client{
 		HTTP:        &httpClientWithTimeout,
-		StellarTOML: &stellartomlClient,
+		FoneroTOML: &fonerotomlClient,
 	}
 
 	err = g.Provide(
 		&inject.Object{Value: &requestHandler},
 		&inject.Object{Value: &config},
-		&inject.Object{Value: &stellartomlClient},
+		&inject.Object{Value: &fonerotomlClient},
 		&inject.Object{Value: &federationClient},
 		&inject.Object{Value: &h},
 		&inject.Object{Value: &database},

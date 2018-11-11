@@ -2,20 +2,20 @@
 title: Operation
 ---
 
-[Operations](https://www.stellar.org/developers/learn/concepts/operations.html) are objects that represent a desired change to the ledger: payments,
+[Operations](https://www.fonero.org/developers/learn/concepts/operations.html) are objects that represent a desired change to the ledger: payments,
 offers to exchange currency, changes made to account options, etc.  Operations
-are submitted to the Stellar network grouped in a [Transaction](./transaction.md).
+are submitted to the Fonero network grouped in a [Transaction](./transaction.md).
 
-To learn more about the concept of operations in the Stellar network, take a look at the [Stellar operations concept guide](https://www.stellar.org/developers/learn/concepts/operations.html).
+To learn more about the concept of operations in the Fonero network, take a look at the [Fonero operations concept guide](https://www.fonero.org/developers/learn/concepts/operations.html).
 
 ## Operation Types
 
 | type                                          | type_i | description                                                                                                |
 |-----------------------------------------------|--------|------------------------------------------------------------------------------------------------------------|
-| [CREATE_ACCOUNT](#create-account)             | 0      | Creates a new account in Stellar network.
-| [PAYMENT](#payment)                           | 1      | Sends a simple payment between two accounts in Stellar network.
-| [PATH_PAYMENT](#path-payment)                 | 2      | Sends a path payment between two accounts in the Stellar network.
-| [MANAGE_OFFER](#manage-offer)                 | 3      | Creates, updates or deletes an offer in the Stellar network.
+| [CREATE_ACCOUNT](#create-account)             | 0      | Creates a new account in Fonero network.
+| [PAYMENT](#payment)                           | 1      | Sends a simple payment between two accounts in Fonero network.
+| [PATH_PAYMENT](#path-payment)                 | 2      | Sends a path payment between two accounts in the Fonero network.
+| [MANAGE_OFFER](#manage-offer)                 | 3      | Creates, updates or deletes an offer in the Fonero network.
 | [CREATE_PASSIVE_OFFER](#create-passive-offer) | 4      | Creates an offer that won't consume a counter offer that exactly matches this offer.
 | [SET_OPTIONS](#set-options)                   | 5      | Sets account options (inflation destination, adding signers, etc.)
 | [CHANGE_TRUST](#change-trust)                 | 6      | Creates, updates or deletes a trust line.
@@ -222,7 +222,7 @@ A path payment operation represents a payment from one account to another throug
 ### Manage Offer
 
 A "Manage Offer" operation can create, update or delete an
-offer to trade assets in the Stellar network.
+offer to trade assets in the Fonero network.
 It specifies an issuer, a price and amount of a given asset to
 buy or sell.
 
@@ -392,7 +392,7 @@ Use “Set Options” operation to set following options to your account:
     }
   },
   "high_threshold": 3,
-  "home_domain": "stellar.org",
+  "home_domain": "fonero.org",
   "id": 696867033714691,
   "low_threshold": 0,
   "med_threshold": 3,
@@ -515,7 +515,7 @@ Heads up! Unless the issuing account has `AUTH_REVOCABLE_FLAG` set than the "aut
 <a id="account-merge"></a>
 ### Account Merge
 
-Removes the account and transfers all remaining XLM to the destination account.
+Removes the account and transfers all remaining FNO to the destination account.
 
 #### Attributes
 

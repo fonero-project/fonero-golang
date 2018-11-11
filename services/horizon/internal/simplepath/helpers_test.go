@@ -1,8 +1,8 @@
 package simplepath
 
 import (
-	"github.com/stellar/go/strkey"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/strkey"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 func makeAsset(typ xdr.AssetType, code string, issuer string) xdr.Asset {

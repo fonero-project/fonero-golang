@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/stellar/go/support/context/requestid"
-	"github.com/stellar/go/support/render/problem"
+	"github.com/fonero-project/fonero-golang/support/context/requestid"
+	"github.com/fonero-project/fonero-golang/support/render/problem"
 )
 
 // Inflate expands a problem with contextal information, including setting basic info.
@@ -87,7 +87,7 @@ var (
 		Title:  "Data Requested Is Before Recorded History",
 		Status: http.StatusGone,
 		Detail: "This horizon instance is configured to only track a " +
-			"portion of the stellar network's latest history. This request " +
+			"portion of the fonero network's latest history. This request " +
 			"is asking for results prior to the recorded history known to " +
 			"this horizon instance.",
 	}
@@ -100,7 +100,7 @@ var (
 		Status: http.StatusServiceUnavailable,
 		Detail: "This horizon instance is configured to reject client requests " +
 			"when it can determine that the history database is lagging too far " +
-			"behind the connected instance of stellar-core.  If you operate this " +
+			"behind the connected instance of fonero-core.  If you operate this " +
 			"server, please ensure that the ingestion system is properly running.",
 	}
 )

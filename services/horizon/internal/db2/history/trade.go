@@ -5,10 +5,10 @@ import (
 	"math"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/time"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/time"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // PagingToken returns a cursor for this trade
@@ -239,7 +239,7 @@ func (q *Q) InsertTrade(
 
 	sellOfferId := EncodeOfferId(uint64(trade.OfferId), CoreOfferIDType)
 
-	// if the buy offer exists, encode the stellar core generated id as the offer id
+	// if the buy offer exists, encode the fonero core generated id as the offer id
 	// if not, encode the toid as the offer id
 	var buyOfferId int64
 	if buyOfferExists {

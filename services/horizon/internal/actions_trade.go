@@ -2,17 +2,17 @@ package horizon
 
 import (
 	"errors"
-	"github.com/stellar/go/services/horizon/internal/render/sse"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/render/sse"
 	"strconv"
 	gTime "time"
 
-	"github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/resourceadapter"
-	"github.com/stellar/go/support/render/hal"
-	"github.com/stellar/go/support/time"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/resourceadapter"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
+	"github.com/fonero-project/fonero-golang/support/time"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 type TradeIndexAction struct {

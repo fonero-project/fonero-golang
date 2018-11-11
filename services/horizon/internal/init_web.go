@@ -12,10 +12,10 @@ import (
 	"github.com/rcrowley/go-metrics"
 	"github.com/rs/cors"
 	"github.com/sebest/xff"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	hProblem "github.com/stellar/go/services/horizon/internal/render/problem"
-	"github.com/stellar/go/services/horizon/internal/txsub/sequence"
-	"github.com/stellar/go/support/render/problem"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	hProblem "github.com/fonero-project/fonero-golang/services/horizon/internal/render/problem"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/txsub/sequence"
+	"github.com/fonero-project/fonero-golang/support/render/problem"
 	"github.com/throttled/throttled"
 )
 

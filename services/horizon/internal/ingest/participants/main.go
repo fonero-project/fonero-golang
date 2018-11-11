@@ -1,11 +1,11 @@
 // Package participants contains functions to derive a set of "participant"
-// addresses for various data structures in the Stellar network's ledger.
+// addresses for various data structures in the Fonero network's ledger.
 package participants
 
 import (
 	"fmt"
 
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // ForOperation returns all the participating accounts from the

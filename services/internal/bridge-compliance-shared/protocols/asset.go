@@ -3,12 +3,12 @@ package protocols
 import (
 	"fmt"
 
-	"github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
-// ToBaseAsset transforms Asset to github.com/stellar/go-stellar-base/build.Asset
+// ToBaseAsset transforms Asset to github.com/fonero-project/fonero-golang-fonero-base/build.Asset
 func (a Asset) ToBaseAsset() build.Asset {
 	if a.Code == "" && a.Issuer == "" {
 		return build.NativeAsset()

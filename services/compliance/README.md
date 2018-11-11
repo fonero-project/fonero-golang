@@ -1,34 +1,34 @@
 # compliance-server
-This is a stand alone server written in go. It is designed to make [Compliance protocol](https://www.stellar.org/developers/learn/integration-guides/compliance-protocol.html) requests to other organizations. You can connect to it from the `bridge` server or any other server that can talk to it (check API section).
+This is a stand alone server written in go. It is designed to make [Compliance protocol](https://www.fonero.org/developers/learn/integration-guides/compliance-protocol.html) requests to other organizations. You can connect to it from the `bridge` server or any other server that can talk to it (check API section).
 
 ## Downloading the server
-[Prebuilt binaries](https://github.com/stellar/bridge-server/releases) of the bridge-server server are available on the [releases page](https://github.com/stellar/bridge-server/releases).
+[Prebuilt binaries](https://github.com/fonero-project/bridge-server/releases) of the bridge-server server are available on the [releases page](https://github.com/fonero-project/bridge-server/releases).
 
 | Platform       | Binary file name                                                                         |
 |----------------|------------------------------------------------------------------------------------------|
-| Mac OSX 64 bit | [bridge-darwin-amd64](https://github.com/stellar/bridge-server/releases)      |
-| Linux 64 bit   | [bridge-linux-amd64](https://github.com/stellar/bridge-server/releases)       |
-| Windows 64 bit | [bridge-windows-amd64.exe](https://github.com/stellar/bridge-server/releases) |
+| Mac OSX 64 bit | [bridge-darwin-amd64](https://github.com/fonero-project/bridge-server/releases)      |
+| Linux 64 bit   | [bridge-linux-amd64](https://github.com/fonero-project/bridge-server/releases)       |
+| Windows 64 bit | [bridge-windows-amd64.exe](https://github.com/fonero-project/bridge-server/releases) |
 
 Alternatively, you can [build](#building) the binary yourself.
 
 ## Config
 
-The `compliance.cfg` file must be present in a working directory (you can load another file by using `-c` parameter). Here is an [example configuration file](https://github.com/stellar/bridge-server/blob/master/compliance_example.cfg). Config file should contain following values:
+The `compliance.cfg` file must be present in a working directory (you can load another file by using `-c` parameter). Here is an [example configuration file](https://github.com/fonero-project/bridge-server/blob/master/compliance_example.cfg). Config file should contain following values:
 
 * `external_port` - external server listening port (should be accessible from public)
 * `internal_port` - internal server listening port (should be accessible from your internal network only!)
 * `needs_auth` - set to `true` if you need to do sanctions check for payment receiver
 * `network_passphrase` - passphrase of the network that will be used with this bridge server:
    * test network: `Test SDF Network ; September 2015`
-   * public network: `Public Global Stellar Network ; September 2015`
+   * public network: `Public Global Fonero Network ; September 2015`
 * `database` - This database is used internally to store memo information and to keep track of what FIs have been authorized to receive customer info.
   * `type` - database type (mysql, postgres)
   * `url` - url to database connection. **IMPORTANT** The `compliance` server must not use the same database as the `bridge` server.
     * for `mysql`: `user:password@(host:port)/dbname` ([more info](https://github.com/go-sql-driver/mysql#dsn-data-source-name))
     * for `postgres`: `postgres://user:password@host/dbname?sslmode=sslmode` ([more info](https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters))
 * `keys`
-  * `signing_seed` - The secret seed that will be used to sign messages. Public key derived from this secret key should be in your `stellar.toml` file.
+  * `signing_seed` - The secret seed that will be used to sign messages. Public key derived from this secret key should be in your `fonero.toml` file.
   * `encryption_key` - The secret key used to decrypt messages. _Not working yet._
 * `callbacks`
   * `sanctions` - Callback that performs sanctions check. Read [Callbacks](#callbacks) section.
@@ -63,7 +63,7 @@ Then you can start the server:
 
 ### POST :external_port/ (Auth endpoint)
 
-Process auth request from external organization sent before sending a payment. Check [Compliance protocol](https://www.stellar.org/developers/learn/integration-guides/compliance-protocol.html) for more info. It also saves memo preimage to the database.
+Process auth request from external organization sent before sending a payment. Check [Compliance protocol](https://www.fonero.org/developers/learn/integration-guides/compliance-protocol.html) for more info. It also saves memo preimage to the database.
 
 #### Request Parameters
 
@@ -72,11 +72,11 @@ name |  | description
 `data` | required | Auth data.
 `sig` | required | Signature.
 
-Read more in [Compliance protocol](https://www.stellar.org/developers/learn/integration-guides/compliance-protocol.html#auth_server) doc.
+Read more in [Compliance protocol](https://www.fonero.org/developers/learn/integration-guides/compliance-protocol.html#auth_server) doc.
 
 #### Response
 
-Returns [Auth response](https://www.stellar.org/developers/learn/integration-guides/compliance-protocol.html#reply).
+Returns [Auth response](https://www.fonero.org/developers/learn/integration-guides/compliance-protocol.html#reply).
 
 ### POST :internal_port/send
 
@@ -88,19 +88,19 @@ name |  | description
 --- | --- | ---
 `id` | required | ID of the payment/transaction. In case of `pending` response or errors, you should resubmit the request with the same `id` value.
 `source` | required | Account ID of transaction source account.
-`sender` | required | Stellar address (ex. `bob*stellar.org`) of payment sender account.
-`destination` | required | Account ID or Stellar address (ex. `bob*stellar.org`) of payment destination account
+`sender` | required | Fonero address (ex. `bob*fonero.org`) of payment sender account.
+`destination` | required | Account ID or Fonero address (ex. `bob*fonero.org`) of payment destination account
 `amount` | required | Amount that destination will receive
 `extra_memo` | optional | Additional information attached to memo preimage.
-`asset_code` | optional | Asset code (XLM when empty) destination will receive
-`asset_issuer` | optional | Account ID of asset issuer (XLM when empty) destination will receive
+`asset_code` | optional | Asset code (FNO when empty) destination will receive
+`asset_issuer` | optional | Account ID of asset issuer (FNO when empty) destination will receive
 `send_max` | optional | [path_payment] Maximum amount of send_asset to send
-`send_asset_code` | optional | [path_payment] Sending asset code (XLM when empty)
-`send_asset_issuer` | optional | [path_payment] Account ID of sending asset issuer (XLM when empty)
-`path[n][asset_code]` | optional | [path_payment] If the path isn't specified the bridge server will find the path for you. Asset code of `n`th asset on the path (XLM when empty, but empty parameter must be sent!)
-`path[n][asset_issuer]` | optional | [path_payment] Account ID of `n`th asset issuer (XLM when empty, but empty parameter must be sent!)
-`path[n+1][asset_code]` | optional | [path_payment] Asset code of `n+1`th asset on the path (XLM when empty, but empty parameter must be sent!)
-`path[n+1][asset_issuer]` | optional | [path_payment] Account ID of `n+1`th asset issuer (XLM when empty, but empty parameter must be sent!)
+`send_asset_code` | optional | [path_payment] Sending asset code (FNO when empty)
+`send_asset_issuer` | optional | [path_payment] Account ID of sending asset issuer (FNO when empty)
+`path[n][asset_code]` | optional | [path_payment] If the path isn't specified the bridge server will find the path for you. Asset code of `n`th asset on the path (FNO when empty, but empty parameter must be sent!)
+`path[n][asset_issuer]` | optional | [path_payment] Account ID of `n`th asset issuer (FNO when empty, but empty parameter must be sent!)
+`path[n+1][asset_code]` | optional | [path_payment] Asset code of `n+1`th asset on the path (FNO when empty, but empty parameter must be sent!)
+`path[n+1][asset_issuer]` | optional | [path_payment] Account ID of `n+1`th asset issuer (FNO when empty, but empty parameter must be sent!)
 ... | ... | _Up to 5 assets in the path..._
 
 #### Response
@@ -237,7 +237,7 @@ This callback should return the compliance information of your customer identifi
 
 name | description
 --- | ---
-`address` | Stellar address (ex. `alice*acme.com`) of the user.
+`address` | Fonero address (ex. `alice*acme.com`) of the user.
 
 #### Response
 
@@ -251,13 +251,13 @@ This callback should return `200 OK` status code and JSON object with the custom
 }
 ```
 ### `callbacks.tx_status`
-This callback should return the status of a transaction as explained in [`SEP-0004`](https://github.com/stellar/stellar-protocol/blob/master/ecosystem/sep-0004.md).
+This callback should return the status of a transaction as explained in [`SEP-0004`](https://github.com/fonero-project/fonero-protocol/blob/master/ecosystem/sep-0004.md).
 
 #### Request
 
 name | description
 --- | ---
-`id` | Stellar transaction ID.
+`id` | Fonero transaction ID.
 
 #### Response
 This callback should return `200 OK` status code and JSON object with the transaction status info:
@@ -300,6 +300,6 @@ godoc -goroot=. -http=:6060
 
 Then simply open:
 ```
-http://localhost:6060/pkg/github.com/stellar/gateway/
+http://localhost:6060/pkg/github.com/fonero-project/gateway/
 ```
 in a browser.

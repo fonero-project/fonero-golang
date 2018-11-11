@@ -1,12 +1,12 @@
 // Package core contains database record definitions useable for
-// reading rows from a Stellar Core db
+// reading rows from a Fonero Core db
 package core
 
 import (
 	"github.com/guregu/null"
-	"github.com/stellar/go/strkey"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/strkey"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // Account is a row of data from the `accounts` table
@@ -40,7 +40,7 @@ type LedgerHeader struct {
 	Data           xdr.LedgerHeader `db:"data"`
 }
 
-// Offer is row of data from the `offers` table from stellar-core
+// Offer is row of data from the `offers` table from fonero-core
 type Offer struct {
 	SellerID string `db:"sellerid"`
 	OfferID  int64  `db:"offerid"`
@@ -72,7 +72,7 @@ type OrderBookSummaryPriceLevel struct {
 // counter currency
 type OrderBookSummary []OrderBookSummaryPriceLevel
 
-// Q is a helper struct on which to hang common queries against a stellar
+// Q is a helper struct on which to hang common queries against a fonero
 // core database.
 type Q struct {
 	*db.Session
@@ -92,14 +92,14 @@ type SequenceProvider struct {
 	Q *Q
 }
 
-// Signer is a row of data from the `signers` table from stellar-core
+// Signer is a row of data from the `signers` table from fonero-core
 type Signer struct {
 	Accountid string
 	Publickey string
 	Weight    int32
 }
 
-// Transaction is row of data from the `txhistory` table from stellar-core
+// Transaction is row of data from the `txhistory` table from fonero-core
 type Transaction struct {
 	TransactionHash string                    `db:"txid"`
 	LedgerSequence  int32                     `db:"ledgerseq"`
@@ -109,7 +109,7 @@ type Transaction struct {
 	ResultMeta      xdr.TransactionMeta       `db:"txmeta"`
 }
 
-// TransactionFee is row of data from the `txfeehistory` table from stellar-core
+// TransactionFee is row of data from the `txfeehistory` table from fonero-core
 type TransactionFee struct {
 	TransactionHash string                 `db:"txid"`
 	LedgerSequence  int32                  `db:"ledgerseq"`
@@ -117,7 +117,7 @@ type TransactionFee struct {
 	Changes         xdr.LedgerEntryChanges `db:"txchanges"`
 }
 
-// Trustline is a row of data from the `trustlines` table from stellar-core
+// Trustline is a row of data from the `trustlines` table from fonero-core
 type Trustline struct {
 	Accountid          string
 	Assettype          xdr.AssetType
@@ -180,7 +180,7 @@ func AssetFromDB(typ xdr.AssetType, code string, issuer string) (result xdr.Asse
 }
 
 // ElderLedger represents the oldest "ingestable" ledger known to the
-// stellar-core database this ingestion system is communicating with.  Horizon,
+// fonero-core database this ingestion system is communicating with.  Horizon,
 // which wants to operate on a contiguous range of ledger data (i.e. free from
 // gaps) uses the elder ledger to start importing in the case of an empty
 // database.  NOTE:  This current query used is correct, but slow.  Please keep

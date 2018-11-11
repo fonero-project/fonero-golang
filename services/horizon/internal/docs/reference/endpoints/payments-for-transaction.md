@@ -1,7 +1,7 @@
 ---
 title: Payments for Transaction
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=payments&endpoint=for_transaction
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=payments&endpoint=for_transaction
 ---
 
 This endpoint represents all payment-related [operations](../resources/operation.md) that are part of a given [transaction](../resources/transaction.md).
@@ -30,14 +30,14 @@ GET /transactions/{hash}/payments{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/transactions/3c8ef808df9d5d240ba0d495629df9da5653b1be2daf05d43b49c5bcbfe099bd/payments"
+curl "https://horizon-testnet.fonero.org/transactions/3c8ef808df9d5d240ba0d495629df9da5653b1be2daf05d43b49c5bcbfe099bd/payments"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.payments()
   .forTransaction("3c8ef808df9d5d240ba0d495629df9da5653b1be2daf05d43b49c5bcbfe099bd")

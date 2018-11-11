@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/stellar/go/clients/horizon"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
 )
 
 func main() {

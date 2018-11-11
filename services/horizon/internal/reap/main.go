@@ -7,7 +7,7 @@ package reap
 import (
 	"time"
 
-	"github.com/stellar/go/support/db"
+	"github.com/fonero-project/fonero-golang/support/db"
 )
 
 // System represents the history reaping subsystem of horizon.
@@ -18,7 +18,7 @@ type System struct {
 	nextRun time.Time
 }
 
-// New initializes the reaper, causing it to begin polling the stellar-core
+// New initializes the reaper, causing it to begin polling the fonero-core
 // database for now ledgers and ingesting data into the horizon database.
 func New(retention uint, horizon *db.Session) *System {
 	r := &System{

@@ -3,10 +3,10 @@ package simplepath
 import (
 	"testing"
 
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/paths"
-	"github.com/stellar/go/services/horizon/internal/test"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/paths"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 func TestFinder(t *testing.T) {

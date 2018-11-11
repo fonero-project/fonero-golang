@@ -1,7 +1,7 @@
 run_recipe File.dirname(__FILE__) + "/_common_accounts.rb"
 
 use_manual_close
-KP = Stellar::KeyPair
+KP = Fonero::KeyPair
 
 close_ledger #1
 

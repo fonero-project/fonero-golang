@@ -5,7 +5,7 @@ title: Page
 Pages represent a subset of a larger collection of objects.
 As an example, it would be unfeasible to provide the
 [All Transactions](../transactions-all.md) endpoint without paging.  Over time there
-will be millions of transactions in the Stellar network's ledger and returning
+will be millions of transactions in the Fonero network's ledger and returning
 them all over a single request would be unfeasible.
 
 ## Attributes
@@ -63,7 +63,7 @@ A page provides a couple of links to ease in iteration.
         "sender": "GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ",
         "receiver": "GCXKG6RN4ONIEPCMNFB732A436Z5PNDSRLGWK7GBLCMQLIFO4S7EYWVU",
         "asset": {
-          "code": "XLM"
+          "code": "FNO"
         },
         "amount": 1000000000,
         "amount_f": 100.00

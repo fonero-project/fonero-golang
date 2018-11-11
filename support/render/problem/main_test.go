@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	ge "github.com/go-errors/errors"
-	"github.com/stellar/go/support/test"
+	"github.com/fonero-project/fonero-golang/support/test"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -38,8 +38,8 @@ func TestRender(t *testing.T) {
 			201,
 		}, {
 			"renders the extras correctly",
-			P{Extras: map[string]interface{}{"hello": "stellar"}},
-			[]string{"hello", "stellar"},
+			P{Extras: map[string]interface{}{"hello": "fonero"}},
+			[]string{"hello", "fonero"},
 			0,
 		},
 	}

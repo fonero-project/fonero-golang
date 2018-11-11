@@ -1,9 +1,9 @@
 package bridge
 
 import (
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
 )
 
 // SetOptionsOperationBody represents set_options operation
@@ -26,7 +26,7 @@ type SetOptionsSigner struct {
 	Weight    uint32 `json:"weight"`
 }
 
-// ToTransactionMutator returns go-stellar-base TransactionMutator
+// ToTransactionMutator returns go-fonero-base TransactionMutator
 func (op SetOptionsOperationBody) ToTransactionMutator() b.TransactionMutator {
 	var mutators []interface{}
 

@@ -7,8 +7,8 @@ import (
 	"math/big"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // ErrNotEnough represents an error that occurs when pricing a trade on an
@@ -117,8 +117,8 @@ func (ob *orderBook) query() (sq.SelectBuilder, error) {
 // pathPaymentAmountSold = amount we are giving to the buyer
 // Sell units = pathPaymentAmountSold and buy units = pathPaymentAmountBought
 
-// this is how we do floor and ceiling in stellar-core:
-// https://github.com/stellar/stellar-core/blob/9af27ef4e20b66f38ab148d52ba7904e74fe502f/src/util/types.cpp#L201
+// this is how we do floor and ceiling in fonero-core:
+// https://github.com/fonero-project/fonero-core/blob/9af27ef4e20b66f38ab148d52ba7904e74fe502f/src/util/types.cpp#L201
 func convertToBuyingUnits(sellingOfferAmount int64, sellingUnitsNeeded int64, pricen int64, priced int64) (int64, int64, error) {
 	var e error
 	// offerSellingBound
@@ -148,7 +148,7 @@ func convertToBuyingUnits(sellingOfferAmount int64, sellingUnitsNeeded int64, pr
 }
 
 // mulFractionRoundDown sets x = (x * n) / d, which is a round-down operation
-// see https://github.com/stellar/stellar-core/blob/9af27ef4e20b66f38ab148d52ba7904e74fe502f/src/util/types.cpp#L201
+// see https://github.com/fonero-project/fonero-core/blob/9af27ef4e20b66f38ab148d52ba7904e74fe502f/src/util/types.cpp#L201
 func mulFractionRoundDown(x int64, n int64, d int64) (int64, error) {
 	var bn, bd big.Int
 	bn.SetInt64(n)
@@ -163,7 +163,7 @@ func mulFractionRoundDown(x int64, n int64, d int64) (int64, error) {
 }
 
 // mulFractionRoundUp sets x = ((x * n) + d - 1) / d, which is a round-up operation
-// see https://github.com/stellar/stellar-core/blob/9af27ef4e20b66f38ab148d52ba7904e74fe502f/src/util/types.cpp#L201
+// see https://github.com/fonero-project/fonero-core/blob/9af27ef4e20b66f38ab148d52ba7904e74fe502f/src/util/types.cpp#L201
 func mulFractionRoundUp(x int64, n int64, d int64) (int64, error) {
 	var bn, bd big.Int
 	bn.SetInt64(n)

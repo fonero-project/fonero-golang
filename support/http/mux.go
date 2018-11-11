@@ -7,7 +7,7 @@ import (
 )
 
 // NewMux returns a new server mux configured with the common defaults used across all
-// stellar services.
+// fonero services.
 func NewMux(behindProxy bool) *chi.Mux {
 	mux := chi.NewMux()
 
@@ -23,7 +23,7 @@ func NewMux(behindProxy bool) *chi.Mux {
 }
 
 // NewAPIMux returns a new server mux configured with the common defaults used for a web API in
-// stellar.
+// fonero.
 func NewAPIMux(behindProxy bool) *chi.Mux {
 	mux := NewMux(behindProxy)
 

@@ -3,9 +3,9 @@ package bridge
 import (
 	"encoding/base64"
 
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
 )
 
 // ManageDataOperationBody represents manage_data operation
@@ -15,7 +15,7 @@ type ManageDataOperationBody struct {
 	Data   string
 }
 
-// ToTransactionMutator returns go-stellar-base TransactionMutator
+// ToTransactionMutator returns go-fonero-base TransactionMutator
 func (op ManageDataOperationBody) ToTransactionMutator() b.TransactionMutator {
 	var builder b.ManageDataBuilder
 

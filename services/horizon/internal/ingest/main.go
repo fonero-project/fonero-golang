@@ -1,5 +1,5 @@
 // Package ingest contains the ingestion system for horizon.  This system takes
-// data produced by the connected stellar-core database, transforms it and
+// data produced by the connected fonero-core database, transforms it and
 // inserts it into the horizon database.
 package ingest
 
@@ -8,10 +8,10 @@ import (
 
 	sq "github.com/Masterminds/squirrel"
 	metrics "github.com/rcrowley/go-metrics"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/support/db"
-	ilog "github.com/stellar/go/support/log"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/support/db"
+	ilog "github.com/fonero-project/fonero-golang/support/log"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 var log = ilog.DefaultLogger.WithField("service", "ingest")
@@ -45,7 +45,7 @@ const (
 	TransactionsTableName            TableName = "history_transactions"
 )
 
-// Cursor iterates through a stellar core database's ledgers
+// Cursor iterates through a fonero core database's ledgers
 type Cursor struct {
 	// FirstLedger is the beginning of the range of ledgers (inclusive) that will
 	// attempt to be ingested in this session.
@@ -54,7 +54,7 @@ type Cursor struct {
 	// attempt to be ingested in this session.
 	LastLedger int32
 
-	// CoreDB is the stellar-core db that data is ingested from.
+	// CoreDB is the fonero-core db that data is ingested from.
 	CoreDB *db.Session
 
 	Metrics        *IngesterMetrics
@@ -103,17 +103,17 @@ type System struct {
 	// HorizonDB is the connection to the horizon database that ingested data will
 	// be written to.
 	HorizonDB *db.Session
-	// CoreDB is the stellar-core db that data is ingested from.
+	// CoreDB is the fonero-core db that data is ingested from.
 	CoreDB  *db.Session
 	Metrics IngesterMetrics
 	// Network is the passphrase for the network being imported
 	Network string
-	// StellarCoreURL is the http endpoint of the stellar-core that data is being
+	// FoneroCoreURL is the http endpoint of the fonero-core that data is being
 	// ingested from.
-	StellarCoreURL string
+	FoneroCoreURL string
 	// SkipCursorUpdate causes the ingestor to skip
 	// reporting the "last imported ledger" cursor to
-	// stellar-core
+	// fonero-core
 	SkipCursorUpdate bool
 	// HistoryRetentionCount is the desired minimum number of ledgers to
 	// keep in the history database, working backwards from the latest core
@@ -162,15 +162,15 @@ type Session struct {
 	Ingestion *Ingestion
 	// Network is the passphrase for the network being imported
 	Network string
-	// StellarCoreURL is the http endpoint of the stellar-core that data is being
+	// FoneroCoreURL is the http endpoint of the fonero-core that data is being
 	// ingested from.
-	StellarCoreURL string
+	FoneroCoreURL string
 	// ClearExisting causes the session to clear existing data from the horizon db
 	// when the session is run.
 	ClearExisting bool
 	// SkipCursorUpdate causes the session to skip
 	// reporting the "last imported ledger" cursor to
-	// stellar-core
+	// fonero-core
 	SkipCursorUpdate bool
 	// Metrics is a reference to where the session should record its metric information
 	Metrics *IngesterMetrics
@@ -186,13 +186,13 @@ type Session struct {
 	Ingested int
 }
 
-// New initializes the ingester, causing it to begin polling the stellar-core
+// New initializes the ingester, causing it to begin polling the fonero-core
 // database for now ledgers and ingesting data into the horizon database.
 func New(network string, coreURL string, core, horizon *db.Session, config Config) *System {
 	i := &System{
 		Config:         config,
 		Network:        network,
-		StellarCoreURL: coreURL,
+		FoneroCoreURL: coreURL,
 		HorizonDB:      horizon,
 		CoreDB:         core,
 	}
@@ -224,7 +224,7 @@ func NewSession(i *System) *Session {
 			DB: hdb,
 		},
 		Network:          i.Network,
-		StellarCoreURL:   i.StellarCoreURL,
+		FoneroCoreURL:   i.FoneroCoreURL,
 		SkipCursorUpdate: i.SkipCursorUpdate,
 		Metrics:          &i.Metrics,
 	}

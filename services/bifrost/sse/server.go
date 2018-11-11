@@ -5,8 +5,8 @@ import (
 	"time"
 
 	"github.com/r3labs/sse"
-	"github.com/stellar/go/services/bifrost/common"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/bifrost/common"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 func (s *Server) init() {

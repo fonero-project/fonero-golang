@@ -3,9 +3,9 @@ package operations
 import (
 	"time"
 
-	"github.com/stellar/go/protocols/horizon/base"
-	"github.com/stellar/go/support/render/hal"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/protocols/horizon/base"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // OperationTypeNames maps from operation type to the string used to represent that type

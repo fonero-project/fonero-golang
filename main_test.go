@@ -1,4 +1,4 @@
-package stellargo
+package fonerogo
 
 import (
 	"bytes"
@@ -7,10 +7,10 @@ import (
 	"log"
 	"strings"
 
-	b "github.com/stellar/go/build"
-	"github.com/stellar/go/hash"
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/xdr"
+	b "github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/hash"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // ExampleDecodeTransaction shows the lowest-level process to decode a base64
@@ -66,7 +66,7 @@ func ExampleBuildTransaction() {
 }
 
 // ExampleLowLevelTransaction creates and signs a simple transaction, and then
-// encodes it into a hex string capable of being submitted to stellar-core.
+// encodes it into a hex string capable of being submitted to fonero-core.
 //
 // It uses the low-level xdr facilities to create the transaction.
 func ExampleLowLevelTransaction() {

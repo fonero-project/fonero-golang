@@ -1,7 +1,7 @@
 ---
 title: Transactions for Ledger
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=transactions&endpoint=for_ledger
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=transactions&endpoint=for_ledger
 ---
 
 This endpoint represents all [transactions](../resources/transaction.md) in a given [ledger](../resources/ledger.md).
@@ -24,14 +24,14 @@ GET /ledgers/{id}/transactions{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/ledgers/69859/transactions"
+curl "https://horizon-testnet.fonero.org/ledgers/69859/transactions"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.transactions()
   .forLedger("8365")

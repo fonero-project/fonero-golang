@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"net/url"
 
-	proto "github.com/stellar/go/protocols/compliance"
-	"github.com/stellar/go/support/errors"
+	proto "github.com/fonero-project/fonero-golang/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 type pendingResponse struct {

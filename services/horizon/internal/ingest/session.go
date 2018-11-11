@@ -7,18 +7,18 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/stellar/go/clients/stellarcore"
+	"github.com/fonero-project/fonero-golang/clients/fonerocore"
 
-	"github.com/stellar/go/amount"
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/meta"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/ingest/participants"
-	"github.com/stellar/go/support/errors"
-	ilog "github.com/stellar/go/support/log"
-	sTime "github.com/stellar/go/support/time"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/amount"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/meta"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ingest/participants"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	ilog "github.com/fonero-project/fonero-golang/support/log"
+	sTime "github.com/fonero-project/fonero-golang/support/time"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // Run starts an attempt to ingest the range of ledgers specified in this
@@ -204,7 +204,7 @@ func (is *Session) ingestEffects() {
 		claims := []xdr.ClaimOfferAtom{}
 		result := is.Cursor.OperationResult()
 
-		// KNOWN ISSUE:  stellar-core creates results for CreatePassiveOffer operations
+		// KNOWN ISSUE:  fonero-core creates results for CreatePassiveOffer operations
 		// with the wrong result arm set.
 		if result.Type == xdr.OperationTypeManageOffer {
 			claims = result.MustManageOfferResult().MustSuccess().OffersClaimed
@@ -542,7 +542,7 @@ func (is *Session) ingestTrades() {
 	case xdr.OperationTypeCreatePassiveOffer:
 		result := cursor.OperationResult()
 
-		// KNOWN ISSUE:  stellar-core creates results for CreatePassiveOffer operations
+		// KNOWN ISSUE:  fonero-core creates results for CreatePassiveOffer operations
 		// with the wrong result arm set.
 		if result.Type == xdr.OperationTypeManageOffer {
 			manageOfferResult := result.MustManageOfferResult().MustSuccess()
@@ -556,7 +556,7 @@ func (is *Session) ingestTrades() {
 	}
 	q := history.Q{Session: is.Ingestion.DB}
 	for i, trade := range trades {
-		// stellar-core will opportunisticly garbage collect invalid offers (in the
+		// fonero-core will opportunisticly garbage collect invalid offers (in the
 		// event that a trader spends down their balance).  These garbage collected
 		// offers get emitted in the result with the amount values set to zero.
 		//
@@ -854,12 +854,12 @@ func (is *Session) operationFlagDetails(result map[string]interface{}, f int32, 
 	result[prefix+"_flags_s"] = s
 }
 
-// reportCursorState makes an http request to the configured stellar-core server
+// reportCursorState makes an http request to the configured fonero-core server
 // to report that it has finished processing the data being ingested.  This
-// allows stellar-core to free that storage when next it runs its own
+// allows fonero-core to free that storage when next it runs its own
 // maintenance.
 func (is *Session) reportCursorState() error {
-	if is.StellarCoreURL == "" {
+	if is.FoneroCoreURL == "" {
 		return nil
 	}
 
@@ -867,7 +867,7 @@ func (is *Session) reportCursorState() error {
 		return nil
 	}
 
-	core := &stellarcore.Client{URL: is.StellarCoreURL}
+	core := &fonerocore.Client{URL: is.FoneroCoreURL}
 
 	err := core.SetCursor(context.Background(), "HORIZON", is.Cursor.LastLedger)
 

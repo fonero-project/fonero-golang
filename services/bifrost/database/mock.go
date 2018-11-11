@@ -9,8 +9,8 @@ type MockDatabase struct {
 	mock.Mock
 }
 
-func (m *MockDatabase) CreateAddressAssociation(chain Chain, stellarAddress, address string, addressIndex uint32) error {
-	a := m.Called(chain, stellarAddress, address, addressIndex)
+func (m *MockDatabase) CreateAddressAssociation(chain Chain, foneroAddress, address string, addressIndex uint32) error {
+	a := m.Called(chain, foneroAddress, address, addressIndex)
 	return a.Error(0)
 }
 
@@ -22,8 +22,8 @@ func (m *MockDatabase) GetAssociationByChainAddress(chain Chain, address string)
 	return a.Get(0).(*AddressAssociation), a.Error(1)
 }
 
-func (m *MockDatabase) GetAssociationByStellarPublicKey(stellarPublicKey string) (*AddressAssociation, error) {
-	a := m.Called(stellarPublicKey)
+func (m *MockDatabase) GetAssociationByFoneroPublicKey(foneroPublicKey string) (*AddressAssociation, error) {
+	a := m.Called(foneroPublicKey)
 	return a.Get(0).(*AddressAssociation), a.Error(1)
 }
 

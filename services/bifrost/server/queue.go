@@ -5,7 +5,7 @@ import (
 )
 
 // poolTransactionsQueue pools transactions queue which contains only processed and
-// validated transactions and sends it to StellarAccountConfigurator for account configuration.
+// validated transactions and sends it to FoneroAccountConfigurator for account configuration.
 func (s *Server) poolTransactionsQueue() {
 	s.log.Info("Started pooling transactions queue")
 
@@ -23,8 +23,8 @@ func (s *Server) poolTransactionsQueue() {
 		}
 
 		s.log.WithField("transaction", transaction).Info("Received transaction from transactions queue")
-		go s.StellarAccountConfigurator.ConfigureAccount(
-			transaction.StellarPublicKey,
+		go s.FoneroAccountConfigurator.ConfigureAccount(
+			transaction.FoneroPublicKey,
 			string(transaction.AssetCode),
 			transaction.Amount,
 		)

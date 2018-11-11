@@ -3,9 +3,9 @@ package ingest
 import (
 	"database/sql"
 
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 // Load runs queries against `core` to fill in the records of the bundle.
@@ -14,10 +14,10 @@ func (lb *LedgerBundle) Load(db *db.Session) error {
 	// Load Header
 	err := q.LedgerHeaderBySequence(&lb.Header, lb.Sequence)
 	if err != nil {
-		// Remove when Horizon is able to handle gaps in stellar-core DB.
-		// More info: https://github.com/stellar/go/issues/335
+		// Remove when Horizon is able to handle gaps in fonero-core DB.
+		// More info: https://github.com/fonero-project/fonero-golang/issues/335
 		if err == sql.ErrNoRows {
-			return errors.New("Gap detected in stellar-core database. Please recreate Horizon DB.")
+			return errors.New("Gap detected in fonero-core database. Please recreate Horizon DB.")
 		}
 		return errors.Wrap(err, "failed to load header")
 	}

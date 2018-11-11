@@ -8,13 +8,13 @@ import (
 	"time"
 
 	"github.com/sirupsen/logrus"
-	"github.com/stellar/go/build"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/services/bridge/internal/db"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/db"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // TransactionSubmitterInterface helps mocking TransactionSubmitter
@@ -23,7 +23,7 @@ type TransactionSubmitterInterface interface {
 	SignAndSubmitRawTransaction(paymentID *string, seed string, tx *xdr.Transaction) (response horizon.TransactionSuccess, err error)
 }
 
-// TransactionSubmitter submits transactions to Stellar Network
+// TransactionSubmitter submits transactions to Fonero Network
 type TransactionSubmitter struct {
 	Horizon       horizon.ClientInterface
 	Accounts      map[string]*Account // seed => *Account
@@ -60,7 +60,7 @@ func NewTransactionSubmitter(
 	return
 }
 
-// LoadAccount loads current state of Stellar account and creates a map entry if it didn't exist
+// LoadAccount loads current state of Fonero account and creates a map entry if it didn't exist
 func (ts *TransactionSubmitter) LoadAccount(seed string) (*Account, error) {
 	ts.AccountsMutex.Lock()
 
@@ -234,7 +234,7 @@ func (ts *TransactionSubmitter) SignAndSubmitRawTransaction(paymentID *string, s
 	return
 }
 
-// SubmitTransaction builds and submits transaction to Stellar network
+// SubmitTransaction builds and submits transaction to Fonero network
 func (ts *TransactionSubmitter) SubmitTransaction(paymentID *string, seed string, operation, memo interface{}) (horizon.TransactionSuccess, error) {
 	account, err := ts.LoadAccount(seed)
 	if err != nil {

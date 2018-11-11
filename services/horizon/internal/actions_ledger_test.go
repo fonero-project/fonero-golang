@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/stellar/go/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
 )
 
 func TestLedgerActions_Index(t *testing.T) {

@@ -14,13 +14,13 @@ import (
 	"encoding/base64"
 
 	"github.com/sirupsen/logrus"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/protocols/compliance"
-	"github.com/stellar/go/services/bridge/internal/config"
-	"github.com/stellar/go/services/bridge/internal/db"
-	callback "github.com/stellar/go/services/internal/bridge-compliance-shared/protocols/compliance"
-	"github.com/stellar/go/strkey"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/config"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/db"
+	callback "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols/compliance"
+	"github.com/fonero-project/fonero-golang/strkey"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 // PaymentListener is listening for a new payments received by ReceivingAccount
@@ -326,7 +326,7 @@ func (pl *PaymentListener) isAssetAllowed(asset_type string, code string, issuer
 			return true
 		}
 
-		if asset.Code == "XLM" && asset.Issuer == "" && asset_type == "native" {
+		if asset.Code == "FNO" && asset.Issuer == "" && asset_type == "native" {
 			return true
 		}
 

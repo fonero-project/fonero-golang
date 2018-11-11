@@ -4,10 +4,10 @@ import (
 	"strconv"
 	"sync"
 
-	b "github.com/stellar/go/build"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/support/errors"
+	b "github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 // TxResult is the result from the asynchronous submit transaction method over a channel

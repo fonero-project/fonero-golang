@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"github.com/stellar/go/clients/federation"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/clients/stellartoml"
-	"github.com/stellar/go/services/bridge/internal/config"
-	"github.com/stellar/go/services/bridge/internal/db"
-	"github.com/stellar/go/services/bridge/internal/listener"
-	"github.com/stellar/go/services/bridge/internal/submitter"
-	"github.com/stellar/go/support/http"
+	"github.com/fonero-project/fonero-golang/clients/federation"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/clients/fonerotoml"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/config"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/db"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/listener"
+	"github.com/fonero-project/fonero-golang/services/bridge/internal/submitter"
+	"github.com/fonero-project/fonero-golang/support/http"
 )
 
 // RequestHandler implements bridge server request handlers
@@ -17,7 +17,7 @@ type RequestHandler struct {
 	Client               http.SimpleHTTPClientInterface          `inject:""`
 	Horizon              horizon.ClientInterface                 `inject:""`
 	Database             db.Database                             `inject:""`
-	StellarTomlResolver  stellartoml.ClientInterface             `inject:""`
+	FoneroTomlResolver  fonerotoml.ClientInterface             `inject:""`
 	FederationResolver   federation.ClientInterface              `inject:""`
 	TransactionSubmitter submitter.TransactionSubmitterInterface `inject:""`
 	PaymentListener      *listener.PaymentListener               `inject:""`

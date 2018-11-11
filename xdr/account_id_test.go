@@ -1,7 +1,7 @@
 package xdr_test
 
 import (
-	. "github.com/stellar/go/xdr"
+	. "github.com/fonero-project/fonero-golang/xdr"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

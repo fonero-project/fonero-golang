@@ -1,7 +1,7 @@
 ---
 title: Operations for Account
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=operations&endpoint=for_account
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=operations&endpoint=for_account
 ---
 
 This endpoint represents all [operations](../resources/operation.md) that were included in valid [transactions](../resources/transaction.md) that affected a particular [account](../resources/account.md).
@@ -27,14 +27,14 @@ GET /accounts/{account}/operations{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/accounts/GA2HGBJIJKI6O4XEM7CZWY5PS6GKSXL6D34ERAJYQSPYA6X6AI7HYW36/operations"
+curl "https://horizon-testnet.fonero.org/accounts/GA2HGBJIJKI6O4XEM7CZWY5PS6GKSXL6D34ERAJYQSPYA6X6AI7HYW36/operations"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.operations()
   .forAccount("GAKLBGHNHFQ3BMUYG5KU4BEWO6EYQHZHAXEWC33W34PH2RBHZDSQBD75")

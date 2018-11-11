@@ -12,11 +12,11 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/stellar/go/build"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/services/bifrost/common"
-	"github.com/stellar/go/services/bifrost/server"
+	"github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/services/bifrost/common"
+	"github.com/fonero-project/fonero-golang/services/bifrost/server"
 )
 
 func (u *Users) Start(accounts chan<- server.GenerateAddressResponse) {
@@ -93,7 +93,7 @@ func (u *Users) newUser(kp *keypair.Full) server.GenerateAddressResponse {
 	randomCoin := []string{"bitcoin", "ethereum"}[rand.Int()%2]
 
 	params := url.Values{}
-	params.Add("stellar_public_key", kp.Address())
+	params.Add("fonero_public_key", kp.Address())
 	req, err := http.PostForm(
 		fmt.Sprintf("http://localhost:%d/generate-%s-address", randomPort, randomCoin),
 		params,

@@ -1,9 +1,9 @@
 package bridge
 
 import (
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
 )
 
 // AccountMergeOperationBody represents account_merge operation
@@ -12,7 +12,7 @@ type AccountMergeOperationBody struct {
 	Destination string
 }
 
-// ToTransactionMutator returns stellar/go TransactionMutator
+// ToTransactionMutator returns fonero-project/fonero-golang TransactionMutator
 func (op AccountMergeOperationBody) ToTransactionMutator() b.TransactionMutator {
 	mutators := []interface{}{b.Destination{op.Destination}}
 

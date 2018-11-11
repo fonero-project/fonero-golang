@@ -3,10 +3,10 @@ package resourceadapter
 import (
 	"context"
 
-	"github.com/stellar/go/services/horizon/internal/httpx"
-	"github.com/stellar/go/services/horizon/internal/txsub"
-	. "github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/httpx"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/txsub"
+	. "github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // Populate fills out the details

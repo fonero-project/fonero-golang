@@ -1,7 +1,7 @@
 ---
 title: Payments for Ledger
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=payments&endpoint=for_ledger
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=payments&endpoint=for_ledger
 ---
 
 This endpoint represents all payment-releated [operations](../resources/operation.md) that are part of a valid [transactions](../resources/transaction.md) in a given [ledger](../resources/ledger.md).
@@ -30,14 +30,14 @@ GET /ledgers/{id}/payments{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/ledgers/69859/payments"
+curl "https://horizon-testnet.fonero.org/ledgers/69859/payments"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk')
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk')
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.payments()
   .forLedger("10866")

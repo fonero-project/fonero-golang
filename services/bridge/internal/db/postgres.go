@@ -3,8 +3,8 @@ package db
 import (
 	"database/sql"
 
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 const (

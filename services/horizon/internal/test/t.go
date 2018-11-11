@@ -6,13 +6,13 @@ import (
 	"encoding/json"
 
 	"github.com/guregu/null"
-	"github.com/stellar/go/services/horizon/internal/ledger"
-	"github.com/stellar/go/services/horizon/internal/operationfeestats"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ledger"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/operationfeestats"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
-// CoreSession returns a db.Session instance pointing at the stellar core test database
+// CoreSession returns a db.Session instance pointing at the fonero core test database
 func (t *T) CoreSession() *db.Session {
 	return &db.Session{
 		DB:  t.CoreDB,

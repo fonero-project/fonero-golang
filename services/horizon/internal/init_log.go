@@ -2,8 +2,8 @@ package horizon
 
 import (
 	"github.com/getsentry/raven-go"
-	"github.com/stellar/go/services/horizon/internal/logmetrics"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/logmetrics"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 // initLog initialized the logging subsystem, attaching app.log and

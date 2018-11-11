@@ -12,16 +12,16 @@ import (
 	"github.com/facebookgo/inject"
 	"github.com/goji/httpauth"
 	"github.com/spf13/cobra"
-	"github.com/stellar/go/clients/federation"
-	"github.com/stellar/go/clients/stellartoml"
-	"github.com/stellar/go/services/compliance/internal/config"
-	"github.com/stellar/go/services/compliance/internal/crypto"
-	"github.com/stellar/go/services/compliance/internal/db"
-	"github.com/stellar/go/services/compliance/internal/handlers"
-	supportConfig "github.com/stellar/go/support/config"
-	"github.com/stellar/go/support/db/schema"
-	"github.com/stellar/go/support/errors"
-	supportHttp "github.com/stellar/go/support/http"
+	"github.com/fonero-project/fonero-golang/clients/federation"
+	"github.com/fonero-project/fonero-golang/clients/fonerotoml"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/config"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/crypto"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/db"
+	"github.com/fonero-project/fonero-golang/services/compliance/internal/handlers"
+	supportConfig "github.com/fonero-project/fonero-golang/support/config"
+	"github.com/fonero-project/fonero-golang/support/db/schema"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	supportHttp "github.com/fonero-project/fonero-golang/support/http"
 )
 
 var app *App
@@ -39,8 +39,8 @@ func main() {
 func init() {
 	rootCmd = &cobra.Command{
 		Use:   "compliance",
-		Short: "stellar compliance server",
-		Long:  `stellar compliance server`,
+		Short: "fonero compliance server",
+		Long:  `fonero compliance server`,
 		Run:   run,
 	}
 
@@ -132,13 +132,13 @@ func NewApp(config config.Config, migrateFlag bool, versionFlag bool, version st
 		Timeout: 10 * time.Second,
 	}
 
-	stellartomlClient := stellartoml.Client{
+	fonerotomlClient := fonerotoml.Client{
 		HTTP: &httpClientWithTimeout,
 	}
 
 	federationClient := federation.Client{
 		HTTP:        &httpClientWithTimeout,
-		StellarTOML: &stellartomlClient,
+		FoneroTOML: &fonerotomlClient,
 	}
 
 	err = g.Provide(
@@ -146,7 +146,7 @@ func NewApp(config config.Config, migrateFlag bool, versionFlag bool, version st
 		&inject.Object{Value: &config},
 		&inject.Object{Value: &database},
 		&inject.Object{Value: &crypto.SignerVerifier{}},
-		&inject.Object{Value: &stellartomlClient},
+		&inject.Object{Value: &fonerotomlClient},
 		&inject.Object{Value: &federationClient},
 		&inject.Object{Value: &httpClientWithTimeout},
 		&inject.Object{Value: &handlers.NonceGenerator{}},

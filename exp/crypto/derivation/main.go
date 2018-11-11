@@ -14,13 +14,13 @@ import (
 )
 
 const (
-	// StellarAccountPrefix is a prefix for Stellar key pairs derivation.
-	StellarAccountPrefix = "m/44'/148'"
-	// StellarPrimaryAccountPath is a derivation path of the primary account.
-	StellarPrimaryAccountPath = "m/44'/148'/0'"
-	// StellarAccountPathFormat is a path format used for Stellar key pair
+	// FoneroAccountPrefix is a prefix for Fonero key pairs derivation.
+	FoneroAccountPrefix = "m/44'/148'"
+	// FoneroPrimaryAccountPath is a derivation path of the primary account.
+	FoneroPrimaryAccountPath = "m/44'/148'/0'"
+	// FoneroAccountPathFormat is a path format used for Fonero key pair
 	// derivation as described in SEP-00XX. Use with `fmt.Sprintf` and `DeriveForPath`.
-	StellarAccountPathFormat = "m/44'/148'/%d'"
+	FoneroAccountPathFormat = "m/44'/148'/%d'"
 	// FirstHardenedIndex is the index of the first hardened key.
 	FirstHardenedIndex = uint32(0x80000000)
 	// As in https://github.com/satoshilabs/slips/blob/master/slip-0010.md

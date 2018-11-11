@@ -3,11 +3,11 @@ package bridge
 import (
 	"strconv"
 
-	b "github.com/stellar/go/build"
+	b "github.com/fonero-project/fonero-golang/build"
 
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/protocols"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols"
 )
 
 // ManageOfferOperationBody represents manage_offer operation
@@ -23,7 +23,7 @@ type ManageOfferOperationBody struct {
 
 // uint64
 
-// ToTransactionMutator returns go-stellar-base TransactionMutator
+// ToTransactionMutator returns go-fonero-base TransactionMutator
 func (op ManageOfferOperationBody) ToTransactionMutator() b.TransactionMutator {
 	mutators := []interface{}{
 		b.Amount(op.Amount),

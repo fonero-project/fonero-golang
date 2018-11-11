@@ -1,10 +1,10 @@
 package horizon
 
 import (
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 func initHorizonDb(app *App) {
@@ -23,7 +23,7 @@ func initHorizonDb(app *App) {
 }
 
 func initCoreDb(app *App) {
-	session, err := db.Open("postgres", app.config.StellarCoreDatabaseURL)
+	session, err := db.Open("postgres", app.config.FoneroCoreDatabaseURL)
 
 	if err != nil {
 		log.Panic(err)

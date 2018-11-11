@@ -2,8 +2,8 @@ package effects
 
 import (
 	"time"
-	"github.com/stellar/go/protocols/horizon/base"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/protocols/horizon/base"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 

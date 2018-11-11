@@ -12,8 +12,8 @@ import (
 // app's main function and is provided to NewApp.
 type Config struct {
 	DatabaseURL            string
-	StellarCoreDatabaseURL string
-	StellarCoreURL         string
+	FoneroCoreDatabaseURL string
+	FoneroCoreURL         string
 	Port                   int
 	MaxDBConnections       int
 	SSEUpdateFrequency     time.Duration
@@ -46,7 +46,7 @@ type Config struct {
 	// requests.
 	StaleThreshold uint
 	// SkipCursorUpdate causes the ingestor to skip reporting the "last imported
-	// ledger" state to stellar-core.
+	// ledger" state to fonero-core.
 	SkipCursorUpdate bool
 	// EnableAssetStats is a feature flag that determines whether to calculate
 	// asset stats during the ingestion and expose `/assets` endpoint.

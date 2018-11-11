@@ -1,7 +1,7 @@
 package horizon
 
 import (
-	"github.com/stellar/go/services/horizon/internal/reap"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/reap"
 )
 
 func initReaper(app *App) {

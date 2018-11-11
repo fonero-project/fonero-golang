@@ -7,10 +7,10 @@ import (
 	"time"
 
 	"github.com/lib/pq"
-	"github.com/stellar/go/services/bifrost/queue"
-	"github.com/stellar/go/services/bifrost/sse"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/services/bifrost/queue"
+	"github.com/fonero-project/fonero-golang/services/bifrost/sse"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 const (
@@ -54,7 +54,7 @@ type transactionsQueueRow struct {
 	TransactionID    string          `db:"transaction_id"`
 	AssetCode        queue.AssetCode `db:"asset_code"`
 	Amount           string          `db:"amount"`
-	StellarPublicKey string          `db:"stellar_public_key"`
+	FoneroPublicKey string          `db:"fonero_public_key"`
 }
 
 type processedTransactionRow struct {
@@ -74,7 +74,7 @@ func fromQueueTransaction(tx queue.Transaction) *transactionsQueueRow {
 		TransactionID:    tx.TransactionID,
 		AssetCode:        tx.AssetCode,
 		Amount:           tx.Amount,
-		StellarPublicKey: tx.StellarPublicKey,
+		FoneroPublicKey: tx.FoneroPublicKey,
 	}
 }
 
@@ -87,7 +87,7 @@ func (r *transactionsQueueRow) toQueueTransaction() *queue.Transaction {
 		TransactionID:    r.TransactionID,
 		AssetCode:        r.AssetCode,
 		Amount:           r.Amount,
-		StellarPublicKey: r.StellarPublicKey,
+		FoneroPublicKey: r.FoneroPublicKey,
 	}
 }
 
@@ -145,14 +145,14 @@ func (d *PostgresDatabase) getTable(name string, session *db.Session) *db.Table 
 	}
 }
 
-func (d *PostgresDatabase) CreateAddressAssociation(chain Chain, stellarAddress, address string, addressIndex uint32) error {
+func (d *PostgresDatabase) CreateAddressAssociation(chain Chain, foneroAddress, address string, addressIndex uint32) error {
 	addressAssociationTable := d.getTable(addressAssociationTableName, nil)
 
 	association := &AddressAssociation{
 		Chain:            chain,
 		AddressIndex:     addressIndex,
 		Address:          address,
-		StellarPublicKey: stellarAddress,
+		FoneroPublicKey: foneroAddress,
 		CreatedAt:        time.Now(),
 	}
 
@@ -177,10 +177,10 @@ func (d *PostgresDatabase) GetAssociationByChainAddress(chain Chain, address str
 	return row, nil
 }
 
-func (d *PostgresDatabase) GetAssociationByStellarPublicKey(stellarPublicKey string) (*AddressAssociation, error) {
+func (d *PostgresDatabase) GetAssociationByFoneroPublicKey(foneroPublicKey string) (*AddressAssociation, error) {
 	addressAssociationTable := d.getTable(addressAssociationTableName, nil)
 	row := &AddressAssociation{}
-	where := map[string]interface{}{"stellar_public_key": stellarPublicKey}
+	where := map[string]interface{}{"fonero_public_key": foneroPublicKey}
 	err := addressAssociationTable.Get(row, where).Exec()
 	if err != nil {
 		switch errors.Cause(err) {

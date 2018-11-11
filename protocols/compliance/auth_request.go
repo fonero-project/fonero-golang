@@ -7,9 +7,9 @@ import (
 	"net/url"
 
 	"github.com/asaskevich/govalidator"
-	"github.com/stellar/go/clients/stellartoml"
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/clients/fonerotoml"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 func (r *AuthRequest) Populate(request *http.Request) *AuthRequest {
@@ -45,23 +45,23 @@ func (r *AuthRequest) Validate() error {
 }
 
 // VerifySignature verifies if signature is valid. It makes a network connection
-// to sender server in order to obtain stellar.toml file and signing key.
+// to sender server in order to obtain fonero.toml file and signing key.
 func (r *AuthRequest) VerifySignature(sender string) error {
 	signatureBytes, err := base64.StdEncoding.DecodeString(r.Signature)
 	if err != nil {
 		return errors.New("Signature is not base64 encoded")
 	}
 
-	senderStellarToml, err := stellartoml.GetStellarTomlByAddress(sender)
+	senderFoneroToml, err := fonerotoml.GetFoneroTomlByAddress(sender)
 	if err != nil {
-		return errors.Wrap(err, "Cannot get stellar.toml of sender domain")
+		return errors.Wrap(err, "Cannot get fonero.toml of sender domain")
 	}
 
-	if senderStellarToml.SigningKey == "" {
-		return errors.New("No SIGNING_KEY in stellar.toml of sender")
+	if senderFoneroToml.SigningKey == "" {
+		return errors.New("No SIGNING_KEY in fonero.toml of sender")
 	}
 
-	kp, err := keypair.Parse(senderStellarToml.SigningKey)
+	kp, err := keypair.Parse(senderFoneroToml.SigningKey)
 	if err != nil {
 		return errors.New("SigningKey is invalid")
 	}

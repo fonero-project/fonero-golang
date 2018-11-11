@@ -5,11 +5,11 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/test"
-	"github.com/stellar/go/support/db"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test"
+	"github.com/fonero-project/fonero-golang/support/db"
+	"github.com/fonero-project/fonero-golang/xdr"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -141,11 +141,11 @@ func TestStatAccountInfo(t *testing.T) {
 		{
 			"GCXKG6RN4ONIEPCMNFB732A436Z5PNDSRLGWK7GBLCMQLIFO4S7EYWVU",
 			0,
-			"https://example.com/.well-known/stellar.toml",
+			"https://example.com/.well-known/fonero.toml",
 		}, {
 			"GA5WBPYA5Y4WAEHXWR2UKO2UO4BUGHUQ74EUPKON2QHV4WRHOIRNKKH2",
 			1,
-			"https://abc.com/.well-known/stellar.toml",
+			"https://abc.com/.well-known/fonero.toml",
 		}, {
 			"GBXGQJWVLWOYHFLVTKWV5FGHA3LNYY2JQKM7OAJAUEQFU6LPCSEFVXON",
 			2,

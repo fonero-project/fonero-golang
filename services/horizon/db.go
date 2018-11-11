@@ -10,10 +10,10 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/stellar/go/services/horizon/internal/db2/schema"
-	"github.com/stellar/go/services/horizon/internal/ingest"
-	"github.com/stellar/go/support/db"
-	hlog "github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/schema"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/ingest"
+	"github.com/fonero-project/fonero-golang/support/db"
+	hlog "github.com/fonero-project/fonero-golang/support/log"
 )
 
 var dbCmd = &cobra.Command{
@@ -134,7 +134,7 @@ var dbReapCmd = &cobra.Command{
 
 var dbRebaseCmd = &cobra.Command{
 	Use:   "rebase",
-	Short: "rebases clears the horizon db and ingests the latest ledger segment from stellar-core",
+	Short: "rebases clears the horizon db and ingests the latest ledger segment from fonero-core",
 	Long:  "...",
 	Run: func(cmd *cobra.Command, args []string) {
 		initConfig()
@@ -215,7 +215,7 @@ func ingestSystem(ingestConfig ingest.Config) *ingest.System {
 		log.Fatal(err)
 	}
 
-	cdb, err := db.Open("postgres", config.StellarCoreDatabaseURL)
+	cdb, err := db.Open("postgres", config.FoneroCoreDatabaseURL)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -225,7 +225,7 @@ func ingestSystem(ingestConfig ingest.Config) *ingest.System {
 		log.Fatal("network-passphrase is blank: reingestion requires manually setting passphrase")
 	}
 
-	i := ingest.New(passphrase, config.StellarCoreURL, cdb, hdb, ingestConfig)
+	i := ingest.New(passphrase, config.FoneroCoreURL, cdb, hdb, ingestConfig)
 	return i
 }
 

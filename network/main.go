@@ -1,4 +1,4 @@
-// Package network contains functions that deal with stellar network passphrases
+// Package network contains functions that deal with fonero network passphrases
 // and IDs.
 package network
 
@@ -8,14 +8,14 @@ import (
 
 	"strings"
 
-	"github.com/stellar/go/hash"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/hash"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 const (
-	// PublicNetworkPassphrase is the pass phrase used for every transaction intended for the public stellar network
-	PublicNetworkPassphrase = "Public Global Stellar Network ; September 2015"
+	// PublicNetworkPassphrase is the pass phrase used for every transaction intended for the public fonero network
+	PublicNetworkPassphrase = "Public Global Fonero Network ; September 2015"
 	// TestNetworkPassphrase is the pass phrase used for every transaction intended for the SDF-run test network
 	TestNetworkPassphrase = "Test SDF Network ; September 2015"
 )
@@ -29,8 +29,8 @@ func ID(passphrase string) [32]byte {
 
 // HashTransaction derives the network specific hash for the provided
 // transaction using the network identified by the supplied passphrase.  The
-// resulting hash is the value that can be signed by stellar secret key to
-// authorize the transaction identified by the hash to stellar validators.
+// resulting hash is the value that can be signed by fonero secret key to
+// authorize the transaction identified by the hash to fonero validators.
 func HashTransaction(tx *xdr.Transaction, passphrase string) ([32]byte, error) {
 	var txBytes bytes.Buffer
 

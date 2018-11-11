@@ -1,7 +1,7 @@
 ---
 title: Transaction Details
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=transactions&endpoint=single
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=transactions&endpoint=single
 ---
 
 The transaction details endpoint provides information on a single [transaction](../resources/transaction.md). The transaction hash provided in the `hash` argument specifies which transaction to load.
@@ -21,14 +21,14 @@ GET /transactions/{hash}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/transactions/6391dd190f15f7d1665ba53c63842e368f485651a53d8d852ed442a446d1c69a"
+curl "https://horizon-testnet.fonero.org/transactions/6391dd190f15f7d1665ba53c63842e368f485651a53d8d852ed442a446d1c69a"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.transactions()
   .transaction("3c8ef808df9d5d240ba0d495629df9da5653b1be2daf05d43b49c5bcbfe099bd")

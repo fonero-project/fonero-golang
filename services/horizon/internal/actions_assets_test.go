@@ -3,17 +3,17 @@ package horizon
 import (
 	"testing"
 
-	"github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/protocols/horizon/base"
-	"github.com/stellar/go/services/horizon/internal/test"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/protocols/horizon/base"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/test"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 func TestAssetsActions(t *testing.T) {
 	testDomain := struct {
 		Toml hal.Link `json:"toml"`
 	}{
-		Toml: hal.NewLink("https://test.com/.well-known/stellar.toml"),
+		Toml: hal.NewLink("https://test.com/.well-known/fonero.toml"),
 	}
 	empty := struct {
 		Toml hal.Link `json:"toml"`

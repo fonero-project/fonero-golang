@@ -4,8 +4,8 @@ import (
 	"context"
 	"net/http"
 
-	horizonContext "github.com/stellar/go/services/horizon/internal/context"
-	"github.com/stellar/go/support/log"
+	horizonContext "github.com/fonero-project/fonero-golang/services/horizon/internal/context"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 func RequestFromContext(ctx context.Context) *http.Request {

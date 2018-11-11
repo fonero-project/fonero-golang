@@ -1,12 +1,12 @@
 ---
 title: Trades for Account
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=trades&endpoint=for_account
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=trades&endpoint=for_account
 ---
 
 This endpoint represents all [trades](../resources/trade.md) that affect a given [account](../resources/account.md).
 
-This endpoint can also be used in [streaming](../streaming.md) mode, making it possible to listen for new trades that affect the given account as they occur on the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode, making it possible to listen for new trades that affect the given account as they occur on the Fonero network.
 If called in streaming mode Horizon will start at the earliest known trade unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream trades created since your request time.
 
 ## Request
@@ -27,14 +27,14 @@ GET /accounts/{account_id}/trades{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/accounts/GBYTR4MC5JAX4ALGUBJD7EIKZVM7CUGWKXIUJMRSMK573XH2O7VAK3SR/trades?limit=1"
+curl "https://horizon-testnet.fonero.org/accounts/GBYTR4MC5JAX4ALGUBJD7EIKZVM7CUGWKXIUJMRSMK573XH2O7VAK3SR/trades?limit=1"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.trades()
   .forAccount("GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ")

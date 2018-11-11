@@ -1,9 +1,9 @@
 package bridge
 
 import (
-	b "github.com/stellar/go/build"
-	shared "github.com/stellar/go/services/internal/bridge-compliance-shared"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
+	b "github.com/fonero-project/fonero-golang/build"
+	shared "github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
 )
 
 // AllowTrustOperationBody represents allow_trust operation
@@ -14,7 +14,7 @@ type AllowTrustOperationBody struct {
 	Authorize bool
 }
 
-// ToTransactionMutator returns stellar/go TransactionMutator
+// ToTransactionMutator returns fonero-project/fonero-golang TransactionMutator
 func (op AllowTrustOperationBody) ToTransactionMutator() b.TransactionMutator {
 	mutators := []interface{}{
 		b.AllowTrustAsset{op.AssetCode},

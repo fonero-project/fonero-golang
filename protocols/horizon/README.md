@@ -25,12 +25,12 @@ compatibility.
 
 #### SDKs with full support
 
-- [JS SDK 0.10.2](https://github.com/stellar/js-stellar-sdk/releases/tag/v0.10.2)
-- [Java SDK 0.3.1](https://github.com/stellar/java-stellar-sdk/releases/tag/0.3.1)
+- [JS SDK 0.10.2](https://github.com/fonero-project/js-fonero-sdk/releases/tag/v0.10.2)
+- [Java SDK 0.3.1](https://github.com/fonero-project/java-fonero-sdk/releases/tag/0.3.1)
 
 #### Changes
 
-* New [`bump_sequence`](https://www.stellar.org/developers/horizon/reference/resources/operation.html#bump-sequence) operation.
+* New [`bump_sequence`](https://www.fonero.org/developers/horizon/reference/resources/operation.html#bump-sequence) operation.
 * New `sequence_bumped` effect.
 * New fields in Account > Balances collection: `buying_liabilities` and `selling_liabilities`.
 * Offer resource `last_modified` field removed, replaced by `last_modified_ledger` and `last_modified_time`.
@@ -64,12 +64,12 @@ compatibility.
 
 #### SDKs with full support
 
-- [JS SDK 0.8.2](https://github.com/stellar/js-stellar-sdk/releases/tag/v0.8.2)
-- [Java SDK 0.2.1](https://github.com/stellar/java-stellar-sdk/releases/tag/0.2.1)
+- [JS SDK 0.8.2](https://github.com/fonero-project/js-fonero-sdk/releases/tag/v0.8.2)
+- [Java SDK 0.2.1](https://github.com/fonero-project/java-fonero-sdk/releases/tag/0.2.1)
 
 #### Changes
 
-- `amount` field in `/assets` is now a String (to support Stellar amounts larger than `int64`).
+- `amount` field in `/assets` is now a String (to support Fonero amounts larger than `int64`).
 - Effect resource contains a new `created_at` field.
 
 | Resource                                 | Changes                                      | Go SDK <sup>1</sup> | JS SDK             | Java SDK |
@@ -90,8 +90,8 @@ compatibility.
 
 #### SDKs with full support
 
-- [JS SDK 0.8.2](https://github.com/stellar/js-stellar-sdk/releases/tag/v0.8.2)
-- [Java SDK 0.2.1](https://github.com/stellar/java-stellar-sdk/releases/tag/0.2.1)
+- [JS SDK 0.8.2](https://github.com/fonero-project/js-fonero-sdk/releases/tag/v0.8.2)
+- [Java SDK 0.2.1](https://github.com/fonero-project/java-fonero-sdk/releases/tag/0.2.1)
 
 #### Changes
 

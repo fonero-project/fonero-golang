@@ -2,8 +2,8 @@ package horizon
 
 import (
 	"encoding/json"
-	hProtocol "github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/support/render/hal"
+	hProtocol "github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // Deprecated: use protocols/horizon instead

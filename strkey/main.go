@@ -5,8 +5,8 @@ import (
 	"encoding/base32"
 	"encoding/binary"
 
-	"github.com/stellar/go/crc16"
-	"github.com/stellar/go/support/errors"
+	"github.com/fonero-project/fonero-golang/crc16"
+	"github.com/fonero-project/fonero-golang/support/errors"
 )
 
 // ErrInvalidVersionByte is returned when the version byte from a provided
@@ -18,17 +18,17 @@ var ErrInvalidVersionByte = errors.New("invalid version byte")
 type VersionByte byte
 
 const (
-	//VersionByteAccountID is the version byte used for encoded stellar addresses
+	//VersionByteAccountID is the version byte used for encoded fonero addresses
 	VersionByteAccountID VersionByte = 6 << 3 // Base32-encodes to 'G...'
 
-	//VersionByteSeed is the version byte used for encoded stellar seed
+	//VersionByteSeed is the version byte used for encoded fonero seed
 	VersionByteSeed = 18 << 3 // Base32-encodes to 'S...'
 
-	//VersionByteHashTx is the version byte used for encoded stellar hashTx
+	//VersionByteHashTx is the version byte used for encoded fonero hashTx
 	//signer keys.
 	VersionByteHashTx = 19 << 3 // Base32-encodes to 'T...'
 
-	//VersionByteHashX is the version byte used for encoded stellar hashX
+	//VersionByteHashX is the version byte used for encoded fonero hashX
 	//signer keys.
 	VersionByteHashX = 23 << 3 // Base32-encodes to 'X...'
 )

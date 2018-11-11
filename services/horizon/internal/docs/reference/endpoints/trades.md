@@ -2,11 +2,11 @@
 title: Trades
 ---
 
-People on the Stellar network can make [offers](../resources/offer.md) to buy or sell assets. When an offer is fully or partially fulfilled, a [trade](../resources/trade.md) happens.
+People on the Fonero network can make [offers](../resources/offer.md) to buy or sell assets. When an offer is fully or partially fulfilled, a [trade](../resources/trade.md) happens.
 
 Trades can be filtered for specific orderbook, defined by an asset pair: `base` and `counter`. 
 
-This endpoint can also be used in [streaming](../streaming.md) mode, making it possible to listen for new trades as they occur on the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode, making it possible to listen for new trades as they occur on the Fonero network.
 If called in streaming mode Horizon will start at the earliest known trade unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream trades created since your request time.
 
 ## Request
@@ -32,7 +32,7 @@ GET /trades?base_asset_type={base_asset_type}&base_asset_code={base_asset_code}&
 
 ### curl Example Request
 ```sh 
-curl https://horizon.stellar.org/trades?base_asset_type=native&counter_asset_code=SLT&counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP&counter_asset_type=credit_alphanum4&limit=2&order=desc
+curl https://horizon.fonero.org/trades?base_asset_type=native&counter_asset_code=SLT&counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP&counter_asset_type=credit_alphanum4&limit=2&order=desc
 ```
 
 ## Response
@@ -44,13 +44,13 @@ The list of trades. `base` and `counter` in the records will match the asset pai
 {
   "_links": {
     "self": {
-      "href": "https://horizon.stellar.org/trades?base_asset_type=native\u0026counter_asset_code=SLT\u0026counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP\u0026counter_asset_type=credit_alphanum4\u0026cursor=\u0026limit=2\u0026order=desc"
+      "href": "https://horizon.fonero.org/trades?base_asset_type=native\u0026counter_asset_code=SLT\u0026counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP\u0026counter_asset_type=credit_alphanum4\u0026cursor=\u0026limit=2\u0026order=desc"
     },
     "next": {
-      "href": "https://horizon.stellar.org/trades?base_asset_type=native\u0026counter_asset_code=SLT\u0026counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP\u0026counter_asset_type=credit_alphanum4\u0026cursor=68836785177763841-0\u0026limit=2\u0026order=desc"
+      "href": "https://horizon.fonero.org/trades?base_asset_type=native\u0026counter_asset_code=SLT\u0026counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP\u0026counter_asset_type=credit_alphanum4\u0026cursor=68836785177763841-0\u0026limit=2\u0026order=desc"
     },
     "prev": {
-      "href": "https://horizon.stellar.org/trades?base_asset_type=native\u0026counter_asset_code=SLT\u0026counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP\u0026counter_asset_type=credit_alphanum4\u0026cursor=68836918321750017-0\u0026limit=2\u0026order=asc"
+      "href": "https://horizon.fonero.org/trades?base_asset_type=native\u0026counter_asset_code=SLT\u0026counter_asset_issuer=GCKA6K5PCQ6PNF5RQBF7PQDJWRHO6UOGFMRLK3DYHDOI244V47XKQ4GP\u0026counter_asset_type=credit_alphanum4\u0026cursor=68836918321750017-0\u0026limit=2\u0026order=asc"
     }
   },
   "_embedded": {
@@ -58,13 +58,13 @@ The list of trades. `base` and `counter` in the records will match the asset pai
       {
         "_links": {
           "base": {
-            "href": "https://horizon.stellar.org/accounts/GBZXCJIUEPDXGHMS64UBJHUVKV6ETWYOVHADLTBXJNJFUC7A7RU5B3GN"
+            "href": "https://horizon.fonero.org/accounts/GBZXCJIUEPDXGHMS64UBJHUVKV6ETWYOVHADLTBXJNJFUC7A7RU5B3GN"
           },
           "counter": {
-            "href": "https://horizon.stellar.org/accounts/GBHKUQDYXGK5IEYORI7DZMMXANOIEHHOF364LNT4Q7EWPUL7FOO2SP6D"
+            "href": "https://horizon.fonero.org/accounts/GBHKUQDYXGK5IEYORI7DZMMXANOIEHHOF364LNT4Q7EWPUL7FOO2SP6D"
           },
           "operation": {
-            "href": "https://horizon.stellar.org/operations/68836918321750017"
+            "href": "https://horizon.fonero.org/operations/68836918321750017"
           }
         },
         "id": "68836918321750017-0",
@@ -89,13 +89,13 @@ The list of trades. `base` and `counter` in the records will match the asset pai
       {
         "_links": {
           "base": {
-            "href": "https://horizon.stellar.org/accounts/GCUODCZAU6CSXEKKWZZNWQXDITIWLWCDK6M4IZ7H5PACLC3QAWEJSOTR"
+            "href": "https://horizon.fonero.org/accounts/GCUODCZAU6CSXEKKWZZNWQXDITIWLWCDK6M4IZ7H5PACLC3QAWEJSOTR"
           },
           "counter": {
-            "href": "https://horizon.stellar.org/accounts/GBHKUQDYXGK5IEYORI7DZMMXANOIEHHOF364LNT4Q7EWPUL7FOO2SP6D"
+            "href": "https://horizon.fonero.org/accounts/GBHKUQDYXGK5IEYORI7DZMMXANOIEHHOF364LNT4Q7EWPUL7FOO2SP6D"
           },
           "operation": {
-            "href": "https://horizon.stellar.org/operations/68836785177763841"
+            "href": "https://horizon.fonero.org/operations/68836785177763841"
           }
         },
         "id": "68836785177763841-0",

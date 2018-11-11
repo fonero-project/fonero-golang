@@ -1,12 +1,12 @@
 ---
 title: Payments for Account
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=payments&endpoint=for_account
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=payments&endpoint=for_account
 ---
 
 This endpoint responds with a collection of payment-related operations where the given [account](../resources/account.md) was either the sender or receiver.
 
-This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to listen for new payments to or from an account as they get made in the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to listen for new payments to or from an account as they get made in the Fonero network.
 If called in streaming mode Horizon will start at the earliest known payment unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream payments created since your request time.
 
 The operations that can be returned in by this endpoint are:
@@ -34,14 +34,14 @@ GET /accounts/{id}/payments{?cursor,limit,order}
 
 ```bash
 # Retrieve the 25 latest payments for a specific account.
-curl "https://horizon-testnet.stellar.org/accounts/GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ/payments?limit=25&order=desc"
+curl "https://horizon-testnet.fonero.org/accounts/GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ/payments?limit=25&order=desc"
 ```
 
 ### JavaScript Example Request
 
 ```js
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.payments()
   .forAccount("GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ")
@@ -86,7 +86,7 @@ This endpoint responds with a [page](../resources/page.md) of [payment operation
       "sender": "GCEZWKCA5VLDNRLN3RPRJMRZOX3Z6G5CHCGSNFHEYVXM3XOJMDS674JZ",
       "receiver": "GCXKG6RN4ONIEPCMNFB732A436Z5PNDSRLGWK7GBLCMQLIFO4S7EYWVU",
       "asset": {
-        "code": "XLM"
+        "code": "FNO"
       },
       "amount": 1000000000,
       "amount_f": 100.00

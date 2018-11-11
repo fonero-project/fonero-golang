@@ -1,17 +1,17 @@
 package horizon
 
 import (
-	"github.com/stellar/go/protocols/horizon"
-	"github.com/stellar/go/services/horizon/internal/db2/core"
-	"github.com/stellar/go/services/horizon/internal/db2/history"
-	"github.com/stellar/go/services/horizon/internal/render/sse"
-	"github.com/stellar/go/services/horizon/internal/resourceadapter"
-	"github.com/stellar/go/support/render/hal"
+	"github.com/fonero-project/fonero-golang/protocols/horizon"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/core"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2/history"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/render/sse"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/resourceadapter"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
 )
 
 // This file contains the actions:
 //
-// AccountShowAction: details for single account (including stellar-core state)
+// AccountShowAction: details for single account (including fonero-core state)
 
 // AccountShowAction renders a account summary found by its address.
 type AccountShowAction struct {

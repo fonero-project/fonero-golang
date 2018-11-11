@@ -5,9 +5,9 @@ import (
 
 	sq "github.com/Masterminds/squirrel"
 	"github.com/go-errors/errors"
-	"github.com/stellar/go/services/horizon/internal/db2"
-	"github.com/stellar/go/services/horizon/internal/toid"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/db2"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal/toid"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // LedgerSequence return the ledger in which the effect occurred.

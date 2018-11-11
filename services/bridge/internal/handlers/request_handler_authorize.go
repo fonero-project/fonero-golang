@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
-	b "github.com/stellar/go/build"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/http/helpers"
-	"github.com/stellar/go/services/internal/bridge-compliance-shared/protocols/bridge"
+	b "github.com/fonero-project/fonero-golang/build"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/http/helpers"
+	"github.com/fonero-project/fonero-golang/services/internal/bridge-compliance-shared/protocols/bridge"
 )
 
 // Authorize implements /authorize endpoint

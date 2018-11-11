@@ -9,8 +9,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/stellar/go/services/horizon/internal"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/services/horizon/internal"
+	"github.com/fonero-project/fonero-golang/support/log"
 	"github.com/throttled/throttled"
 )
 
@@ -29,8 +29,8 @@ func init() {
 
 	viper.BindEnv("port", "PORT")
 	viper.BindEnv("db-url", "DATABASE_URL")
-	viper.BindEnv("stellar-core-db-url", "STELLAR_CORE_DATABASE_URL")
-	viper.BindEnv("stellar-core-url", "STELLAR_CORE_URL")
+	viper.BindEnv("fonero-core-db-url", "FONERO_CORE_DATABASE_URL")
+	viper.BindEnv("fonero-core-url", "FONERO_CORE_URL")
 	viper.BindEnv("max-db-connections", "MAX_DB_CONNECTIONS")
 	viper.BindEnv("sse-update-frequency", "SSE_UPDATE_FREQUENCY")
 	viper.BindEnv("connection-timeout", "CONNECTION_TIMEOUT")
@@ -56,8 +56,8 @@ func init() {
 
 	rootCmd = &cobra.Command{
 		Use:   "horizon",
-		Short: "client-facing api server for the stellar network",
-		Long:  "client-facing api server for the stellar network",
+		Short: "client-facing api server for the fonero network",
+		Long:  "client-facing api server for the fonero network",
 		Run: func(cmd *cobra.Command, args []string) {
 			initApp(cmd, args)
 			app.Serve()
@@ -71,15 +71,15 @@ func init() {
 	)
 
 	rootCmd.PersistentFlags().String(
-		"stellar-core-db-url",
+		"fonero-core-db-url",
 		"",
-		"stellar-core postgres database to connect with",
+		"fonero-core postgres database to connect with",
 	)
 
 	rootCmd.PersistentFlags().String(
-		"stellar-core-url",
+		"fonero-core-url",
 		"",
-		"stellar-core to connect with (for http commands)",
+		"fonero-core to connect with (for http commands)",
 	)
 
 	rootCmd.PersistentFlags().Int(
@@ -175,7 +175,7 @@ func init() {
 	rootCmd.PersistentFlags().Bool(
 		"ingest",
 		false,
-		"causes this horizon process to ingest data from stellar-core into horizon's db",
+		"causes this horizon process to ingest data from fonero-core into horizon's db",
 	)
 
 	rootCmd.PersistentFlags().String(
@@ -193,7 +193,7 @@ func init() {
 	rootCmd.PersistentFlags().Uint(
 		"history-stale-threshold",
 		0,
-		"the maximum number of ledgers the history db is allowed to be out of date from the connected stellar-core db before horizon considers history stale",
+		"the maximum number of ledgers the history db is allowed to be out of date from the connected fonero-core db before horizon considers history stale",
 	)
 
 	rootCmd.PersistentFlags().Bool(
@@ -231,12 +231,12 @@ func initConfig() {
 		stdLog.Fatal("Invalid config: db-url is blank.  Please specify --db-url on the command line or set the DATABASE_URL environment variable.")
 	}
 
-	if viper.GetString("stellar-core-db-url") == "" {
-		stdLog.Fatal("Invalid config: stellar-core-db-url is blank.  Please specify --stellar-core-db-url on the command line or set the STELLAR_CORE_DATABASE_URL environment variable.")
+	if viper.GetString("fonero-core-db-url") == "" {
+		stdLog.Fatal("Invalid config: fonero-core-db-url is blank.  Please specify --fonero-core-db-url on the command line or set the FONERO_CORE_DATABASE_URL environment variable.")
 	}
 
-	if viper.GetString("stellar-core-url") == "" {
-		stdLog.Fatal("Invalid config: stellar-core-url is blank.  Please specify --stellar-core-url on the command line or set the STELLAR_CORE_URL environment variable.")
+	if viper.GetString("fonero-core-url") == "" {
+		stdLog.Fatal("Invalid config: fonero-core-url is blank.  Please specify --fonero-core-url on the command line or set the FONERO_CORE_URL environment variable.")
 	}
 
 	ll, err := logrus.ParseLevel(viper.GetString("log-level"))
@@ -286,8 +286,8 @@ func initConfig() {
 
 	config = horizon.Config{
 		DatabaseURL:            viper.GetString("db-url"),
-		StellarCoreDatabaseURL: viper.GetString("stellar-core-db-url"),
-		StellarCoreURL:         viper.GetString("stellar-core-url"),
+		FoneroCoreDatabaseURL: viper.GetString("fonero-core-db-url"),
+		FoneroCoreURL:         viper.GetString("fonero-core-url"),
 		Port:                   viper.GetInt("port"),
 		MaxDBConnections:       viper.GetInt("max-db-connections"),
 		SSEUpdateFrequency:     time.Duration(viper.GetInt("sse-update-frequency")) * time.Second,

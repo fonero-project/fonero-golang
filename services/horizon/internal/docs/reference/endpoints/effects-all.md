@@ -1,12 +1,12 @@
 ---
 title: All Effects
 clientData:
-  laboratoryUrl: https://www.stellar.org/laboratory/#explorer?resource=effects&endpoint=all
+  laboratoryUrl: https://www.fonero.org/laboratory/#explorer?resource=effects&endpoint=all
 ---
 
 This endpoint represents all [effects](../resources/effect.md).
 
-This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to listen for new effects as transactions happen in the Stellar network.
+This endpoint can also be used in [streaming](../streaming.md) mode so it is possible to use it to listen for new effects as transactions happen in the Fonero network.
 If called in streaming mode Horizon will start at the earliest known effect unless a `cursor` is set. In that case it will start from the `cursor`. You can also set `cursor` value to `now` to only stream effects created since your request time.
 
 ## Request
@@ -26,14 +26,14 @@ GET /effects{?cursor,limit,order}
 ### curl Example Request
 
 ```sh
-curl "https://horizon-testnet.stellar.org/effects"
+curl "https://horizon-testnet.fonero.org/effects"
 ```
 
 ### JavaScript Example Request
 
 ```javascript
-var StellarSdk = require('stellar-sdk');
-var server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
+var FoneroSdk = require('fonero-sdk');
+var server = new FoneroSdk.Server('https://horizon-testnet.fonero.org');
 
 server.effects()
   .call()

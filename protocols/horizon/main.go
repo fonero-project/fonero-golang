@@ -8,11 +8,11 @@ import (
 	"encoding/base64"
 	"encoding/json"
 
-	"github.com/stellar/go/protocols/horizon/base"
-	"github.com/stellar/go/strkey"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/render/hal"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/protocols/horizon/base"
+	"github.com/fonero-project/fonero-golang/strkey"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/render/hal"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 // KeyTypeNames maps from strkey version bytes into json string values to use in
@@ -245,7 +245,7 @@ type Root struct {
 	} `json:"_links"`
 
 	HorizonVersion       string `json:"horizon_version"`
-	StellarCoreVersion   string `json:"core_version"`
+	FoneroCoreVersion   string `json:"core_version"`
 	HorizonSequence      int32  `json:"history_latest_ledger"`
 	HistoryElderSequence int32  `json:"history_elder_ledger"`
 	CoreSequence         int32  `json:"core_latest_ledger"`

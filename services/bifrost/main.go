@@ -15,23 +15,23 @@ import (
 	"github.com/facebookgo/inject"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/stellar/go/clients/horizon"
-	"github.com/stellar/go/services/bifrost/bitcoin"
-	"github.com/stellar/go/services/bifrost/config"
-	"github.com/stellar/go/services/bifrost/database"
-	"github.com/stellar/go/services/bifrost/ethereum"
-	"github.com/stellar/go/services/bifrost/server"
-	"github.com/stellar/go/services/bifrost/sse"
-	"github.com/stellar/go/services/bifrost/stellar"
-	"github.com/stellar/go/services/bifrost/stress"
-	supportConfig "github.com/stellar/go/support/config"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/log"
+	"github.com/fonero-project/fonero-golang/clients/horizon"
+	"github.com/fonero-project/fonero-golang/services/bifrost/bitcoin"
+	"github.com/fonero-project/fonero-golang/services/bifrost/config"
+	"github.com/fonero-project/fonero-golang/services/bifrost/database"
+	"github.com/fonero-project/fonero-golang/services/bifrost/ethereum"
+	"github.com/fonero-project/fonero-golang/services/bifrost/server"
+	"github.com/fonero-project/fonero-golang/services/bifrost/sse"
+	"github.com/fonero-project/fonero-golang/services/bifrost/fonero"
+	"github.com/fonero-project/fonero-golang/services/bifrost/stress"
+	supportConfig "github.com/fonero-project/fonero-golang/support/config"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/log"
 )
 
 var rootCmd = &cobra.Command{
 	Use:   "bifrost",
-	Short: "Bridge server to allow participating in Stellar based ICOs using Bitcoin and Ethereum",
+	Short: "Bridge server to allow participating in Fonero based ICOs using Bitcoin and Ethereum",
 }
 
 var serverCmd = &cobra.Command{
@@ -109,7 +109,7 @@ This command will create 3 server.Server's listening on ports 8000-8002.`,
 		for i := 0; i < numServers; i++ {
 			go func(i int) {
 				cfg.Port = ports[i]
-				cfg.Stellar.SignerSecretKey = signers[i]
+				cfg.Fonero.SignerSecretKey = signers[i]
 				server := createServer(cfg, true)
 				// Replace clients in listeners with random transactions generators
 				server.BitcoinListener.Client = bitcoinClient
@@ -129,15 +129,15 @@ This command will create 3 server.Server's listening on ports 8000-8002.`,
 		accounts := make(chan server.GenerateAddressResponse)
 		users := stress.Users{
 			Horizon: &horizon.Client{
-				URL: cfg.Stellar.Horizon,
+				URL: cfg.Fonero.Horizon,
 				HTTP: &http.Client{
 					Timeout: 60 * time.Second,
 				},
 			},
-			NetworkPassphrase: cfg.Stellar.NetworkPassphrase,
+			NetworkPassphrase: cfg.Fonero.NetworkPassphrase,
 			UsersPerSecond:    usersPerSecond,
 			BifrostPorts:      ports,
-			IssuerPublicKey:   cfg.Stellar.IssuerPublicKey,
+			IssuerPublicKey:   cfg.Fonero.IssuerPublicKey,
 		}
 		go users.Start(accounts)
 		for {
@@ -216,7 +216,7 @@ var versionCmd = &cobra.Command{
 }
 
 func init() {
-	// TODO I think these should be default in stellar/go:
+	// TODO I think these should be default in fonero-project/fonero-golang:
 	log.SetLevel(log.InfoLevel)
 	log.DefaultLogger.Logger.Formatter.(*logrus.TextFormatter).FullTimestamp = true
 
@@ -374,31 +374,31 @@ func createServer(cfg config.Config, stressTest bool) *server.Server {
 		}
 	}
 
-	stellarAccountConfigurator := &stellar.AccountConfigurator{
-		NetworkPassphrase:     cfg.Stellar.NetworkPassphrase,
-		IssuerPublicKey:       cfg.Stellar.IssuerPublicKey,
-		DistributionPublicKey: cfg.Stellar.DistributionPublicKey,
-		SignerSecretKey:       cfg.Stellar.SignerSecretKey,
-		NeedsAuthorize:        cfg.Stellar.NeedsAuthorize,
-		TokenAssetCode:        cfg.Stellar.TokenAssetCode,
-		StartingBalance:       cfg.Stellar.StartingBalance,
-		LockUnixTimestamp:     cfg.Stellar.LockUnixTimestamp,
+	foneroAccountConfigurator := &fonero.AccountConfigurator{
+		NetworkPassphrase:     cfg.Fonero.NetworkPassphrase,
+		IssuerPublicKey:       cfg.Fonero.IssuerPublicKey,
+		DistributionPublicKey: cfg.Fonero.DistributionPublicKey,
+		SignerSecretKey:       cfg.Fonero.SignerSecretKey,
+		NeedsAuthorize:        cfg.Fonero.NeedsAuthorize,
+		TokenAssetCode:        cfg.Fonero.TokenAssetCode,
+		StartingBalance:       cfg.Fonero.StartingBalance,
+		LockUnixTimestamp:     cfg.Fonero.LockUnixTimestamp,
 	}
 
-	if cfg.Stellar.StartingBalance == "" {
-		stellarAccountConfigurator.StartingBalance = "2.1"
+	if cfg.Fonero.StartingBalance == "" {
+		foneroAccountConfigurator.StartingBalance = "2.1"
 	}
 
 	if cfg.Bitcoin != nil {
-		stellarAccountConfigurator.TokenPriceBTC = cfg.Bitcoin.TokenPrice
+		foneroAccountConfigurator.TokenPriceBTC = cfg.Bitcoin.TokenPrice
 	}
 
 	if cfg.Ethereum != nil {
-		stellarAccountConfigurator.TokenPriceETH = cfg.Ethereum.TokenPrice
+		foneroAccountConfigurator.TokenPriceETH = cfg.Ethereum.TokenPrice
 	}
 
 	horizonClient := &horizon.Client{
-		URL: cfg.Stellar.Horizon,
+		URL: cfg.Fonero.Horizon,
 		HTTP: &http.Client{
 			Timeout: 20 * time.Second,
 		},
@@ -418,7 +418,7 @@ func createServer(cfg config.Config, stressTest bool) *server.Server {
 		&inject.Object{Value: horizonClient},
 		&inject.Object{Value: server},
 		&inject.Object{Value: sseServer},
-		&inject.Object{Value: stellarAccountConfigurator},
+		&inject.Object{Value: foneroAccountConfigurator},
 	)
 	if err != nil {
 		log.WithField("err", err).Error("Error providing objects to injector")

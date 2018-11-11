@@ -11,7 +11,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	// pq enables postgres support
 	_ "github.com/lib/pq"
-	db "github.com/stellar/go/support/db/dbtest"
+	db "github.com/fonero-project/fonero-golang/support/db/dbtest"
 )
 
 var (
@@ -41,8 +41,8 @@ func HorizonURL() string {
 	return *horizonUrl
 }
 
-// StellarCore returns a connection to the stellar core test database
-func StellarCore(t *testing.T) *sqlx.DB {
+// FoneroCore returns a connection to the fonero core test database
+func FoneroCore(t *testing.T) *sqlx.DB {
 	if coreDB != nil {
 		return coreDB
 	}
@@ -52,11 +52,11 @@ func StellarCore(t *testing.T) *sqlx.DB {
 	return coreDB
 }
 
-// StellarCoreURL returns the database connection the url any test
-// use when connecting to the stellar-core database
-func StellarCoreURL() string {
+// FoneroCoreURL returns the database connection the url any test
+// use when connecting to the fonero-core database
+func FoneroCoreURL() string {
 	if coreUrl == nil {
-		log.Panic(fmt.Errorf("StellarCore not initialized"))
+		log.Panic(fmt.Errorf("FoneroCore not initialized"))
 	}
 	return *coreUrl
 }

@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stellar/go/services/bifrost/bitcoin"
-	"github.com/stellar/go/services/bifrost/database"
-	"github.com/stellar/go/services/bifrost/queue"
-	"github.com/stellar/go/services/bifrost/sse"
+	"github.com/fonero-project/fonero-golang/services/bifrost/bitcoin"
+	"github.com/fonero-project/fonero-golang/services/bifrost/database"
+	"github.com/fonero-project/fonero-golang/services/bifrost/queue"
+	"github.com/fonero-project/fonero-golang/services/bifrost/sse"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/suite"
 )
@@ -83,7 +83,7 @@ func (suite *BitcoinRailTestSuite) TestAssociationAlreadyProcessed() {
 		Chain:            database.ChainBitcoin,
 		AddressIndex:     1,
 		Address:          "1Q74qRud8bXUn6FMtXWZwJa5pj56s3mdyf",
-		StellarPublicKey: "GDULKYRRVOMASFMXBYD4BYFRSHAKQDREEVVP2TMH2CER3DW2KATIOASB",
+		FoneroPublicKey: "GDULKYRRVOMASFMXBYD4BYFRSHAKQDREEVVP2TMH2CER3DW2KATIOASB",
 		CreatedAt:        time.Now(),
 	}
 	suite.MockDatabase.
@@ -108,7 +108,7 @@ func (suite *BitcoinRailTestSuite) TestAssociationSuccess() {
 		Chain:            database.ChainBitcoin,
 		AddressIndex:     1,
 		Address:          "1Q74qRud8bXUn6FMtXWZwJa5pj56s3mdyf",
-		StellarPublicKey: "GDULKYRRVOMASFMXBYD4BYFRSHAKQDREEVVP2TMH2CER3DW2KATIOASB",
+		FoneroPublicKey: "GDULKYRRVOMASFMXBYD4BYFRSHAKQDREEVVP2TMH2CER3DW2KATIOASB",
 		CreatedAt:        time.Now(),
 	}
 	suite.MockDatabase.
@@ -126,7 +126,7 @@ func (suite *BitcoinRailTestSuite) TestAssociationSuccess() {
 			suite.Assert().Equal("BTC", string(queue.AssetCodeBTC))
 			suite.Assert().Equal(queue.AssetCodeBTC, queueTransaction.AssetCode)
 			suite.Assert().Equal("1.0000000", queueTransaction.Amount)
-			suite.Assert().Equal(association.StellarPublicKey, queueTransaction.StellarPublicKey)
+			suite.Assert().Equal(association.FoneroPublicKey, queueTransaction.FoneroPublicKey)
 		})
 	suite.MockSSEServer.
 		On("BroadcastEvent", transaction.To, sse.TransactionReceivedAddressEvent, []byte(nil))

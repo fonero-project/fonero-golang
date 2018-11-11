@@ -13,16 +13,16 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/stellar/go/keypair"
-	"github.com/stellar/go/services/bifrost/bitcoin"
-	"github.com/stellar/go/services/bifrost/common"
-	"github.com/stellar/go/services/bifrost/database"
-	"github.com/stellar/go/services/bifrost/ethereum"
-	"github.com/stellar/go/support/app"
-	"github.com/stellar/go/support/errors"
-	"github.com/stellar/go/support/http"
-	"github.com/stellar/go/support/log"
-	"github.com/stellar/go/xdr"
+	"github.com/fonero-project/fonero-golang/keypair"
+	"github.com/fonero-project/fonero-golang/services/bifrost/bitcoin"
+	"github.com/fonero-project/fonero-golang/services/bifrost/common"
+	"github.com/fonero-project/fonero-golang/services/bifrost/database"
+	"github.com/fonero-project/fonero-golang/services/bifrost/ethereum"
+	"github.com/fonero-project/fonero-golang/support/app"
+	"github.com/fonero-project/fonero-golang/support/errors"
+	"github.com/fonero-project/fonero-golang/support/http"
+	"github.com/fonero-project/fonero-golang/support/log"
+	"github.com/fonero-project/fonero-golang/xdr"
 )
 
 func (s *Server) Start() error {
@@ -32,9 +32,9 @@ func (s *Server) Start() error {
 	// Register callbacks
 	s.BitcoinListener.TransactionHandler = s.onNewBitcoinTransaction
 	s.EthereumListener.TransactionHandler = s.onNewEthereumTransaction
-	s.StellarAccountConfigurator.OnAccountCreated = s.onStellarAccountCreated
-	s.StellarAccountConfigurator.OnExchanged = s.onExchanged
-	s.StellarAccountConfigurator.OnExchangedTimelocked = s.OnExchangedTimelocked
+	s.FoneroAccountConfigurator.OnAccountCreated = s.onFoneroAccountCreated
+	s.FoneroAccountConfigurator.OnExchanged = s.onExchanged
+	s.FoneroAccountConfigurator.OnExchangedTimelocked = s.OnExchangedTimelocked
 
 	if !s.BitcoinListener.Enabled && !s.EthereumListener.Enabled {
 		return errors.New("At least one listener (BitcoinListener or EthereumListener) must be enabled")
@@ -78,9 +78,9 @@ func (s *Server) Start() error {
 		s.log.Warn("EthereumListener disabled")
 	}
 
-	err := s.StellarAccountConfigurator.Start()
+	err := s.FoneroAccountConfigurator.Start()
 	if err != nil {
-		return errors.Wrap(err, "Error starting StellarAccountConfigurator")
+		return errors.Wrap(err, "Error starting FoneroAccountConfigurator")
 	}
 
 	err = s.SSEServer.StartPublishing()
@@ -178,10 +178,10 @@ func (s *Server) HandlerGenerateEthereumAddress(w stdhttp.ResponseWriter, r *std
 func (s *Server) handlerGenerateAddress(w stdhttp.ResponseWriter, r *stdhttp.Request, chain database.Chain) {
 	w.Header().Set("Access-Control-Allow-Origin", s.Config.AccessControlAllowOriginHeader)
 
-	stellarPublicKey := r.PostFormValue("stellar_public_key")
-	_, err := keypair.Parse(stellarPublicKey)
-	if err != nil || (err == nil && stellarPublicKey[0] != 'G') {
-		log.WithField("stellarPublicKey", stellarPublicKey).Warn("Invalid stellarPublicKey")
+	foneroPublicKey := r.PostFormValue("fonero_public_key")
+	_, err := keypair.Parse(foneroPublicKey)
+	if err != nil || (err == nil && foneroPublicKey[0] != 'G') {
+		log.WithField("foneroPublicKey", foneroPublicKey).Warn("Invalid foneroPublicKey")
 		w.WriteHeader(stdhttp.StatusBadRequest)
 		return
 	}
@@ -212,13 +212,13 @@ func (s *Server) handlerGenerateAddress(w stdhttp.ResponseWriter, r *stdhttp.Req
 		return
 	}
 
-	err = s.Database.CreateAddressAssociation(chain, stellarPublicKey, address, index)
+	err = s.Database.CreateAddressAssociation(chain, foneroPublicKey, address, index)
 	if err != nil {
 		log.WithFields(log.F{
 			"err":              err,
 			"chain":            chain,
 			"index":            index,
-			"stellarPublicKey": stellarPublicKey,
+			"foneroPublicKey": foneroPublicKey,
 			"address":          address,
 		}).Error("Error creating address association")
 		w.WriteHeader(stdhttp.StatusInternalServerError)
